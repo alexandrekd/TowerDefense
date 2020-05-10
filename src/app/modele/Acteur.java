@@ -1,20 +1,22 @@
 package app.modele;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.util.Random;
 
 public abstract class Acteur {
 
     static String id;
-    private int x;
-    private int y;
+    private IntegerProperty xProperty, yProperty;
     public static int compteur = 0;
     public Environnement env;
 
     public Acteur(int x, int y, Environnement env){
         this.id = "A"+compteur;
         compteur++;
-        this.x = x;
-        this.y = y;
+        this.xProperty = new SimpleIntegerProperty(x);
+        this.yProperty = new SimpleIntegerProperty(y);
         this.env = env;
     }
 
@@ -22,25 +24,27 @@ public abstract class Acteur {
         this.env = env;
         this.id = "A"+compteur;
         Random random=new Random();
-        this.x = random.nextInt(env.getWidth()-1);
-        this.y = random.nextInt(env.getHeight()-1);
-        System.out.println("Etape 1 :\nx : " + x + "\ny : " + y + "\n");
+        int x = random.nextInt(env.getWidth()-1);
+        int y = random.nextInt(env.getHeight()-1);
+        this.xProperty = new SimpleIntegerProperty(x);
+        this.yProperty = new SimpleIntegerProperty(y);
     }
 
-    public int getX(){
-        System.out.println("this is X : " + this.x);
-        return this.x;
+    public  int getX() {
+        return xProperty.getValue();
     }
-    public void setX(int x){
-        this.x = x;
+    public  void setX(int n){
+        xProperty.setValue(n);
     }
+    public final IntegerProperty getXProperty(){ return xProperty; }
 
-    public int getY(){
-        return this.y;
+    public  int getY() {
+        return yProperty.getValue();
     }
-    public void setY(int y){
-        this.y = y;
+    public  void setY(int n){
+        yProperty.setValue(n);
     }
+    public final IntegerProperty getYProperty(){ return yProperty; }
 
     public String getId(){
         return this.id;

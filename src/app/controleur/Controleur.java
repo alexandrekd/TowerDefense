@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -13,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import app.modele.Acteur;
 import app.modele.Attaquants;
 import app.modele.Environnement;
 import app.modele.Tourelle;
@@ -24,7 +26,7 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable {
 
     @FXML
-    private TilePane plateau;
+    private Pane plateau;
 
     @FXML
     private RadioButton btTourelleSimple;
@@ -35,6 +37,12 @@ public class Controleur implements Initializable {
     @FXML
     private ToggleGroup Tour;
 
+    @FXML
+    private Button btLancer;
+
+    @FXML
+    private TextField tfNbTour;
+
     private Environnement env;
 
 
@@ -43,31 +51,70 @@ public class Controleur implements Initializable {
 
         this.env = new Environnement(550, 400);
         plateau.getChildren().add(new ImageView("resources/textures/1.png"));
+        plateau.getChildren().add(new ImageView("resources/textures/test.png"));
+
     }
 
     @FXML
     void poserTourelle(MouseEvent event) {
         Node source = (Node)event.getSource();
-        /*int colIndex = (GridPane.getColumnIndex(source) == null) ?  0 : (GridPane.getColumnIndex(source));
-        int colRow = (GridPane.getRowIndex(source) == null) ? 0 : (GridPane.getRowIndex(source));*/
-       int colIndex = (int) event.getX();
-       int colRow = (int) event.getY();
+        int colIndex = (int) event.getX();
+        int colRow = (int) event.getY();
 
-       Tourelle tourelle = new Tourelle(5, colIndex, colRow, 3, 20, this.env);
-       this.env.ajouterTourelle(tourelle);
-       creerSprite(tourelle);
+        Tourelle tourelle = new Tourelle(5, colIndex, colRow, 3, 500, this.env);
+        this.env.ajouterTourelle(tourelle);
+        creerSprite(tourelle);
     }
 
-    void creerSprite(Tourelle tourelle){
-        Circle c = new Circle(10);
-        c.setId(tourelle.getId());
-        c.setFill(Color.RED);
-        c.setTranslateX(tourelle.getX());
-        c.setTranslateY(tourelle.getY());
-        /*c.translateXProperty().bind(tourelle.getXProperty());
-        c.translateYProperty().bind(tourelle.getYProperty());*/
-        plateau.getChildren().add(c);
+    public void creerSprite(Acteur acteur){
+        if(acteur instanceof Tourelle) {
+            Circle c = new Circle(10);
+            c.setId(acteur.getId());
+            c.setFill(Color.RED);
+            c.setTranslateX(acteur.getX());
+            c.setTranslateY(acteur.getY());
+            c.translateXProperty().bind(acteur.getXProperty());
+            c.translateYProperty().bind(acteur.getYProperty());
+            plateau.getChildren().add(c);
+        }
+        else if(acteur instanceof Attaquants){
+            Circle c = new Circle(5);
+            c.setId(acteur.getId());
+            c.setFill(Color.BLUE);
+            c.setTranslateX(acteur.getX());
+            c.setTranslateY(acteur.getY());
+            c.translateXProperty().bind(acteur.getXProperty());
+            c.translateYProperty().bind(acteur.getYProperty());
+            plateau.getChildren().add(c);
+        }
     }
+
+    public void removeSprite(String id){
+        plateau.getChildren().remove(id);
+    }
+
+    @FXML
+    void faireTours(MouseEvent event) {
+        int nbtour;
+        try{
+            nbtour = Integer.valueOf(tfNbTour.getText());
+        }catch (Exception e){
+            nbtour = 0;
+        }
+
+        for(int i = 0; i < nbtour; i++)
+            this.env.unTour();
+
+        /*update();*/
+    }
+
+    /*void update(){
+        plateau.getChildren().clear();
+        for(int i = 0; i < this.env.getActeurs().size(); i++){
+            String id = "A" + i;
+            creerSprite(this.env.getActeur(id));
+        }
+    }*/
 
     @FXML
     void clickStart(MouseEvent event) {

@@ -1,5 +1,4 @@
 package app.modele;
-
 import java.util.Random;
 
 public class Attaquants extends Acteur{
@@ -33,7 +32,6 @@ public class Attaquants extends Acteur{
 	}
 
 	public void seDeplacer() {// Cette methode permet a l'attaquant de se deplacer, meme s'il peut changer de direction
-
 		if ((Math.random() * 1 < 0.2)) { // Ici, les 10% de chances de changer de direction s'appliquent
 			this.dx = ((int) (Math.random() * 3))-1;
 			this.dy = ((int) (Math.random() * 3))-1;
@@ -57,13 +55,15 @@ public class Attaquants extends Acteur{
 	}
 
 	public boolean estVivant(){
-		if(this.pv <= 0)
+		if(this.pv <= 0){
 			return false;
+		}
 		return true;
 	}
 
 	public void recevoirTir(int dégatsReçus) {
 		this.pv = this.pv - dégatsReçus;
+		System.out.println("PV = " + this.pv);
 	}
 
 	public void arriver() {

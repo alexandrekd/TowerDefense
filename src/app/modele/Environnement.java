@@ -6,12 +6,14 @@ public class Environnement {
     private int width, height;
     private ArrayList<Tourelle> tourelles;
     private ArrayList<Attaquants> attaquants;
+    private ArrayList<Acteur> acteurs;
     private int nbTours;
 
     public Environnement(int width, int height){
 
         tourelles = new ArrayList<Tourelle>();
         attaquants = new ArrayList<Attaquants>();
+        acteurs = new ArrayList<Acteur>();
         this.width = width;
         this.height = height;
 
@@ -28,7 +30,6 @@ public class Environnement {
 
     public void ajouterTourelle(Tourelle tourelle){
         this.tourelles.add(tourelle);
-        System.out.println("c'est bon bg\nx: " + tourelle.getX() + "; y: " + tourelle.getY() + "\n");
     }
 
     public void ajouterAttaquants(Attaquants attaquant){
@@ -44,24 +45,39 @@ public class Environnement {
         return this.attaquants;
     }
 
+    public ArrayList<Acteur> getActeurs(){
+        return this.acteurs;
+    }
+
+    public Acteur getActeur(String id) {
+        for(Acteur a:this.acteurs){
+            if(a.getId().equals(id)){
+                return a;
+            }
+        }
+        return null;
+    }
+
 
     public void unTour(){
         System.out.println("tour " + this.nbTours);
 
-        for(int i=0;i<tourelles.size(); i++){
-            Tourelle tourelle = tourelles.get(i);
+        for(int i = 0; i < this.tourelles.size(); i++){
+            Tourelle tourelle = this.tourelles.get(i);
             tourelle.agit();
         }
-        for(int i=0;i<attaquants.size(); i++){
-            Attaquants attaquant = attaquants.get(i);
+
+        for(int i = 0; i < this.attaquants.size(); i++){
+            Attaquants attaquant = this.attaquants.get(i);
             attaquant.seDeplacer();
         }
 
         for(int i=attaquants.size()-1; i>=0;i--){
-            Attaquants a = attaquants.get(i);
+            Attaquants a = this.attaquants.get(i);
             if(!a.estVivant()){
-                System.out.println("mort de : " + a);
-                attaquants.remove(i);
+                System.out.println(a.getId() + " est mort");
+                /*removeSprite(this.attaquants.get(i).getId());*/
+                this.attaquants.remove(i);
             }
         }
         this.nbTours++;
