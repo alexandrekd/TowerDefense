@@ -1,4 +1,4 @@
-/*package applicationV1;*/
+package app;/*package applicationV1;*/
 
 import java.io.File;
 import java.net.URL;

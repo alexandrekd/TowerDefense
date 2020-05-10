@@ -1,4 +1,4 @@
-package controleur;
+package app.controleur;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,9 +13,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import modele.Attaquants;
-import modele.Environnement;
-import modele.Tourelle;
+import app.modele.Attaquants;
+import app.modele.Environnement;
+import app.modele.Tourelle;
 import org.omg.CORBA.Environment;
 
 import java.net.URL;
@@ -42,7 +42,7 @@ public class Controleur implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         this.env = new Environnement(550, 400);
-        plateau.getChildren().add(new ImageView("resources/textures/test.png"));
+        plateau.getChildren().add(new ImageView("resources/textures/1.png"));
     }
 
     @FXML

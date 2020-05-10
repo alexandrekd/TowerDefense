@@ -1,4 +1,4 @@
-package modele;
+package app.modele;
 
 public class Tourelle extends Acteur{
     /*private String id;
