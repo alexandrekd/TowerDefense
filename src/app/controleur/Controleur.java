@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -48,6 +49,7 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env = new Environnement(550, 400);
+        setmap();
     }
 
     @FXML
@@ -118,4 +120,14 @@ public class Controleur implements Initializable {
         }
     }*/
 
+    public void setmap() {
+        for (int i = 0; i < env.getMap().size(); i++) {
+            ImageView texture = new ImageView("resources/textures/" + env.getMap().get(i) + ".png");
+            int x = (i * 10) % 550;
+            int y = ((i * 10) / 550) * 10;
+            texture.setY(y);
+            texture.setX(x);
+            plateau.getChildren().add(texture);
+        }
+    }
 }
