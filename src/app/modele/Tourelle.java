@@ -38,11 +38,15 @@ public class Tourelle extends Acteur{
         return cible;
     }
 
+    public int getDegat(){
+        return this.degat;
+    }
+
     //Permet de tire sur l'étudiant
     public void tire() {
         Attaquants cible = getCible();
         if (cible != null)
-            cible.recevoirTir(this.degat);
+            env.
     }
 
     public void agit(){

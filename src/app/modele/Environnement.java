@@ -10,6 +10,7 @@ public class Environnement {
     private ArrayList<Acteur> acteurs;
     private ArrayList<Integer> map;
     private int nbTours;
+    private ArrayList<Missile> project;
 
     public Environnement(int width, int height){
 
@@ -76,10 +77,17 @@ public class Environnement {
         this.tourelles.add(tourelle);
     }
 
+    public void ajouterMissile(Missile missile){
+        this.project.add(missile);
+    }
+
     public void ajouterAttaquants(Attaquants attaquant){
         this.attaquants.add(attaquant);
     }
 
+    public ArrayList<Missile> getProject() {
+        return project;
+    }
 
     public ArrayList<Tourelle> getTourelles(){
         return this.tourelles;

@@ -1,5 +1,6 @@
 package app.controleur;
 
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -44,6 +45,8 @@ public class Controleur implements Initializable {
     private TextField tfNbTour;
 
     private Environnement env;
+
+
 
 
     @Override
@@ -123,12 +126,7 @@ public class Controleur implements Initializable {
     public void setmap() {
         for (int i = 0; i < env.getMap().size(); i++) {
             ImageView texture = new ImageView("resources/textures/" + env.getMap().get(i) + ".png");
-            int x = (i * 10) % 550;
-            int y = ((i * 10) / 550) * 10;
-            texture.setY(y);
-            texture.setX(x);
             map.getChildren().add(texture);
-
         }
     }
 }
