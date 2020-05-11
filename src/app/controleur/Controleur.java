@@ -1,8 +1,7 @@
 package app.controleur;
 
-import javafx.collections.FXCollections;
+import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -12,13 +11,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
-import org.omg.CORBA.Environment;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,17 +45,28 @@ public class Controleur implements Initializable {
 
     private Environnement env;
 
-    ObservableList<Attaquants> l1;
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        l1 = FXCollections.observableArrayList();
-        ListChangeListener<Attaquants > listen = (c-> System.out.println("Changement"));
-        l1.addListener(listen);
-
         this.env = new Environnement(550, 400);
+
+        ListChangeListener<Acteur> listen= c->{
+            System.out.println("changement");
+            while (c.next()) {
+                for(Acteur acteur : c.getAddedSubList()) {
+                    creerSprite(acteur);
+                }
+
+                for(Acteur acteur : c.getRemoved()) {
+                    removeSprite(acteur.getId());
+                }
+            }
+        };
+        this.env.getActeurs().addListener(listen);
+
+
         setmap();
     }
 
@@ -69,7 +77,7 @@ public class Controleur implements Initializable {
         int colRow = (int) event.getY();
 
         Tourelle tourelle = new Tourelle(5, colIndex, colRow, 3, 500, this.env);
-        this.env.ajouterTourelle(tourelle);
+        this.env.getActeurs().add(tourelle);
         creerSprite(tourelle);
     }
 
@@ -84,7 +92,7 @@ public class Controleur implements Initializable {
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
         }
-        else if(acteur instanceof Attaquants){
+        else if(acteur instanceof Attaquant){
             Circle c = new Circle(5);
             c.setId(acteur.getId());
             c.setFill(Color.BLUE);
@@ -97,15 +105,13 @@ public class Controleur implements Initializable {
     }
 
     public void removeSprite(String id){
-        plateau.getChildren().remove(id);
+        plateau.getChildren().remove(plateau.lookup("#"+id));
     }
 
     @FXML
     void clickStart(MouseEvent event) {
-        Attaquants attaquant = new Attaquants(this.env, 20, 5);
-        this.env.ajouterAttaquants(attaquant);
-        this.l1.add(attaquant);
-        creerSprite(attaquant);
+        Attaquant attaquant = new Attaquant(this.env, 20, 5);
+        this.env.getActeurs().add(attaquant);
     }
 
     @FXML

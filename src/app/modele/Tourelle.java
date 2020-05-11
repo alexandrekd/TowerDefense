@@ -28,19 +28,20 @@ public class Tourelle extends Acteur{
     }
 
     //Cette méthode récupère une cible a la portée de la tour
-    public Attaquants getCible() {
-        Attaquants cible = null;
+    public Attaquant getCible() {
+        Attaquant cible = null;
 
-        for (int i = 0; i < env.getAttaquants().size();i++)
-            if(env.getAttaquants().get(i).getX() <= this.getX()+portee && env.getAttaquants().get(i).getX() >= this.getX()-portee && env.getAttaquants().get(i).getY() <= this.getY()+portee && env.getAttaquants().get(i).getY() >= this.getY()-portee){
-                cible = env.getAttaquants().get(i);
-            }
+        for (int i = 0; i < this.env.getActeurs().size();i++)
+            if (this.env.getActeurs().get(i) instanceof Attaquant)
+                if(env.getActeurs().get(i).getX() <= this.getX()+portee && env.getActeurs().get(i).getX() >= this.getX()-portee && env.getActeurs().get(i).getY() <= this.getY()+portee && env.getActeurs().get(i).getY() >= this.getY()-portee){
+                    cible = (Attaquant) env.getActeurs().get(i);
+                }
         return cible;
     }
 
     //Permet de tire sur l'étudiant
     public void tire() {
-        Attaquants cible = getCible();
+        Attaquant cible = getCible();
         if (cible != null)
             cible.recevoirTir(this.degat);
     }

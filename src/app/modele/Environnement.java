@@ -1,24 +1,25 @@
 package app.modele;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Environnement {
     private int width, height;
-    private ArrayList<Tourelle> tourelles;
-    private ArrayList<Attaquants> attaquants;
-    private ArrayList<Acteur> acteurs;
-    private ArrayList<Integer> map;
+    /*private List<Tourelle> tourelles;
+    private ObservableList<Attaquants> attaquants;*/
+    private ObservableList<Acteur> acteurs;
+    private List<Integer> map;
     private int nbTours;
 
     public Environnement(int width, int height){
-
-        tourelles = new ArrayList<Tourelle>();
-        attaquants = new ArrayList<Attaquants>();
-        acteurs = new ArrayList<Acteur>();
+        acteurs = FXCollections.observableArrayList();
         this.width = width;
         this.height = height;
-        map = new ArrayList<Integer>(Arrays.asList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        map = new ArrayList<Integer>(Arrays.asList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // -> tableau 2D
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -60,7 +61,7 @@ public class Environnement {
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1));
     }
 
-    public ArrayList<Integer> getMap(){
+    public List<Integer> getMap(){
         return this.map;
     }
     public int getWidth(){
@@ -71,25 +72,7 @@ public class Environnement {
         return this.height;
     }
 
-
-    public void ajouterTourelle(Tourelle tourelle){
-        this.tourelles.add(tourelle);
-    }
-
-    public void ajouterAttaquants(Attaquants attaquant){
-        this.attaquants.add(attaquant);
-    }
-
-
-    public ArrayList<Tourelle> getTourelles(){
-        return this.tourelles;
-    }
-
-    public ArrayList<Attaquants> getAttaquants(){
-        return this.attaquants;
-    }
-
-    public ArrayList<Acteur> getActeurs(){
+    public ObservableList<Acteur> getActeurs(){
         return this.acteurs;
     }
 
@@ -106,7 +89,7 @@ public class Environnement {
     public void unTour(){
         System.out.println("tour " + this.nbTours);
 
-        for(int i = 0; i < this.tourelles.size(); i++){
+        /*for(int i = 0; i < this.tourelles.size(); i++){
             Tourelle tourelle = this.tourelles.get(i);
             tourelle.agit();
         }
@@ -114,16 +97,22 @@ public class Environnement {
         for(int i = 0; i < this.attaquants.size(); i++){
             Attaquants attaquant = this.attaquants.get(i);
             attaquant.seDeplacer();
-        }
+        }*/
 
-        for(int i=attaquants.size()-1; i>=0;i--){
-            Attaquants a = this.attaquants.get(i);
-            if(!a.estVivant()){
-                System.out.println(a.getId() + " est mort");
-                /*removeSprite(this.attaquants.get(i).getId());*/
-                this.attaquants.remove(i);
+        for(int i = 0; i < this.acteurs.size(); i++){
+            if(acteurs.get(i) instanceof Tourelle)
+                ((Tourelle) acteurs.get(i)).agit();
+
+            else if(acteurs.get(i) instanceof Attaquant) {
+                ((Attaquant) acteurs.get(i)).seDeplacer();
+
+                if (!((Attaquant) acteurs.get(i)).estVivant()) {
+                    System.out.println(acteurs.get(i).getId() + " est mort");
+                    this.acteurs.remove(i);
+                }
             }
         }
+
         this.nbTours++;
     }
 }

@@ -2,7 +2,7 @@ package app.modele;
 
 import java.util.Random;
 
-public class Attaquants extends Acteur{
+public class Attaquant extends Acteur{
 	/*private int x; // x et y representent les coordonnees actuelles de l'attaquant
 	private int y;
 	static String id;
@@ -15,7 +15,7 @@ public class Attaquants extends Acteur{
 	private int vitesse;
 
 
-	public Attaquants(Environnement env, int pv, int vitesse) {
+	public Attaquant(Environnement env, int pv, int vitesse) {
 		/*this.env = env;
 		this.id = "A"+compteur;
 		Random random=new Random();
