@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="800.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.Controleur">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="800.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.Controleur">
    <top>
       <Label prefHeight="70.0" prefWidth="449.0" text="Tower Defense TAM" BorderPane.alignment="CENTER">
          <font>
@@ -75,6 +83,9 @@
       </HBox>
    </bottom>
    <center>
-      <Pane fx:id="plateau" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#poserTourelle" prefHeight="400.0" prefWidth="550.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
+      <Pane fx:id="plateau" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#poserTourelle" prefHeight="400.0" prefWidth="550.0" BorderPane.alignment="CENTER">
+         <children>
+            <TilePane fx:id="map" maxHeight="400.0" maxWidth="550.0" minHeight="400.0" minWidth="550.0" prefHeight="400.0" prefWidth="550.0" />
+         </children></Pane>
    </center>
 </BorderPane>
