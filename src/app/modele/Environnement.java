@@ -109,6 +109,7 @@ public class Environnement {
                 if (!((Attaquant) acteurs.get(i)).estVivant()) {
                     System.out.println(acteurs.get(i).getId() + " est mort");
                     this.acteurs.remove(i);
+                    i--;
                 }
             }
         }
