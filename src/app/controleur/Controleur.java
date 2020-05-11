@@ -1,6 +1,7 @@
 package app.controleur;
 
-import javafx.animation.Timeline;
+import javafx.beans.InvalidationListener;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -10,13 +11,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
-import org.omg.CORBA.Environment;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,6 +51,22 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env = new Environnement(550, 400);
+
+        ListChangeListener<Acteur> listen= c->{
+            System.out.println("changement");
+            while (c.next()) {
+                for(Acteur acteur : c.getAddedSubList()) {
+                    creerSprite(acteur);
+                }
+
+                for(Acteur acteur : c.getRemoved()) {
+                    removeSprite(acteur.getId());
+                }
+            }
+        };
+        this.env.getActeurs().addListener(listen);
+
+
         setmap();
     }
 
@@ -62,7 +77,7 @@ public class Controleur implements Initializable {
         int colRow = (int) event.getY();
 
         Tourelle tourelle = new Tourelle(5, colIndex, colRow, 3, 500, this.env);
-        this.env.ajouterTourelle(tourelle);
+        this.env.getActeurs().add(tourelle);
         creerSprite(tourelle);
     }
 
@@ -77,7 +92,7 @@ public class Controleur implements Initializable {
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
         }
-        else if(acteur instanceof Attaquants){
+        else if(acteur instanceof Attaquant){
             Circle c = new Circle(5);
             c.setId(acteur.getId());
             c.setFill(Color.BLUE);
@@ -90,14 +105,13 @@ public class Controleur implements Initializable {
     }
 
     public void removeSprite(String id){
-        plateau.getChildren().remove(id);
+        plateau.getChildren().remove(plateau.lookup("#"+id));
     }
 
     @FXML
     void clickStart(MouseEvent event) {
-        Attaquants attaquant = new Attaquants(this.env, 20, 5);
-        this.env.ajouterAttaquants(attaquant);
-        creerSprite(attaquant);
+        Attaquant attaquant = new Attaquant(this.env, 20, 5);
+        this.env.getActeurs().add(attaquant);
     }
 
     @FXML
@@ -126,7 +140,12 @@ public class Controleur implements Initializable {
     public void setmap() {
         for (int i = 0; i < env.getMap().size(); i++) {
             ImageView texture = new ImageView("resources/textures/" + env.getMap().get(i) + ".png");
+            int x = (i * 10) % 550;
+            int y = ((i * 10) / 550) * 10;
+            texture.setY(y);
+            texture.setX(x);
             map.getChildren().add(texture);
+
         }
     }
 }
