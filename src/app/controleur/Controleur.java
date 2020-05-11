@@ -18,7 +18,9 @@ import app.modele.Acteur;
 import app.modele.Attaquants;
 import app.modele.Environnement;
 import app.modele.Tourelle;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.omg.CORBA.Environment;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,12 +48,29 @@ public class Controleur implements Initializable {
     private Environnement env;
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         this.env = new Environnement(550, 400);
+        setmap();
+        /*ImageView texture = new ImageView("resources/textures/1.png");
+        texture.setX(100);
+        plateau.getChildren().add(texture);
         plateau.getChildren().add(new ImageView("resources/textures/1.png"));
-        plateau.getChildren().add(new ImageView("resources/textures/test.png"));
+        plateau.getChildren().add(new ImageView("resources/textures/1.png"));*/
+
+    }
+
+    public void setmap(){
+       for (int i = 0 ; i < env.getMap().size() ; i++){
+           ImageView texture = new ImageView("resources/textures/"+env.getMap().get(i)+".png");
+           int x = (i * 10)%550;
+           int y = ((i * 10)/550)*10;
+           texture.setY(y);
+           texture.setX(x);
+           plateau.getChildren().add(texture);
+       }
 
     }
 
