@@ -7,25 +7,22 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import app.modele.Acteur;
-import app.modele.Attaquants;
-import app.modele.Environnement;
-import app.modele.Tourelle;
-import jdk.nashorn.internal.parser.JSONParser;
+import app.modele.*;
 import org.omg.CORBA.Environment;
-
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
+
+    /*@FXML
+    private TilePane plateau;*/
 
     @FXML
     private Pane plateau;
@@ -48,30 +45,9 @@ public class Controleur implements Initializable {
     private Environnement env;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         this.env = new Environnement(550, 400);
-        setmap();
-        /*ImageView texture = new ImageView("resources/textures/1.png");
-        texture.setX(100);
-        plateau.getChildren().add(texture);
-        plateau.getChildren().add(new ImageView("resources/textures/1.png"));
-        plateau.getChildren().add(new ImageView("resources/textures/1.png"));*/
-
-    }
-
-    public void setmap(){
-       for (int i = 0 ; i < env.getMap().size() ; i++){
-           ImageView texture = new ImageView("resources/textures/"+env.getMap().get(i)+".png");
-           int x = (i * 10)%550;
-           int y = ((i * 10)/550)*10;
-           texture.setY(y);
-           texture.setX(x);
-           plateau.getChildren().add(texture);
-       }
-
     }
 
     @FXML
@@ -113,6 +89,13 @@ public class Controleur implements Initializable {
     }
 
     @FXML
+    void clickStart(MouseEvent event) {
+        Attaquants attaquant = new Attaquants(this.env, 20, 5);
+        this.env.ajouterAttaquants(attaquant);
+        creerSprite(attaquant);
+    }
+
+    @FXML
     void faireTours(MouseEvent event) {
         int nbtour;
         try{
@@ -134,17 +117,5 @@ public class Controleur implements Initializable {
             creerSprite(this.env.getActeur(id));
         }
     }*/
-
-    @FXML
-    void clickStart(MouseEvent event) {
-        Attaquants attaquants = new Attaquants(this.env, 20, 5);
-        System.out.println(attaquants.getX() + " ; " + attaquants.getY());
-        Circle c = new Circle(5);
-        c.setId(attaquants.getId());
-        c.setFill(Color.BLUE);
-        c.setTranslateX(attaquants.getX());
-        c.setTranslateY(attaquants.getY());
-        plateau.getChildren().add(c);
-    }
 
 }
