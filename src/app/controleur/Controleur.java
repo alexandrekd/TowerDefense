@@ -16,6 +16,7 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
+import sun.management.snmp.util.MibLogger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,7 +54,6 @@ public class Controleur implements Initializable {
         this.env = new Environnement(550, 400);
 
         ListChangeListener<Acteur> listen= c->{
-            System.out.println("changement");
             while (c.next()) {
                 for(Acteur acteur : c.getAddedSubList()) {
                     creerSprite(acteur);
@@ -65,6 +65,19 @@ public class Controleur implements Initializable {
             }
         };
         this.env.getActeurs().addListener(listen);
+
+        ListChangeListener<Missile> listen2= c ->{
+            while (c.next()) {
+                for(Missile missile : c.getAddedSubList()) {
+                    creerSpriteMissile(missile);
+                }
+
+                for(Missile missile : c.getRemoved()) {
+                    removeSprite(missile.getId());
+                }
+            }
+        };
+        this.env.getProject().addListener(listen2);
 
 
         setmap();
@@ -104,6 +117,17 @@ public class Controleur implements Initializable {
         }
     }
 
+    public void creerSpriteMissile(Missile missile){
+        Circle c = new Circle(2);
+        c.setId(missile.getId());
+        c.setFill(Color.GREEN);
+        c.setTranslateX(missile.getX());
+        c.setTranslateY(missile.getY());
+        c.translateXProperty().bind(missile.getXProperty());
+        c.translateYProperty().bind(missile.getYProperty());
+        plateau.getChildren().add(c);
+    }
+
     public void removeSprite(String id){
         plateau.getChildren().remove(plateau.lookup("#"+id));
     }
@@ -117,6 +141,15 @@ public class Controleur implements Initializable {
     @FXML
     void faireTours(MouseEvent event) {
         int nbtour;
+        while(env.getProject().size() != 0 ){
+            for (int i = 0 ; i < env.getProject().size() ; i++){
+                env.getProject().get(i).bouge();
+                if (env.getProject().get(i).isExplosion()){
+                    env.getProject().remove(i);
+                    i--;
+                }
+            }
+        }
         try{
             nbtour = Integer.valueOf(tfNbTour.getText());
         }catch (Exception e){
@@ -140,10 +173,6 @@ public class Controleur implements Initializable {
     public void setmap() {
         for (int i = 0; i < env.getMap().size(); i++) {
             ImageView texture = new ImageView("resources/textures/" + env.getMap().get(i) + ".png");
-            int x = (i * 10) % 550;
-            int y = ((i * 10) / 550) * 10;
-            texture.setY(y);
-            texture.setX(x);
             map.getChildren().add(texture);
 
         }

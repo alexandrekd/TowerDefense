@@ -47,7 +47,7 @@ public class Tourelle extends Acteur{
     public void tire() {
         Attaquant cible = getCible();
         if (cible != null)
-            env.
+            env.addProject(new Missile(this , cible));
     }
 
     public void agit(){
