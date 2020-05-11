@@ -1,5 +1,8 @@
 package app.controleur;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -45,9 +48,16 @@ public class Controleur implements Initializable {
 
     private Environnement env;
 
+    ObservableList<Attaquants> l1;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        l1 = FXCollections.observableArrayList();
+        ListChangeListener<Attaquants > listen = (c-> System.out.println("Changement"));
+        l1.addListener(listen);
+
         this.env = new Environnement(550, 400);
         setmap();
     }
@@ -94,6 +104,7 @@ public class Controleur implements Initializable {
     void clickStart(MouseEvent event) {
         Attaquants attaquant = new Attaquants(this.env, 20, 5);
         this.env.ajouterAttaquants(attaquant);
+        this.l1.add(attaquant);
         creerSprite(attaquant);
     }
 
