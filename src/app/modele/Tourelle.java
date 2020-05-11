@@ -31,6 +31,8 @@ public class Tourelle extends Acteur{
     public Attaquants getCible() {
         Attaquants cible = null;
 
+        System.out.println("c'est bon");
+
         for (int i = 0; i < env.getAttaquants().size();i++)
             if(env.getAttaquants().get(i).getX() <= this.getX()+portee && env.getAttaquants().get(i).getX() >= this.getX()-portee && env.getAttaquants().get(i).getY() <= this.getY()+portee && env.getAttaquants().get(i).getY() >= this.getY()-portee){
                 cible = env.getAttaquants().get(i);
