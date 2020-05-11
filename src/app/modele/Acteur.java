@@ -7,7 +7,7 @@ import java.util.Random;
 
 public abstract class Acteur {
 
-    static String id;
+    private String id;
     private IntegerProperty xProperty, yProperty;
     public static int compteur = 0;
     public Environnement env;
@@ -20,9 +20,11 @@ public abstract class Acteur {
         this.env = env;
     }
 
+
     public Acteur(Environnement env){
         this.env = env;
         this.id = "A"+compteur;
+        compteur++;
         Random random=new Random();
         int x = random.nextInt(env.getWidth()-1);
         int y = random.nextInt(env.getHeight()-1);

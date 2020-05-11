@@ -24,7 +24,7 @@ public class Tourelle extends Acteur{
         this.degat = degat;
         this.rechargement = rechargement;
         this.portee = portee;
-        dernierTire = 10;
+        dernierTire = rechargement;
     }
 
     //Cette méthode récupère une cible a la portée de la tour
@@ -45,9 +45,14 @@ public class Tourelle extends Acteur{
 
     //Permet de tire sur l'étudiant
     public void tire() {
-        Attaquant cible = getCible();
-        if (cible != null)
-            env.addProject(new Missile(this , cible));
+        if(rechargement == dernierTire) {
+            Attaquant cible = getCible();
+            if (cible != null)
+                env.addProject(new Missile(this, cible));
+            dernierTire = 0;
+        }
+        else
+            dernierTire++;
     }
 
     public void agit(){

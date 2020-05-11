@@ -89,7 +89,7 @@ public class Controleur implements Initializable {
         int colIndex = (int) event.getX();
         int colRow = (int) event.getY();
 
-        Tourelle tourelle = new Tourelle(5, colIndex, colRow, 3, 500, this.env);
+        Tourelle tourelle = new Tourelle(5, colIndex, colRow, 2, 150, this.env);
         this.env.getActeurs().add(tourelle);
         creerSprite(tourelle);
     }
@@ -141,15 +141,19 @@ public class Controleur implements Initializable {
     @FXML
     void faireTours(MouseEvent event) {
         int nbtour;
-        while(env.getProject().size() != 0 ){
-            for (int i = 0 ; i < env.getProject().size() ; i++){
+        for (int a = 0; a < 20; a++) {
+            for (int i = 0; i < env.getProject().size(); i++) {
                 env.getProject().get(i).bouge();
-                if (env.getProject().get(i).isExplosion()){
+                if (env.getProject().get(i).isExplosion()) {
                     env.getProject().remove(i);
                     i--;
                 }
             }
         }
+        for (int i = 0; i < env.getActeurs().size();i++){
+            System.out.println(env.getActeurs().get(i).getId());
+        }
+
         try{
             nbtour = Integer.valueOf(tfNbTour.getText());
         }catch (Exception e){
