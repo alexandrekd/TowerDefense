@@ -22,8 +22,8 @@ import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
 
-    /*@FXML
-    private TilePane plateau;*/
+    @FXML
+    private TilePane map;
 
     @FXML
     private Pane plateau;
@@ -127,7 +127,8 @@ public class Controleur implements Initializable {
             int y = ((i * 10) / 550) * 10;
             texture.setY(y);
             texture.setX(x);
-            plateau.getChildren().add(texture);
+            map.getChildren().add(texture);
+
         }
     }
 }
