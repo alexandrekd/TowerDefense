@@ -100,7 +100,7 @@ public class Controleur implements Initializable {
         int colRow = (int) event.getY();
         int x = colIndex/10;
         int y = colRow/10;
-        if (env.getMap().get(y*55 + x) % 2 == 1) {
+        if ((env.getMap().get(y*55 + x) )% 2 == 1) {
             Tourelle tourelle = new Tourelle(5, colIndex, colRow, 2, 150, this.env);
             this.env.getActeurs().add(tourelle);
             creerSprite(tourelle);
@@ -157,7 +157,7 @@ public class Controleur implements Initializable {
                         System.out.println(x);
                         y = ((i / 55)*10)+5;
                         System.out.println(y);
-                        Attaquant attaquant = new Attaquant(this.env, 20, 5,x,y);
+                        Attaquant attaquant = new Attaquant(this.env, 20, 3,x,y);
                         this.env.getActeurs().add(attaquant);
                     }
                     else

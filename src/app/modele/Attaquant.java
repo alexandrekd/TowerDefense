@@ -34,34 +34,22 @@ public class Attaquant extends Acteur{
 	}
 
 	public void seDeplacer() {// Cette methode permet a l'attaquant de se deplacer, meme s'il peut changer de direction
-		if ((Math.random() * 1 < 0.2)) { // Ici, les 10% de chances de changer de direction s'appliquent
+
+		int x = this.getX();
+		int y = this.getY();
+		do {
 			this.dx = ((int) (Math.random() * 3))-1;
-			this.dy = ((int) (Math.random() * 3))-1;
-		}
-
-		if ((this.getX() + this.vitesse * this.dx) >= 0 && (this.getX() + this.vitesse * this.dx) < this.env.getWidth()) { //Si son prochain d�placement ne d�passe pas l'environnement en x
-			this.setX(this.getX() + this.vitesse * this.dx);
-		}
-		if ((this.getY() + this.vitesse * this.dy) >= 0 && (this.getY() + this.getY() * this.dy) < this.env.getHeight()) { //Si son prochain d�placement ne d�passe pas l'environnement en y
-			this.setY(this.getY() + this.vitesse * this.dy);
-		}
-
-		/*int x = 0;
-		int y = 0;
-		do {
 			if ((this.getX() + this.vitesse * this.dx) >= 0 && (this.getX() + this.vitesse * this.dx) < this.env.getWidth()) { //Si son prochain d�placement ne d�passe pas l'environnement en x
-				x =this.getX() + this.vitesse * this.dx;
+				x =(this.getX() + this.vitesse * this.dx);
 			}
-		}while (env.getMap().get(x%10)%2 == 0);
-		this.setX(this.getX() + this.vitesse * this.dx);
+			this.dy = ((int) (Math.random() * 3))-1;
+			if ((this.getY() + this.vitesse * this.dy) >= 0 && (this.getY() + this.vitesse * this.dy) < this.env.getHeight()) { //Si son prochain d�placement ne d�passe pas l'environnement en y
+				y = (this.getY() + this.vitesse * this.dy);
+			}
+		}while (env.getMap().get((y/10)*55+(x/10))%2 != 0);
+		this.setX(x);
 		//Pas besoin de else, vu que si le prochain deplacement en x depasse l'environnement, il ne bouge pas
-
-		do {
-			if ((this.getY() + this.vitesse * this.dy) >= 0 && (this.getY() + this.getY() * this.dy) < this.env.getHeight()) { //Si son prochain d�placement ne d�passe pas l'environnement en y
-				y = this.getY() + this.vitesse * this.dy;
-			}
-		}while (env.getMap().get(y%10)%2 == 0);
-		this.setY(this.getY() + this.vitesse * this.dy);*/
+		this.setY(y);
 		//Pas besoin de else, vu que si le prochain deplacement en y depasse l'environnement, il ne bouge pas
 	}
 
