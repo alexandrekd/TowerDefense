@@ -28,10 +28,6 @@ public class Attaquant extends Acteur{
 		this.vitesse = vitesse;
 	}
 
-	public String getId(){
-		return this.id;
-	}
-
 	public void seDeplacer() {// Cette methode permet a l'attaquant de se deplacer, meme s'il peut changer de direction
 		if ((Math.random() * 1 < 0.2)) { // Ici, les 10% de chances de changer de direction s'appliquent
 			this.dx = ((int) (Math.random() * 3))-1;

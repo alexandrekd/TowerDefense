@@ -15,7 +15,8 @@ public class Missile {
         this.finActeur = fin;
         this.xProperty = new SimpleIntegerProperty(depart.getX());
         this.yProperty = new SimpleIntegerProperty(depart.getY());
-        this.id = depart.getId();
+        this.id = "A" + Acteur.compteur;
+        Acteur.compteur++;
         explosion = false;
     }
 
@@ -28,25 +29,20 @@ public class Missile {
         int yarv = this.getY() - finActeur.getY();
 
         if (xarv > 0) {
-            System.out.println("x - 1");
             this.setX(this.getX() - 1);
         }
         else if (xarv < 0) {
-            System.out.println("x + 1");
             this.setX(this.getX() + 1);
         }
 
         if (yarv == 0 && xarv == 0) {
-            System.out.println("==");
         finActeur.recevoirTir(debActeur.getDegat());
         this.explosion = true;
         }
         else if (yarv < 0) {
-            System.out.println("y + 1");
             this.setY(this.getY() + 1);
         }
         else {
-            System.out.println("y - 1");
             this.setY(this.getY() - 1);
         }
 
