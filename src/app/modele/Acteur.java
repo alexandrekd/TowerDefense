@@ -21,6 +21,7 @@ public abstract class Acteur {
     }
 
 
+
     public Acteur(Environnement env){
         this.env = env;
         this.id = "A"+compteur;
