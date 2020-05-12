@@ -1,5 +1,7 @@
 package app.controleur;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -16,12 +18,17 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
+import javafx.util.Duration;
 import sun.management.snmp.util.MibLogger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class Controleur implements Initializable {
+    private Timeline gameLoop;
+
+    private int temps;
 
     @FXML
     private TilePane map;
@@ -81,6 +88,7 @@ public class Controleur implements Initializable {
 
 
         setmap();
+        initAnimation();
     }
 
     @FXML
@@ -139,31 +147,9 @@ public class Controleur implements Initializable {
     }
 
     @FXML
-    void faireTours(MouseEvent event) {
-        int nbtour;
-        for (int a = 0; a < 20; a++) {
-            for (int i = 0; i < env.getProject().size(); i++) {
-                env.getProject().get(i).bouge();
-                if (env.getProject().get(i).isExplosion()) {
-                    env.getProject().remove(i);
-                    i--;
-                }
-            }
-        }
-        for (int i = 0; i < env.getActeurs().size();i++){
-            System.out.println(env.getActeurs().get(i).getId());
-        }
-
-        try{
-            nbtour = Integer.valueOf(tfNbTour.getText());
-        }catch (Exception e){
-            nbtour = 0;
-        }
-
-        for(int i = 0; i < nbtour; i++)
-            this.env.unTour();
-
-        /*update();*/
+    void faireTours() {
+        gameLoop.play();
+        System.out.println("l");
     }
 
     /*void update(){
@@ -180,5 +166,37 @@ public class Controleur implements Initializable {
             map.getChildren().add(texture);
 
         }
+    }
+
+    private void initAnimation(){
+        gameLoop = new Timeline();
+        temps = 0;
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
+
+        KeyFrame kf = new KeyFrame(
+                Duration.seconds(0.1),
+                (event -> {
+                    if(env.getActeurs().parallelStream().filter(n -> n instanceof Attaquant).collect(Collectors.toList()).size() == 0){
+                        System.out.println("fini");
+                        gameLoop.stop();
+                    }
+                    else if (temps%5==0){
+                        for (int a = 0; a < 20; a++) {
+                            for (int i = 0; i < env.getProject().size(); i++) {
+                                env.getProject().get(i).bouge();
+                                if (env.getProject().get(i).isExplosion()) {
+                                    env.getProject().remove(i);
+                                    i--;
+                                }
+                            }
+                        }
+                        for (int i = 0; i < env.getActeurs().size();i++){
+                            System.out.println(env.getActeurs().get(i).getId());
+                        }
+                        this.env.unTour();
+                    }
+                })
+        );
+        gameLoop.getKeyFrames().add(kf);
     }
 }
