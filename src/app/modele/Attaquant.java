@@ -23,7 +23,12 @@ public class Attaquant extends Acteur{
 		int y=random.nextInt(env.getHeight()-1);*/
 
 		super(env);
-		System.out.println(this.getX() + " ; " + this.getY());
+		this.pv = pv;
+		this.vitesse = vitesse;
+	}
+
+	public Attaquant(Environnement env, int pv, int vitesse,int x,int y) {
+		super(x,y,env);
 		this.pv = pv;
 		this.vitesse = vitesse;
 	}
@@ -37,13 +42,26 @@ public class Attaquant extends Acteur{
 		if ((this.getX() + this.vitesse * this.dx) >= 0 && (this.getX() + this.vitesse * this.dx) < this.env.getWidth()) { //Si son prochain d�placement ne d�passe pas l'environnement en x
 			this.setX(this.getX() + this.vitesse * this.dx);
 		}
-
-		//Pas besoin de else, vu que si le prochain deplacement en x depasse l'environnement, il ne bouge pas
-
 		if ((this.getY() + this.vitesse * this.dy) >= 0 && (this.getY() + this.getY() * this.dy) < this.env.getHeight()) { //Si son prochain d�placement ne d�passe pas l'environnement en y
 			this.setY(this.getY() + this.vitesse * this.dy);
 		}
 
+		/*int x = 0;
+		int y = 0;
+		do {
+			if ((this.getX() + this.vitesse * this.dx) >= 0 && (this.getX() + this.vitesse * this.dx) < this.env.getWidth()) { //Si son prochain d�placement ne d�passe pas l'environnement en x
+				x =this.getX() + this.vitesse * this.dx;
+			}
+		}while (env.getMap().get(x%10)%2 == 0);
+		this.setX(this.getX() + this.vitesse * this.dx);
+		//Pas besoin de else, vu que si le prochain deplacement en x depasse l'environnement, il ne bouge pas
+
+		do {
+			if ((this.getY() + this.vitesse * this.dy) >= 0 && (this.getY() + this.getY() * this.dy) < this.env.getHeight()) { //Si son prochain d�placement ne d�passe pas l'environnement en y
+				y = this.getY() + this.vitesse * this.dy;
+			}
+		}while (env.getMap().get(y%10)%2 == 0);
+		this.setY(this.getY() + this.vitesse * this.dy);*/
 		//Pas besoin de else, vu que si le prochain deplacement en y depasse l'environnement, il ne bouge pas
 	}
 
@@ -60,7 +78,6 @@ public class Attaquant extends Acteur{
 
 	public void recevoirTir(int dégatsReçus) {
 		this.pv = this.pv - dégatsReçus;
-		System.out.println("PV = " + this.pv);
 	}
 
 	public void arriver() {

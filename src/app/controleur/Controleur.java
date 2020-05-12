@@ -19,9 +19,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
 import javafx.util.Duration;
+import jdk.nashorn.internal.ir.WhileNode;
 import sun.management.snmp.util.MibLogger;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -96,10 +98,13 @@ public class Controleur implements Initializable {
         Node source = (Node)event.getSource();
         int colIndex = (int) event.getX();
         int colRow = (int) event.getY();
-
-        Tourelle tourelle = new Tourelle(5, colIndex, colRow, 2, 150, this.env);
-        this.env.getActeurs().add(tourelle);
-        creerSprite(tourelle);
+        int x = colIndex/10;
+        int y = colRow/10;
+        if (env.getMap().get(y*55 + x) % 2 == 1) {
+            Tourelle tourelle = new Tourelle(5, colIndex, colRow, 2, 150, this.env);
+            this.env.getActeurs().add(tourelle);
+            creerSprite(tourelle);
+        }
     }
 
     public void creerSprite(Acteur acteur){
@@ -142,14 +147,28 @@ public class Controleur implements Initializable {
 
     @FXML
     void clickStart(MouseEvent event) {
-        Attaquant attaquant = new Attaquant(this.env, 20, 5);
-        this.env.getActeurs().add(attaquant);
+            int random = (int) (Math.random() * env.getMap().parallelStream().filter(n-> n/900 == 1).collect(Collectors.toList()).size());
+            int x,y,count = 0;
+            for (int i = 0 ; i < env.getMap().size(); i++){
+                if(env.getMap().get(i)/900 ==1){
+                    if (count ==random){
+                        System.out.println(i);
+                        x = i % 55;
+                        System.out.println(x);
+                        y = ((i / 55)*10)+5;
+                        System.out.println(y);
+                        Attaquant attaquant = new Attaquant(this.env, 20, 5,x,y);
+                        this.env.getActeurs().add(attaquant);
+                    }
+                    else
+                        count++;
+                }
+            }
     }
-
+//env.getActeurs().parallelStream().filter(n -> n instanceof Attaquant).collect(Collectors.toList()).size() == 0
     @FXML
     void faireTours() {
         gameLoop.play();
-        System.out.println("l");
     }
 
     /*void update(){
@@ -174,28 +193,15 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.1),
+                Duration.seconds(0.017),
                 (event -> {
                     if(env.getActeurs().parallelStream().filter(n -> n instanceof Attaquant).collect(Collectors.toList()).size() == 0){
-                        System.out.println("fini");
                         while (env.getProject().size() != 0){
                             env.getProject().remove(0);
                         }
                         gameLoop.stop();
                     }
                     else if (temps%5==0){
-                        for (int a = 0; a < 20; a++) {
-                            for (int i = 0; i < env.getProject().size(); i++) {
-                                env.getProject().get(i).bouge();
-                                if (env.getProject().get(i).isExplosion()) {
-                                    env.getProject().remove(i);
-                                    i--;
-                                }
-                            }
-                        }
-                        for (int i = 0; i < env.getActeurs().size();i++){
-                            System.out.println(env.getActeurs().get(i).getId());
-                        }
                         this.env.unTour();
                     }
                 })
