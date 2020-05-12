@@ -21,3 +21,4 @@ ennemi ninja (à une chance d'esquiver les projectiles)
 ennemi support ( annule les effets dans une zone autour de lui)
 Boss
 
+Description Commit = NomDuProjet-NumCommit-TypeCommit-NomBranche-MessageDuCommit
