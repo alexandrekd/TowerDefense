@@ -178,6 +178,9 @@ public class Controleur implements Initializable {
                 (event -> {
                     if(env.getActeurs().parallelStream().filter(n -> n instanceof Attaquant).collect(Collectors.toList()).size() == 0){
                         System.out.println("fini");
+                        while (env.getProject().size() != 0){
+                            env.getProject().remove(0);
+                        }
                         gameLoop.stop();
                     }
                     else if (temps%5==0){
