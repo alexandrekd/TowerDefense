@@ -23,7 +23,6 @@ public class Attaquant extends Acteur{
 		int y=random.nextInt(env.getHeight()-1);*/
 
 		super(env);
-		System.out.println(this.getX() + " ; " + this.getY());
 		this.pv = pv;
 		this.vitesse = vitesse;
 	}
@@ -60,7 +59,6 @@ public class Attaquant extends Acteur{
 
 	public void recevoirTir(int dégatsReçus) {
 		this.pv = this.pv - dégatsReçus;
-		System.out.println("PV = " + this.pv);
 	}
 
 	public void arriver() {
