@@ -91,6 +91,7 @@ public class Controleur implements Initializable {
 
         setmap();
         initAnimation();
+        env.faireRang(55,6);
     }
 
     @FXML
@@ -151,14 +152,12 @@ public class Controleur implements Initializable {
             int x,y,count = 0;
             for (int i = 0 ; i < env.getMap().size(); i++){
                 if(env.getMap().get(i)/900 ==1){
-                    if (count ==random){
-                        System.out.println(i);
+                    if (count == random){
                         x = i % 55;
-                        System.out.println(x);
                         y = ((i / 55)*10)+5;
-                        System.out.println(y);
                         Attaquant attaquant = new Attaquant(this.env, 20, 3,x,y);
                         this.env.getActeurs().add(attaquant);
+                        count = 0;
                     }
                     else
                         count++;

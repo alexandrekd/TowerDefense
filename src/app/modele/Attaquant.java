@@ -35,21 +35,50 @@ public class Attaquant extends Acteur{
 
 	public void seDeplacer() {// Cette methode permet a l'attaquant de se deplacer, meme s'il peut changer de direction
 
-		int x = this.getX();
-		int y = this.getY();
-		do {
-			this.dx = ((int) (Math.random() * 3))-1;
-			if ((this.getX() + this.vitesse * this.dx) >= 0 && (this.getX() + this.vitesse * this.dx) < this.env.getWidth()) { //Si son prochain d�placement ne d�passe pas l'environnement en x
-				x =(this.getX() + this.vitesse * this.dx);
+		int xB = (this.getX()/10);
+		int yB = (this.getY()/10);
+
+		int bestPos = 10000;
+			node value = env.getUnNode(xB-1 , yB);
+			if(value != null) {
+				if (value.getDistance() < bestPos) {
+					bestPos = value.getDistance();
+					dx = -1;
+					dy = 0;
+				}
 			}
-			this.dy = ((int) (Math.random() * 3))-1;
-			if ((this.getY() + this.vitesse * this.dy) >= 0 && (this.getY() + this.vitesse * this.dy) < this.env.getHeight()) { //Si son prochain d�placement ne d�passe pas l'environnement en y
-				y = (this.getY() + this.vitesse * this.dy);
+
+			value = env.getUnNode(xB+1 , yB);
+			if(value != null) {
+				if (value.getDistance() < bestPos) {
+					bestPos = value.getDistance();
+					dx = 1;
+					dy = 0;
+				}
 			}
-		}while (env.getMap().get((y/10)*55+(x/10))%2 != 0);
-		this.setX(x);
+
+			value = env.getUnNode(xB , yB-1);
+			if(value != null) {
+				if (value.getDistance() < bestPos) {
+					bestPos = value.getDistance();
+					dx = 0;
+					dy = -1;
+				}
+			}
+
+			value = env.getUnNode(xB , yB+1);
+			if(value != null) {
+				if (value.getDistance() < bestPos) {
+					bestPos = value.getDistance();
+					dx = 0;
+					dy = 1;
+				}
+			}
+
+		//System.out.println(dx +""+ dy);
+		this.setX(this.getX() + this.vitesse * this.dx);
 		//Pas besoin de else, vu que si le prochain deplacement en x depasse l'environnement, il ne bouge pas
-		this.setY(y);
+		this.setY((this.getY() + this.vitesse * this.dy));
 		//Pas besoin de else, vu que si le prochain deplacement en y depasse l'environnement, il ne bouge pas
 	}
 
