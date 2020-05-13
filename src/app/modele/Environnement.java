@@ -2,9 +2,11 @@ package app.modele;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +15,7 @@ public class Environnement {
     /*private List<Tourelle> tourelles;
     private ObservableList<Attaquants> attaquants;*/
     private ObservableList<Acteur> acteurs;
+    private ObservableSet<Acteur> acteurs2;
     private List<Integer> map;
     private ObservableList<Missile> project;
     private int nbTours;
@@ -20,6 +23,7 @@ public class Environnement {
 
     public Environnement(int width, int height){
         acteurs = FXCollections.observableArrayList();
+        /*acteurs2 = new ObservableSet<Acteur>().stream().filter();*/
         this.width = width;
         this.height = height;
         project = FXCollections.observableArrayList();
