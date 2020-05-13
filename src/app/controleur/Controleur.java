@@ -148,21 +148,21 @@ public class Controleur implements Initializable {
 
     @FXML
     void clickStart(MouseEvent event) {
-            int random = (int) (Math.random() * env.getMap().parallelStream().filter(n-> n/900 == 1).collect(Collectors.toList()).size());
-            int x,y,count = 0;
-            for (int i = 0 ; i < env.getMap().size(); i++){
-                if(env.getMap().get(i)/900 ==1){
-                    if (count == random){
-                        x = i % 55;
-                        y = ((i / 55)*10)+5;
-                        Attaquant attaquant = new Attaquant(this.env, 20, 3,x,y);
-                        this.env.getActeurs().add(attaquant);
-                        count = 0;
-                    }
-                    else
-                        count++;
+        int random = (int) (Math.random() * env.getMap().parallelStream().filter(n-> n/900 == 1).collect(Collectors.toList()).size());
+        int x,y,count = 0;
+        for (int i = 0 ; i < env.getMap().size(); i++){
+            if(env.getMap().get(i)/900 ==1){
+                if (count == random){
+                    x = i % 55;
+                    y = ((i / 55)*10)+5;
+                    Attaquant attaquant = new Attaquant(this.env, 20, 3,x,y);
+                    this.env.getActeurs().add(attaquant);
+                    count = 0;
                 }
+                else
+                    count++;
             }
+        }
     }
 //env.getActeurs().parallelStream().filter(n -> n instanceof Attaquant).collect(Collectors.toList()).size() == 0
     @FXML
