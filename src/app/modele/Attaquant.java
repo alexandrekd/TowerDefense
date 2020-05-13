@@ -37,8 +37,8 @@ public class Attaquant extends Acteur{
 
 		int xB = (this.getX()/10);
 		int yB = (this.getY()/10);
-
 		int bestPos = 10000;
+
 			node value = env.getUnNode(xB-1 , yB);
 			if(value != null) {
 				if (value.getDistance() < bestPos) {

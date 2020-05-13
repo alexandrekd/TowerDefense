@@ -132,7 +132,7 @@ public class Controleur implements Initializable {
     }
 
     public void creerSpriteMissile(Missile missile){
-        Circle c = new Circle(2);
+        Circle c = new Circle(4);
         c.setId(missile.getId());
         c.setFill(Color.GREEN);
         c.setTranslateX(missile.getX());
