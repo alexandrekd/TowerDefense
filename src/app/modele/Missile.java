@@ -3,7 +3,7 @@ package app.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Missile {
+    public class Missile {
     private String id;
     private Tourelle debActeur;
     private Attaquant finActeur;
