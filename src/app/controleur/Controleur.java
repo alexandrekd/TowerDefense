@@ -91,6 +91,7 @@ public class Controleur implements Initializable {
 
         setmap();
         initAnimation();
+        env.faireRang(55,6);
     }
 
     @FXML
