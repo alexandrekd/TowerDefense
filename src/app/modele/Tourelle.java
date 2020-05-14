@@ -10,6 +10,7 @@ public class Tourelle extends Acteur{
     private int degat;
     private int rechargement;
     private int portee;
+    private int typeMissile;
     private int dernierTire;
 
 
@@ -25,6 +26,11 @@ public class Tourelle extends Acteur{
         this.rechargement = rechargement;
         this.portee = portee;
         dernierTire = rechargement;
+        this.typeMissile = 1;
+    }
+
+    public int getTypeMissile() {
+        return typeMissile;
     }
 
     //Cette méthode récupère une cible a la portée de la tour

@@ -33,6 +33,7 @@ public class Attaquant extends Acteur{
 		this.vitesse = vitesse;
 	}
 
+
 	public void seDeplacer() {// Cette methode permet a l'attaquant de se deplacer, meme s'il peut changer de direction
 
 		int xB = Utile.toTexture(this.getX());

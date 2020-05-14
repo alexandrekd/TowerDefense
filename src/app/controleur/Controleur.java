@@ -130,14 +130,14 @@ public class Controleur implements Initializable {
     }
 
     public void creerSpriteMissile(Missile missile){
-        Circle c = new Circle(4);
-        c.setId(missile.getId());
-        c.setFill(Color.GREEN);
-        c.setTranslateX(missile.getX());
-        c.setTranslateY(missile.getY());
-        c.translateXProperty().bind(missile.getXProperty());
-        c.translateYProperty().bind(missile.getYProperty());
-        plateau.getChildren().add(c);
+
+        ImageView project = new ImageView("resources/missiles/"+missile.getDebActeur().getTypeMissile()+".png");
+        project.setId(missile.getId());
+        project.setTranslateX(missile.getX());
+        project.setTranslateY(missile.getY());
+        project.translateXProperty().bind(missile.getXProperty());
+        project.translateYProperty().bind(missile.getYProperty());
+        plateau.getChildren().add(project);
     }
 
     public void removeSprite(String id){

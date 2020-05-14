@@ -20,7 +20,11 @@ import javafx.beans.property.SimpleIntegerProperty;
         explosion = false;
     }
 
-    public String getId() {
+        public Tourelle getDebActeur() {
+            return debActeur;
+        }
+
+        public String getId() {
         return id;
     }
 
