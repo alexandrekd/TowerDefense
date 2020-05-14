@@ -151,7 +151,7 @@ public class Controleur implements Initializable {
         for (int i = 0 ; i < env.getMap().size(); i++){
             if(env.getMap().get(i)/900 ==1){
                 if (count == random){
-                    Attaquant attaquant = new Attaquant(this.env, 20, 3,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 5);
+                    Attaquant attaquant = new Attaquant(this.env, 20, 3,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
                     this.env.getActeurs().add(attaquant);
                     count = 0;
                 }
