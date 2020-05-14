@@ -35,51 +35,47 @@ public class Attaquant extends Acteur{
 
 	public void seDeplacer() {// Cette methode permet a l'attaquant de se deplacer, meme s'il peut changer de direction
 
-		int xB = (this.getX()/10);
-		int yB = (this.getY()/10);
+		int xB = Utile.toTexture(this.getX());
+		int yB = Utile.toTexture(this.getY());
 		int bestPos = 10000;
 
-			node value = env.getUnNode(xB-1 , yB);
-			if(value != null) {
-				if (value.getDistance() < bestPos) {
-					bestPos = value.getDistance();
-					dx = -1;
-					dy = 0;
-				}
+
+			if (RegardeUnVoisin(env.getUnNode(xB-1 , yB)) < bestPos){
+				donneDirection(-1,0);
+				bestPos = RegardeUnVoisin(env.getUnNode(xB-1 , yB));
+			}
+			if (RegardeUnVoisin(env.getUnNode(xB+1 , yB)) < bestPos){
+				donneDirection(1,0);
+				bestPos = RegardeUnVoisin(env.getUnNode(xB+1 , yB));
+			}
+			if (RegardeUnVoisin(env.getUnNode(xB , yB-1)) < bestPos){
+				donneDirection(0,-1);
+				bestPos = RegardeUnVoisin(env.getUnNode(xB , yB-1));
+			}
+			if (RegardeUnVoisin(env.getUnNode(xB , yB+1)) < bestPos){
+				donneDirection(0,1);
+				bestPos = RegardeUnVoisin(env.getUnNode(xB , yB+1));
 			}
 
-			value = env.getUnNode(xB+1 , yB);
-			if(value != null) {
-				if (value.getDistance() < bestPos) {
-					bestPos = value.getDistance();
-					dx = 1;
-					dy = 0;
-				}
-			}
-
-			value = env.getUnNode(xB , yB-1);
-			if(value != null) {
-				if (value.getDistance() < bestPos) {
-					bestPos = value.getDistance();
-					dx = 0;
-					dy = -1;
-				}
-			}
-
-			value = env.getUnNode(xB , yB+1);
-			if(value != null) {
-				if (value.getDistance() < bestPos) {
-					bestPos = value.getDistance();
-					dx = 0;
-					dy = 1;
-				}
-			}
 
 		//System.out.println(dx +""+ dy);
 		this.setX(this.getX() + this.vitesse * this.dx);
 		//Pas besoin de else, vu que si le prochain deplacement en x depasse l'environnement, il ne bouge pas
 		this.setY((this.getY() + this.vitesse * this.dy));
 		//Pas besoin de else, vu que si le prochain deplacement en y depasse l'environnement, il ne bouge pas
+	}
+
+	public int RegardeUnVoisin(node voisin){
+		int uneDistance = 100000;
+		if(voisin != null){
+			uneDistance = voisin.getDistance();
+		}
+		return uneDistance;
+	}
+
+	public void donneDirection(int dxA,int dyA){
+		this.dx = dxA;
+		this.dy = dyA;
 	}
 
 	public void mourir() {
