@@ -13,24 +13,21 @@ public class Attaquant extends Acteur {
 	private int dx; // dx et dy representent la direction de l'attaquant
 	private int dy;
 	private int vitesse;
+	private int img;
 
 
-	public Attaquant(Environnement env, int pv, int vitesse) {
-		/*this.env = env;
-		this.id = "A"+compteur;
-		Random random=new Random();
-		int x = random.nextInt(env.getWidth()-1);
-		int y=random.nextInt(env.getHeight()-1);*/
-
+	public Attaquant(Environnement env, int pv, int vitesse, int img) {
 		super(env);
 		this.pv = pv;
 		this.vitesse = vitesse;
+		this.img = img;
 	}
 
-	public Attaquant(Environnement env, int pv, int vitesse,int x,int y) {
-		super(x,y,env);
+	public Attaquant(Environnement env, int pv, int vitesse, int x, int y, int img) {
+		super(x, y, env);
 		this.pv = pv;
 		this.vitesse = vitesse;
+		this.img = img;
 	}
 
 
@@ -41,22 +38,22 @@ public class Attaquant extends Acteur {
 		int bestPos = 10000;
 
 
-			if (RegardeUnVoisin(env.getUnNode(xB-1 , yB)) < bestPos){
-				donneDirection(-1,0);
-				bestPos = RegardeUnVoisin(env.getUnNode(xB-1 , yB));
-			}
-			if (RegardeUnVoisin(env.getUnNode(xB+1 , yB)) < bestPos){
-				donneDirection(1,0);
-				bestPos = RegardeUnVoisin(env.getUnNode(xB+1 , yB));
-			}
-			if (RegardeUnVoisin(env.getUnNode(xB , yB-1)) < bestPos){
-				donneDirection(0,-1);
-				bestPos = RegardeUnVoisin(env.getUnNode(xB , yB-1));
-			}
-			if (RegardeUnVoisin(env.getUnNode(xB , yB+1)) < bestPos){
-				donneDirection(0,1);
-				bestPos = RegardeUnVoisin(env.getUnNode(xB , yB+1));
-			}
+		if (RegardeUnVoisin(env.getUnNode(xB - 1, yB)) < bestPos) {
+			donneDirection(-1, 0);
+			bestPos = RegardeUnVoisin(env.getUnNode(xB - 1, yB));
+		}
+		if (RegardeUnVoisin(env.getUnNode(xB + 1, yB)) < bestPos) {
+			donneDirection(1, 0);
+			bestPos = RegardeUnVoisin(env.getUnNode(xB + 1, yB));
+		}
+		if (RegardeUnVoisin(env.getUnNode(xB, yB - 1)) < bestPos) {
+			donneDirection(0, -1);
+			bestPos = RegardeUnVoisin(env.getUnNode(xB, yB - 1));
+		}
+		if (RegardeUnVoisin(env.getUnNode(xB, yB + 1)) < bestPos) {
+			donneDirection(0, 1);
+			bestPos = RegardeUnVoisin(env.getUnNode(xB, yB + 1));
+		}
 
 
 		//System.out.println(dx +""+ dy);
@@ -66,15 +63,15 @@ public class Attaquant extends Acteur {
 		//Pas besoin de else, vu que si le prochain deplacement en y depasse l'environnement, il ne bouge pas
 	}
 
-	public int RegardeUnVoisin(node voisin){
+	public int RegardeUnVoisin(node voisin) {
 		int uneDistance = 100000;
-		if(voisin != null){
+		if (voisin != null) {
 			uneDistance = voisin.getDistance();
 		}
 		return uneDistance;
 	}
 
-	public void donneDirection(int dxA,int dyA){
+	public void donneDirection(int dxA, int dyA) {
 		this.dx = dxA;
 		this.dy = dyA;
 	}
@@ -83,8 +80,8 @@ public class Attaquant extends Acteur {
 		this.pv = 0;
 	}
 
-	public boolean estVivant(){
-		if(this.pv <= 0){
+	public boolean estVivant() {
+		if (this.pv <= 0) {
 			return false;
 		}
 		return true;
@@ -94,16 +91,7 @@ public class Attaquant extends Acteur {
 		this.pv = this.pv - dégatsReçus;
 	}
 
-	public void arriver() {
+	public int getPv() { return pv; }
 
-	}
-
-	/*public int getX(){
-		System.out.println(this.x);
-		return this.x;
-	}
-	public int getY(){
-		System.out.println(this.y);
-		return this.y;
-	}*/
+	public void setPv(int pv) { this.pv = pv; }
 }

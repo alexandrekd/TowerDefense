@@ -1,6 +1,6 @@
 package app.modele;
 
-public class Tourelle extends Acteur{
+public abstract class Tourelle extends Acteur{
     /*private String id;
     public static int compteur = 0;
     private int x;
@@ -14,19 +14,13 @@ public class Tourelle extends Acteur{
     private int dernierTire;
 
 
-    public Tourelle(int degat, int x, int y, int rechargement, int portee, Environnement env) {
-        /*this.env = env;*/
-        /*this.id = "A"+compteur;
-        compteur++;*/
-        /*this.x = x;
-        this.y = y;*/
-
+    public Tourelle(int degat, int x, int y, int rechargement, int portee, Environnement env,int typeMissile) {
         super(x, y, env);
         this.degat = degat;
         this.rechargement = rechargement;
         this.portee = portee;
         dernierTire = rechargement;
-        this.typeMissile = 1;
+        this.typeMissile = typeMissile;
     }
 
     public int getTypeMissile() {
@@ -49,19 +43,16 @@ public class Tourelle extends Acteur{
         return this.degat;
     }
 
-    //Permet de tire sur l'étudiant
-    public void tire() {
-        if(rechargement == dernierTire) {
-            Attaquant cible = getCible();
-            if (cible != null)
-                env.addProject(new Missile(this, cible));
-            dernierTire = 0;
-        }
-        else
-            dernierTire++;
+    public int getRechargement() {
+        return rechargement;
     }
 
-    public void agit(){
-        tire();
+    public void setDernierTire(int dernierTire) {
+        this.dernierTire = dernierTire;
     }
+
+    public int getDernierTire() {
+        return dernierTire;
+    }
+
 }

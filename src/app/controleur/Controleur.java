@@ -92,6 +92,8 @@ public class Controleur implements Initializable {
         setmap();
         initAnimation();
         env.faireRang(10,4);
+
+
     }
 
     @FXML
@@ -100,7 +102,7 @@ public class Controleur implements Initializable {
         int colIndex = (int) event.getX();
         int colRow = (int) event.getY();
         if ((env.getMap().get(Utile.toWidth(Utile.toTexture(colRow)) + Utile.toTexture(colIndex)) )% 2 == 1) {
-            Tourelle tourelle = new Tourelle(5, colIndex, colRow, 2, 150, this.env);
+            Acteur tourelle = new Bonnot( colIndex, colRow, this.env);
             this.env.getActeurs().add(tourelle);
             creerSprite(tourelle);
         }
@@ -151,7 +153,7 @@ public class Controleur implements Initializable {
         for (int i = 0 ; i < env.getMap().size(); i++){
             if(env.getMap().get(i)/900 ==1){
                 if (count == random){
-                    Attaquant attaquant = new Attaquant(this.env, 20, 3,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
+                    Acteur attaquant = new Normal(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
                     this.env.getActeurs().add(attaquant);
                     count = 0;
                 }
