@@ -3,28 +3,22 @@ package app.modele;
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
-import javafx.collections.SetChangeListener;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Environnement {
     private int width, height;
     /*private List<Tourelle> tourelles;
     private ObservableList<Attaquants> attaquants;*/
     private ObservableList<Acteur> acteurs;
-    private ObservableSet<Acteur> acteursSet;
     private List<Integer> map;
     private ObservableList<Missile> project;
     private int nbTours;
     private List<node> rang;
-    private SortedSet<Acteur> sortedSet;
 
     public Environnement(int width, int height){
         acteurs = FXCollections.observableArrayList();
-        acteursSet = FXCollections.observableSet();
         this.width = width;
         this.height = height;
         project = FXCollections.observableArrayList();
