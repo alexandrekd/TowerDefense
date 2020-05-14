@@ -145,16 +145,6 @@ public class Environnement {
             }
         }
 
-        /*for(int i = 0; i < this.tourelles.size(); i++){
-            Tourelle tourelle = this.tourelles.get(i);
-            tourelle.agit();
-        }
-
-        for(int i = 0; i < this.attaquants.size(); i++){
-            Attaquants attaquant = this.attaquants.get(i);
-            attaquant.seDeplacer();
-        }*/
-
         for(int i = 0; i < this.acteurs.size(); i++){
             if(acteurs.get(i) instanceof Tourelle)
                 ((Tourelle) acteurs.get(i)).agit();
