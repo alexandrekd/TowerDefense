@@ -40,7 +40,7 @@ public abstract class Acteur {
         xProperty.setValue(n);
     }
     public final IntegerProperty getXProperty(){ return xProperty; }
-
+    public abstract void agit();
     public  int getY() {
         return yProperty.getValue();
     }
