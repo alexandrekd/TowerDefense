@@ -33,6 +33,33 @@ public class Controleur implements Initializable {
     private int temps;
 
     @FXML
+    private RadioButton Bonnot;
+
+    @FXML
+    private ToggleGroup Tour;
+
+    @FXML
+    private RadioButton Bossard;
+
+    @FXML
+    private RadioButton Comparot;
+
+    @FXML
+    private RadioButton Ricordo;
+
+    @FXML
+    private RadioButton Lamolle;
+
+    @FXML
+    private RadioButton Homps;
+
+    @FXML
+    private RadioButton Rety;
+
+    @FXML
+    private RadioButton Simonot;
+
+    @FXML
     private TilePane map;
 
     @FXML
@@ -43,9 +70,6 @@ public class Controleur implements Initializable {
 
     @FXML
     private Button btStart;
-
-    @FXML
-    private ToggleGroup Tour;
 
     @FXML
     private Button btLancer;
@@ -98,21 +122,56 @@ public class Controleur implements Initializable {
 
     @FXML
     void poserTourelle(MouseEvent event) {
+
+
         Node source = (Node)event.getSource();
         int colIndex = (int) event.getX();
         int colRow = (int) event.getY();
         if ((env.getMap().get(Utile.toWidth(Utile.toTexture(colRow)) + Utile.toTexture(colIndex)) )% 2 == 1) {
-            Acteur tourelle = new Bonnot( colIndex, colRow, this.env);
-            this.env.getActeurs().add(tourelle);
-            creerSprite(tourelle);
+            if (Bonnot.isSelected()) {
+                Acteur tourelle = new Bonnot(colIndex, colRow, this.env);
+                add(tourelle);
+            }
+            else if (Bossard.isSelected()){
+                Acteur tourelle = new Bossard(colIndex, colRow, this.env);
+                add(tourelle);
+            }
+            else if (Comparot.isSelected()){
+                Acteur tourelle = new Comparot(colIndex, colRow, this.env);
+                add(tourelle);
+            }
+            else if(Ricordo.isSelected()){
+                Acteur tourelle = new Ricordo(colIndex, colRow, this.env);
+                add(tourelle);
+            }
+            else if(Lamolle.isSelected()){
+                Acteur tourelle = new Lamolle(colIndex, colRow, this.env);
+                add(tourelle);
+            }
+            else if(Homps.isSelected()){
+                Acteur tourelle = new Homps(colIndex, colRow, this.env);
+                add(tourelle);
+            }
+            else if(Rety.isSelected()){
+                Acteur tourelle = new Rety(colIndex, colRow, this.env);
+                add(tourelle);
+            }
+            else if(Simonot.isSelected()){
+                Acteur tourelle = new Simonot(colIndex, colRow, this.env);
+                add(tourelle);
+            }
         }
     }
+     public void add(Acteur tourelle){
+         this.env.getActeurs().add(tourelle);
+         creerSprite(tourelle);
+     }
 
     public void creerSprite(Acteur acteur){
         if(acteur instanceof Tourelle) {
             Circle c = new Circle(10);
             c.setId(acteur.getId());
-            c.setFill(Color.RED);
+            c.setFill(Color.valueOf(acteur.getCouleur()));
             c.setTranslateX(acteur.getX());
             c.setTranslateY(acteur.getY());
             c.translateXProperty().bind(acteur.getXProperty());

@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="800.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.Controleur">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="800.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.Controleur">
    <top>
       <Label prefHeight="70.0" prefWidth="449.0" text="Tower Defense TAM" BorderPane.alignment="CENTER">
          <font>
@@ -17,18 +25,18 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <RadioButton fx:id="btTourelleSimple" mnemonicParsing="false" selected="true" text="Tour Simple">
+                  <RadioButton fx:id="Bonnot" mnemonicParsing="false" selected="true" text="Tour Simple">
                      <toggleGroup>
                         <ToggleGroup fx:id="Tour" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Tour Aléatoire" toggleGroup="$Tour" />
-                  <RadioButton mnemonicParsing="false" text="Tour à Poison" toggleGroup="$Tour" />
-                  <RadioButton mnemonicParsing="false" text="Tour Ralentissement" toggleGroup="$Tour" />
-                  <RadioButton mnemonicParsing="false" text="Tour Sniper" toggleGroup="$Tour" />
-                  <RadioButton mnemonicParsing="false" text="Tour Case Depart" toggleGroup="$Tour" />
-                  <RadioButton mnemonicParsing="false" text="Tour Rety" toggleGroup="$Tour" />
-                  <RadioButton mnemonicParsing="false" text="Tour D'invocation" toggleGroup="$Tour" />
+                  <RadioButton fx:id="Bossard" mnemonicParsing="false" text="Tour Aléatoire" toggleGroup="$Tour" />
+                  <RadioButton fx:id="Comparot" mnemonicParsing="false" text="Tour à Poison" toggleGroup="$Tour" />
+                  <RadioButton fx:id="Ricordo" mnemonicParsing="false" text="Tour Ralentissement" toggleGroup="$Tour" />
+                  <RadioButton fx:id="Lamolle" mnemonicParsing="false" text="Tour Sniper" toggleGroup="$Tour" />
+                  <RadioButton fx:id="Homps" mnemonicParsing="false" text="Tour Case Depart" toggleGroup="$Tour" />
+                  <RadioButton fx:id="Rety" mnemonicParsing="false" text="Tour Rety" toggleGroup="$Tour" />
+                  <RadioButton fx:id="Simonot" mnemonicParsing="false" text="Tour D'invocation" toggleGroup="$Tour" />
                </children>
             </VBox>
          </children>

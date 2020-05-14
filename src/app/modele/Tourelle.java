@@ -14,8 +14,8 @@ public abstract class Tourelle extends Acteur{
     private int dernierTire;
 
 
-    public Tourelle(int degat, int x, int y, int rechargement, int portee, Environnement env,int typeMissile) {
-        super(x, y, env);
+    public Tourelle(int degat, int x, int y, int rechargement, int portee, Environnement env,int typeMissile,String couleur) {
+        super(x, y, env,couleur);
         this.degat = degat;
         this.rechargement = rechargement;
         this.portee = portee;
