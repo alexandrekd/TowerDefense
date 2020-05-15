@@ -1,3 +1,4 @@
+/*
 package app.modele;
 
 
@@ -13,3 +14,4 @@ public class Niveau {
     //private ArrayList<int> tourellesDispo;
 
 }
+*/
