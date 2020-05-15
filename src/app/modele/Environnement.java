@@ -74,14 +74,12 @@ public class Environnement {
             if (map.get(maison.getX() - 1 + Utile.toWidth(maison.getY())) % 2 == 0) {
                 if (!estDejaLa(maison.getX() - 1,maison.getY()))
                     voisin.add(new node(maison.getDistance() + 1, maison.getX() - 1,maison.getY()));
-                System.out.println("ok");
             }
         }
         if (Utile.toPixel(maison.getX() + 1) < this.width) {
             if (map.get(maison.getX() + 1 + Utile.toWidth(maison.getY())) % 2 == 0) {
                 if (!estDejaLa(maison.getX() + 1,maison.getY()))
                     voisin.add(new node(maison.getDistance() + 1, maison.getX() + 1,maison.getY()));
-                System.out.println("ook");
 
             }
         }
@@ -89,7 +87,6 @@ public class Environnement {
             if (map.get(Utile.toWidth(maison.getY() - 1) + maison.getX()) % 2 == 0) {
                 if (!estDejaLa(maison.getX(),maison.getY() - 1))
                     voisin.add(new node(maison.getDistance() + 1,maison.getX(), maison.getY() - 1));
-                System.out.println("oook");
 
             }
         }
@@ -97,7 +94,6 @@ public class Environnement {
             if (map.get(Utile.toWidth(maison.getY() + 1) + maison.getX()) % 2 == 0) {
                 if (!estDejaLa(maison.getX(),maison.getY() + 1))
                     voisin.add(new node(maison.getDistance() + 1,maison.getX(), maison.getY() + 1));
-                System.out.println("ooookk");
 
             }
         }
