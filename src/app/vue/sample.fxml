@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="800.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.Controleur">
+<BorderPane maxHeight="1000.0" maxWidth="1920.0" minHeight="1000.0" minWidth="1920.0" prefHeight="1000.0" prefWidth="1920.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.Controleur">
    <top>
       <Label prefHeight="70.0" prefWidth="449.0" text="Tower Defense TAM" BorderPane.alignment="CENTER">
          <font>
@@ -83,9 +83,9 @@
       </HBox>
    </bottom>
    <center>
-      <Pane fx:id="plateau" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#poserTourelle" prefHeight="400.0" prefWidth="550.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="plateau" maxHeight="800.0" maxWidth="1600.0" minHeight="800.0" minWidth="1600.0" onMouseClicked="#poserTourelle" prefHeight="800.0" prefWidth="1600.0" BorderPane.alignment="CENTER">
          <children>
-            <TilePane fx:id="map" maxHeight="400.0" maxWidth="550.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="550.0" />
+            <TilePane fx:id="map" maxHeight="800.0" maxWidth="1600.0" minHeight="800.0" minWidth="1600.0" prefHeight="800.0" prefWidth="1600.0" />
          </children></Pane>
    </center>
 </BorderPane>

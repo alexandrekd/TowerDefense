@@ -12,13 +12,13 @@ public class Utile {
         return val/50;
     }
 
-    public static int toWidth(int val){return  val*11;}
+    public static int toWidth(int val){return  val*32;}
 
-    public static int toHeight(int val){return val*8;}
+    public static int toHeight(int val){return val*16;}
 
-    public static int toX(int val){return val%11;}
+    public static int toX(int val){return val%32;}
 
-    public static int toY(int val){return val/11;}
+    public static int toY(int val){return val/32;}
 
     public static int[] goToCaseDepart(Missile missile){
         int random = (int) (Math.random() * missile.getEnv().getMap().parallelStream().filter(n-> n/900 == 1).collect(Collectors.toList()).size());
