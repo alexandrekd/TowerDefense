@@ -1,5 +1,7 @@
 package app.modele;
 
+import java.util.stream.Collectors;
+
 public class Utile {
 
     public static int toPixel(int val){
@@ -18,11 +20,13 @@ public class Utile {
 
     public static int toY(int val){return val/11;}
 
-    public static int getCaseDepart(Missile missile){
-        for (int i = 0 ; i < missile.env.getMap().size(); i++){
-            if(env.getMap().get(i)/900 ==1){
+    public static int[] goToCaseDepart(Missile missile){
+        int random = (int) (Math.random() * missile.getEnv().getMap().parallelStream().filter(n-> n/900 == 1).collect(Collectors.toList()).size());
+        int x,y,count = 0;
+        for (int i = 0 ; i < missile.getEnv().getMap().size(); i++){
+            if(missile.getEnv().getMap().get(i)/900 ==1){
                 if (count == random){
-                    Acteur attaquant = new Normal(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
+                    missile.finActeur = new Normal(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
                     this.env.getActeurs().add(attaquant);
                     count = 0;
                 }

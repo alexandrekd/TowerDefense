@@ -77,6 +77,14 @@ import javafx.beans.property.SimpleIntegerProperty;
     public boolean isExplosion() {
         return explosion;
     }
+
+    public Environnement getEnv(){
+        return this.env;
+    }
+
+    public Attaquant getFinActeur(){
+        return this.finActeur;
+    }
 }
 
 

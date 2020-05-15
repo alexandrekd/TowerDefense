@@ -13,9 +13,8 @@ public class Homps extends Tourelle{
     public void tire() {
         if(getRechargement() == getDernierTire()) {
             Attaquant cible = getCible();
-            if (cible != null){
+            if (cible != null)
                 env.addProject(new Missile(this, cible, env));
-            }
             setDernierTire(0);;
         }
         else
