@@ -25,6 +25,10 @@ public abstract class Tourelle extends Acteur{
         this.typeMissile = typeMissile;
     }
 
+    public void setRechargement(int rechargement) {
+        this.rechargement = rechargement;
+    }
+
     public int getTypeMissile() {
         return typeMissile;
     }
