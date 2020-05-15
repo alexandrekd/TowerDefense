@@ -2,7 +2,7 @@ package app.modele;
 
 public class Bossard extends Tourelle {
     public Bossard(int x, int y, Environnement env) {
-        super(5, x, y, 2, 150, env,1,"GREEN");
+        super(5, x, y, 2, 150, env,2,"GREEN");
     }
 
     @Override
