@@ -41,7 +41,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
         if (yarv == 0 && xarv == 0) {
             this.finActeur.recevoirTir(debActeur.getDegat());
-            this.finActeur.setX();
+            /*this.finActeur.setX();*/
 
             this.explosion = true;
         }
