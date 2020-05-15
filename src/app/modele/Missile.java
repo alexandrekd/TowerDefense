@@ -40,8 +40,10 @@ import javafx.beans.property.SimpleIntegerProperty;
         }
 
         if (yarv == 0 && xarv == 0) {
-        finActeur.recevoirTir(debActeur.getDegat());
-        this.explosion = true;
+            this.finActeur.recevoirTir(debActeur.getDegat());
+            this.finActeur.setX();
+
+            this.explosion = true;
         }
         else if (yarv < 0) {
             this.setY(this.getY() + 1);
