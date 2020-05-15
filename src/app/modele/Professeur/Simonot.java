@@ -1,8 +1,13 @@
-package app.modele;
+package app.modele.Professeur;
 
-public class Comparot extends Tourelle{
-    public Comparot(int x, int y, Environnement env) {
-        super(5, x, y, 2, 150, env,1,"BLUE");
+import app.modele.Attaquant;
+import app.modele.Environnement;
+import app.modele.Missile;
+import app.modele.Tourelle;
+
+public class Simonot extends Tourelle {
+    public Simonot(int x, int y, Environnement env) {
+        super(5, x, y, 2, 150, env,1,"YELLOW");
     }
 
     @Override

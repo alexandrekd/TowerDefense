@@ -1,9 +1,8 @@
 package app.modele;
 
+import app.modele.Professeur.Homps;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-
-import java.util.Random;
 
 import static app.modele.Utile.goToCaseDepart;
 

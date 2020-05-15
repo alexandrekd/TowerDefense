@@ -1,8 +1,13 @@
-package app.modele;
+package app.modele.Professeur;
 
-public class Simonot extends Tourelle {
-    public Simonot(int x, int y, Environnement env) {
-        super(5, x, y, 2, 150, env,1,"YELLOW");
+import app.modele.Attaquant;
+import app.modele.Environnement;
+import app.modele.Missile;
+import app.modele.Tourelle;
+
+public class Homps extends Tourelle {
+    public Homps(int x, int y, Environnement env) {
+        super(3, x, y, 50, 150, env,1,"ORANGE");
     }
 
     @Override
@@ -15,7 +20,7 @@ public class Simonot extends Tourelle {
             Attaquant cible = getCible();
             if (cible != null)
                 env.addProject(new Missile(this, cible, env));
-            setDernierTire(0);;
+            setDernierTire(0);
         }
         else
             setDernierTire(getDernierTire()+1);

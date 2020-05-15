@@ -1,6 +1,11 @@
-package app.modele;
+package app.modele.Professeur;
 
-public class Rety extends Tourelle{
+import app.modele.Attaquant;
+import app.modele.Environnement;
+import app.modele.Missile;
+import app.modele.Tourelle;
+
+public class Rety extends Tourelle {
 
     int boost = 10;
     int vers = 0;

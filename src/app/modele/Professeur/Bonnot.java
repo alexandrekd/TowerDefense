@@ -1,8 +1,13 @@
-package app.modele;
+package app.modele.Professeur;
 
-public class Lamolle extends Tourelle{
-    public Lamolle(int x, int y, Environnement env) {
-        super(15, x, y, 100, 250, env,1,"PINK");
+import app.modele.Attaquant;
+import app.modele.Environnement;
+import app.modele.Missile;
+import app.modele.Tourelle;
+
+public class Bonnot extends Tourelle {
+    public Bonnot(int x, int y, Environnement env) {
+        super(5, x, y, 50, 150, env,1,"RED");
     }
 
     @Override
@@ -21,3 +26,5 @@ public class Lamolle extends Tourelle{
             setDernierTire(getDernierTire()+1);
     }
 }
+
+
