@@ -17,7 +17,7 @@ public class Bossard extends Tourelle {
             ArrayList<Attaquant> cibles = getListeCible();
             int aleatoire = (int) (Math.random()*cibles.size());
             if (aleatoire != 0)
-                env.addProject(new Missile(this, cibles.get(aleatoire)));
+                env.addProject(new Missile(this, cibles.get(aleatoire), env));
             setDernierTire(0);;
         }
         else

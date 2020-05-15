@@ -18,7 +18,7 @@ public class Rety extends Tourelle{
             if (vers == 0){
                 Attaquant cible = getCible();
                 if (cible != null)
-                    env.addProject(new Missile(this, cible));
+                    env.addProject(new Missile(this, cible, env));
                 setDernierTire(0);
                 if (boost == -50) {
                     vers++;
@@ -30,7 +30,7 @@ public class Rety extends Tourelle{
             else{
                 Attaquant cible = getCible();
                 if (cible != null)
-                    env.addProject(new Missile(this, cible));
+                    env.addProject(new Missile(this, cible, env));
                 setDernierTire(0);
                 if (boost == 10) {
                     vers--;

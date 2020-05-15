@@ -3,7 +3,11 @@ package app.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-    public class Missile {
+import java.util.Random;
+
+import static app.modele.Utile.goToCaseDepart;
+
+public class Missile {
     private String id;
     private Tourelle debActeur;
     private Attaquant finActeur;
@@ -44,8 +48,9 @@ import javafx.beans.property.SimpleIntegerProperty;
         if (yarv == 0 && xarv == 0) {
             this.finActeur.recevoirTir(debActeur.getDegat());
 
-            if (this.debActeur instanceof Homps){
-                this.finActeur.setX();
+            if (this.debActeur instanceof Homps) { // Si trop d'effet -> faire une methode effet qui check le type de tourelle et applique l''effet desire
+                if(Math.random()*10 <= 2)
+                    goToCaseDepart(this);
             }
 
             this.explosion = true;
