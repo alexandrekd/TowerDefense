@@ -2,7 +2,7 @@ package app.modele;
 
 public class Lamolle extends Tourelle{
     public Lamolle(int x, int y, Environnement env) {
-        super(5, x, y, 2, 150, env,1,"PINK");
+        super(15, x, y, 100, 250, env,1,"PINK");
     }
 
     @Override
