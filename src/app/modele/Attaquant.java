@@ -24,7 +24,7 @@ public class Attaquant extends Acteur {
 	}
 
 	public Attaquant(Environnement env, int pv, int vitesse, int x, int y, int img) {
-		super(x, y, env,"RED");
+		super(x, y, env,1);
 		this.pv = pv;
 		this.vitesse = vitesse;
 		this.img = img;

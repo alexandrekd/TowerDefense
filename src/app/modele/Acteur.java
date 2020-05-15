@@ -11,9 +11,9 @@ public abstract class Acteur {
     private IntegerProperty xProperty, yProperty;
     public static int compteur = 0;
     public Environnement env;
-    private String couleur;
+    private int couleur;
 
-    public Acteur(int x, int y, Environnement env,String couleur){
+    public Acteur(int x, int y, Environnement env,int couleur){
         this.id = "A"+compteur;
         compteur++;
         this.xProperty = new SimpleIntegerProperty(x);
@@ -22,7 +22,7 @@ public abstract class Acteur {
         this.couleur = couleur;
     }
 
-    public String getCouleur() {
+    public int getCouleur() {
         return couleur;
     }
 
