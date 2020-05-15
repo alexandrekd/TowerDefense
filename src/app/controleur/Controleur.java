@@ -84,7 +84,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.env = new Environnement(550, 400);
+        this.env = new Environnement(1600, 800);
 
         ListChangeListener<Acteur> listen= c->{
             while (c.next()) {
