@@ -9,8 +9,10 @@ import javafx.beans.property.SimpleIntegerProperty;
     private Attaquant finActeur;
     private IntegerProperty xProperty, yProperty;
     private boolean explosion;
+    private Environnement env;
 
-    public Missile(Tourelle depart, Attaquant fin){
+    public Missile(Tourelle depart, Attaquant fin, Environnement env){
+        this.env = env;
         this.debActeur = depart;
         this.finActeur = fin;
         this.xProperty = new SimpleIntegerProperty(depart.getX());
@@ -41,7 +43,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 
         if (yarv == 0 && xarv == 0) {
             this.finActeur.recevoirTir(debActeur.getDegat());
-            /*this.finActeur.setX();*/
+
+            if (this.debActeur instanceof Homps){
+                this.finActeur.setX();
+            }
 
             this.explosion = true;
         }

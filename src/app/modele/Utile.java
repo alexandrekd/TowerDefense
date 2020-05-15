@@ -18,4 +18,19 @@ public class Utile {
 
     public static int toY(int val){return val/11;}
 
+    public static int getCaseDepart(Missile missile){
+        for (int i = 0 ; i < missile.env.getMap().size(); i++){
+            if(env.getMap().get(i)/900 ==1){
+                if (count == random){
+                    Acteur attaquant = new Normal(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
+                    this.env.getActeurs().add(attaquant);
+                    count = 0;
+                }
+                else
+                    count++;
+            }
+        }
+
+    }
+
 }
