@@ -59,7 +59,7 @@ public class Attaquant extends Acteur {
 		//System.out.println(dx +""+ dy);
 		this.setX(this.getX() + this.vitesse * this.dx);
 		//Pas besoin de else, vu que si le prochain deplacement en x depasse l'environnement, il ne bouge pas
-		this.setY((this.getY() + this.vitesse * this.dy));
+		this.setY(this.getY() + this.vitesse * this.dy);
 		//Pas besoin de else, vu que si le prochain deplacement en y depasse l'environnement, il ne bouge pas
 	}
 
@@ -94,4 +94,8 @@ public class Attaquant extends Acteur {
 	public int getPv() { return pv; }
 
 	public void setPv(int pv) { this.pv = pv; }
+
+	public void ralentissement(){
+		this.vitesse -= (int) this.vitesse*0.5;
+	}
 }
