@@ -135,15 +135,15 @@ public class Environnement {
 
 
     public void unTour(){
-        for (int a = 0; a < 20; a++) {
-            for (int i = 0; i < this.project.size(); i++) {
-                this.project.get(i).bouge();
-                if (this.project.get(i).isExplosion()) {
-                    this.project.remove(i);
-                    i--;
+            for (int a = 0; a < 4; a++) {
+                for (int i = 0; i < this.project.size(); i++) {
+                    this.project.get(i).bouge();
+                    if (this.project.get(i).isExplosion()) {
+                        this.project.remove(i);
+                        i--;
+                    }
                 }
             }
-        }
 
         for(int i = 0; i < this.acteurs.size(); i++){
             acteurs.get(i).agit();
