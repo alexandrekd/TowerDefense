@@ -1,8 +1,13 @@
-package app.modele;
+package app.modele.Professeur;
 
-public class Lamolle extends Tourelle{
-    public Lamolle(int x, int y, Environnement env) {
-        super(5, x, y, 2, 150, env,1,"PINK");
+import app.modele.Attaquant;
+import app.modele.Environnement;
+import app.modele.Missile;
+import app.modele.Tourelle;
+
+public class Simonot extends Tourelle {
+    public Simonot(int x, int y, Environnement env) {
+        super(5, x, y, 2, 150, env,1,"YELLOW");
     }
 
     @Override

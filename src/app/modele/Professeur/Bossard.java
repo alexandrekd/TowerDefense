@@ -1,4 +1,9 @@
-package app.modele;
+package app.modele.Professeur;
+
+import app.modele.Attaquant;
+import app.modele.Environnement;
+import app.modele.Missile;
+import app.modele.Tourelle;
 
 import java.util.ArrayList;
 

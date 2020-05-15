@@ -1,8 +1,8 @@
 package app.controleur;
 
+import app.modele.Professeur.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,11 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
 import javafx.util.Duration;
-import jdk.nashorn.internal.ir.WhileNode;
-import sun.management.snmp.util.MibLogger;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
