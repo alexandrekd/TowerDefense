@@ -24,7 +24,10 @@ import app.modele.*;
 import javafx.util.Duration;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -32,33 +35,6 @@ public class Controleur implements Initializable {
     private Timeline gameLoop;
 
     private int temps;
-
-    @FXML
-    private RadioButton Bonnot;
-
-    @FXML
-    private ToggleGroup Tour;
-
-    @FXML
-    private RadioButton Bossard;
-
-    @FXML
-    private RadioButton Comparot;
-
-    @FXML
-    private RadioButton Ricordo;
-
-    @FXML
-    private RadioButton Lamolle;
-
-    @FXML
-    private RadioButton Homps;
-
-    @FXML
-    private RadioButton Rety;
-
-    @FXML
-    private RadioButton Simonot;
 
     @FXML
     private TilePane map;
@@ -82,6 +58,8 @@ public class Controleur implements Initializable {
 
     @FXML
     private ImageView img1;
+
+
 
     @FXML
     private ImageView imgCheck1;
@@ -137,11 +115,18 @@ public class Controleur implements Initializable {
     private ImageView imgCheck8;
     private BooleanProperty img8checked = new SimpleBooleanProperty();
 
+    private ArrayList<ImageView> imageList;
+    private ArrayList<ImageView> checkList;
+    private ArrayList<BooleanProperty> checkedList;
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env = new Environnement(1600, 800);
+        imageList = new ArrayList<ImageView>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
+        checkList = new ArrayList<ImageView>(Arrays.asList(imgCheck1,imgCheck2,imgCheck3,imgCheck4,imgCheck5,imgCheck6,imgCheck7,imgCheck8));
+        checkedList = new ArrayList<BooleanProperty>(Arrays.asList(img1checked,img2checked,img3checked,img4checked,img5checked,img6checked,img7checked,img8checked));
 
         ListChangeListener<Acteur> listen= c->{
             while (c.next()) {
@@ -173,7 +158,6 @@ public class Controleur implements Initializable {
         setmap();
         initAnimation();
         env.faireRang(31,7);
-        menu();
     }
 
     @FXML
@@ -184,35 +168,36 @@ public class Controleur implements Initializable {
         int colIndex = (int) event.getX();
         int colRow = (int) event.getY();
         if ((env.getMap().get(Utile.toWidth(Utile.toTexture(colRow)) + Utile.toTexture(colIndex)) )% 2 == 1) {
-            if (Bonnot.isSelected()) {
+            String choix = select();
+            if (choix == "Bonnot") {
                 Acteur tourelle = new Bonnot(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if (Bossard.isSelected()){
+            else if (choix == "Bossard"){
                 Acteur tourelle = new Bossard(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if (Comparot.isSelected()){
+            else if (choix == "Comparot"){
                 Acteur tourelle = new Comparot(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(Ricordo.isSelected()){
+            else if(choix == "Ricordo"){
                 Acteur tourelle = new Ricordo(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(Lamolle.isSelected()){
+            else if(choix == "Lamolle"){
                 Acteur tourelle = new Lamolle(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(Homps.isSelected()){
+            else if(choix == "Homps"){
                 Acteur tourelle = new Homps(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(Rety.isSelected()){
+            else if(choix == "Rety"){
                 Acteur tourelle = new Rety(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(Simonot.isSelected()){
+            else if(choix == "Simonot"){
                 Acteur tourelle = new Simonot(colIndex, colRow, this.env);
                 add(tourelle);
             }
@@ -326,99 +311,26 @@ public class Controleur implements Initializable {
     // QUESTION DE VIE OU DE MORT
     // SVPPPPPPPPP
     // J AI PAS EU LE TEMPS DE FINIR
-    public void menu(){
-        this.img1.scaleXProperty().bindBidirectional(this.img1.scaleYProperty());
-        this.imgCheck1.visibleProperty().bind(this.img1checked);
-        this.img1checked.bind(this.img1.scaleXProperty().isNotEqualTo(1));
+    @FXML
+    void clickChoix(MouseEvent event) {
+        int nombre = (int) (event.getY()/75);
+        System.out.println(nombre);
+        System.out.println(imageList.get(0).getY());
+        System.out.println(this.imageList.get(nombre).getY());
+        this.imageList.get(nombre).scaleXProperty().bindBidirectional(this.imageList.get(nombre).scaleYProperty());
+        this.checkList.get(nombre).visibleProperty().bind(this.checkedList.get(nombre));
+        this.checkedList.get(nombre).bind(this.imageList.get(nombre).scaleXProperty().isNotEqualTo(1));
 
-        this.img1.setOnMouseClicked(e -> {
+        this.imageList.get(nombre).setOnMouseClicked(e -> {
             reset();
-            if (this.img1checked.get())
-                this.img1.setScaleX(1);
+            if (this.checkedList.get(nombre).get())
+                this.imageList.get(nombre).setScaleX(1);
             else
-                this.img1.setScaleX(0.8);
+                this.imageList.get(nombre).setScaleX(0.8);
         });
 
-        this.img2.scaleXProperty().bindBidirectional(this.img2.scaleYProperty());
-        this.imgCheck2.visibleProperty().bind(this.img2checked);
-        this.img2checked.bind(this.img2.scaleXProperty().isNotEqualTo(1));
 
-        this.img2.setOnMouseClicked(e -> {
-            reset();
-            if (this.img2checked.get())
-                this.img2.setScaleX(1);
-            else
-                this.img2.setScaleX(0.8);
-        });
 
-        this.img3.scaleXProperty().bindBidirectional(this.img3.scaleYProperty());
-        this.imgCheck3.visibleProperty().bind(this.img3checked);
-        this.img3checked.bind(this.img3.scaleXProperty().isNotEqualTo(1));
-
-        this.img3.setOnMouseClicked(e -> {
-            reset();
-            if (this.img3checked.get())
-                this.img3.setScaleX(1);
-            else
-                this.img3.setScaleX(0.8);
-        });
-
-        this.img4.scaleXProperty().bindBidirectional(this.img4.scaleYProperty());
-        this.imgCheck4.visibleProperty().bind(this.img4checked);
-        this.img4checked.bind(this.img4.scaleXProperty().isNotEqualTo(1));
-
-        this.img4.setOnMouseClicked(e -> {
-            reset();
-            if (this.img4checked.get())
-                this.img4.setScaleX(1);
-            else
-                this.img4.setScaleX(0.8);
-        });
-
-        this.img5.scaleXProperty().bindBidirectional(this.img5.scaleYProperty());
-        this.imgCheck5.visibleProperty().bind(this.img5checked);
-        this.img5checked.bind(this.img5.scaleXProperty().isNotEqualTo(1));
-
-        this.img5.setOnMouseClicked(e -> {
-            reset();
-            if (this.img5checked.get())
-                this.img5.setScaleX(1);
-            else
-                this.img5.setScaleX(0.8);
-        });
-        this.img6.scaleXProperty().bindBidirectional(this.img6.scaleYProperty());
-        this.imgCheck6.visibleProperty().bind(this.img6checked);
-        this.img6checked.bind(this.img6.scaleXProperty().isNotEqualTo(1));
-
-        this.img6.setOnMouseClicked(e -> {
-            reset();
-            if (this.img6checked.get())
-                this.img6.setScaleX(1);
-            else
-                this.img6.setScaleX(0.8);
-        });
-        this.img7.scaleXProperty().bindBidirectional(this.img7.scaleYProperty());
-        this.imgCheck7.visibleProperty().bind(this.img7checked);
-        this.img7checked.bind(this.img7.scaleXProperty().isNotEqualTo(1));
-
-        this.img7.setOnMouseClicked(e -> {
-            reset();
-            if (this.img7checked.get())
-                this.img7.setScaleX(1);
-            else
-                this.img7.setScaleX(0.8);
-        });
-        this.img8.scaleXProperty().bindBidirectional(this.img8.scaleYProperty());
-        this.imgCheck8.visibleProperty().bind(this.img8checked);
-        this.img8checked.bind(this.img8.scaleXProperty().isNotEqualTo(1));
-
-        this.img8.setOnMouseClicked(e -> {
-            reset();
-            if (this.img8checked.get())
-                this.img8.setScaleX(1);
-            else
-                this.img8.setScaleX(0.8);
-        });
     }
 
     public void reset(){
@@ -430,5 +342,28 @@ public class Controleur implements Initializable {
         this.img6.setScaleX(1);
         this.img7.setScaleX(1);
         this.img8.setScaleX(1);
+    }
+
+    public String select(){
+        String choix = "";
+        if (this.img1.getScaleX() == 0.8)
+            choix = "Bonnot";
+        else if (this.img2.getScaleX() == 0.8)
+            choix = "Rety";
+        else if (this.img3.getScaleX() == 0.8)
+            choix = "Comparot";
+        else if (this.img4.getScaleX() == 0.8)
+            choix = "Ricordo";
+        else if (this.img5.getScaleX() == 0.8)
+            choix = "Lamolle";
+        else if (this.img6.getScaleX() == 0.8)
+            choix = "Homps";
+        else if (this.img7.getScaleX() == 0.8)
+            choix = "Bossard";
+        else if (this.img8.getScaleX() == 0.8)
+            choix = "Simonot";
+
+        System.out.println(choix);
+        return choix;
     }
 }
