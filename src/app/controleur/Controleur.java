@@ -322,7 +322,7 @@ public class Controleur implements Initializable {
         this.checkedList.get(nombre).bind(this.imageList.get(nombre).scaleXProperty().isNotEqualTo(1));
 
         this.imageList.get(nombre).setOnMouseClicked(e -> {
-            reset();
+            reset(imageList.get(nombre));
             if (this.checkedList.get(nombre).get())
                 this.imageList.get(nombre).setScaleX(1);
             else
@@ -333,15 +333,11 @@ public class Controleur implements Initializable {
 
     }
 
-    public void reset(){
-        this.img2.setScaleX(1);
-        this.img1.setScaleX(1);
-        this.img3.setScaleX(1);
-        this.img4.setScaleX(1);
-        this.img5.setScaleX(1);
-        this.img6.setScaleX(1);
-        this.img7.setScaleX(1);
-        this.img8.setScaleX(1);
+    public void reset(ImageView Actuel){
+        for (int i = 0; i < this.imageList.size() ; i++){
+            if (this.imageList.get(i) != Actuel)
+                this.imageList.get(i).setScaleX(1);
+        }
     }
 
     public String select(){
