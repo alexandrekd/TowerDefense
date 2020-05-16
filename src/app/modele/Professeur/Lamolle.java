@@ -7,7 +7,7 @@ import app.modele.Tourelle;
 
 public class Lamolle extends Tourelle {
     public Lamolle(int x, int y, Environnement env) {
-        super(15, x, y, 100, 250, env,1,"PINK");
+        super(15, x, y, 100, 250, env,1,1);
     }
 
     @Override

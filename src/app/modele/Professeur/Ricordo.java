@@ -7,7 +7,7 @@ import app.modele.Tourelle;
 
 public class Ricordo extends Tourelle {
     public Ricordo(int x, int y, Environnement env) {
-        super(5, x, y, 2, 150, env,1,"GRAY");
+        super(5, x, y, 2, 150, env,1,1);
     }
 
     @Override

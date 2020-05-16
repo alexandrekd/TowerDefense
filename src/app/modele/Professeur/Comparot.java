@@ -7,7 +7,7 @@ import app.modele.Tourelle;
 
 public class Comparot extends Tourelle {
     public Comparot(int x, int y, Environnement env) {
-        super(5, x, y, 2, 150, env,1,"BLUE");
+        super(5, x, y, 2, 150, env,1,1);
     }
 
     @Override

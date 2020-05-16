@@ -1,5 +1,7 @@
 package app.modele;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
 import java.util.Random;
 
 public class Attaquant extends Acteur {
@@ -24,7 +26,7 @@ public class Attaquant extends Acteur {
 	}
 
 	public Attaquant(Environnement env, int pv, int vitesse, int x, int y, int img) {
-		super(x, y, env,"RED");
+		super(x, y, env,1);
 		this.pv = pv;
 		this.vitesse = vitesse;
 		this.img = img;
@@ -55,7 +57,7 @@ public class Attaquant extends Acteur {
 			bestPos = RegardeUnVoisin(env.getUnNode(xB, yB + 1));
 		}
 
-
+		System.out.println(this.dx+"/"+this.dy);
 		//System.out.println(dx +""+ dy);
 		this.setX(this.getX() + this.vitesse * this.dx);
 		//Pas besoin de else, vu que si le prochain deplacement en x depasse l'environnement, il ne bouge pas

@@ -7,7 +7,7 @@ import app.modele.Tourelle;
 
 public class Homps extends Tourelle {
     public Homps(int x, int y, Environnement env) {
-        super(3, x, y, 50, 150, env,1,"ORANGE");
+        super(3, x, y, 50, 150, env,1,1);
     }
 
     @Override
