@@ -3,6 +3,8 @@ package app.controleur;
 import app.modele.Professeur.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -19,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
 import javafx.util.Duration;
+import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -76,6 +80,62 @@ public class Controleur implements Initializable {
 
     private Environnement env;
 
+    @FXML
+    private ImageView img1;
+
+    @FXML
+    private ImageView imgCheck1;
+    private BooleanProperty img1checked = new SimpleBooleanProperty();
+
+    @FXML
+    private ImageView img2;
+    private BooleanProperty img2checked = new SimpleBooleanProperty();
+
+    @FXML
+    private ImageView imgCheck2;
+
+
+    @FXML
+    private ImageView img3;
+
+    @FXML
+    private ImageView imgCheck3;
+    private BooleanProperty img3checked = new SimpleBooleanProperty();
+
+    @FXML
+    private ImageView img4;
+
+    @FXML
+    private ImageView imgCheck4;
+    private BooleanProperty img4checked = new SimpleBooleanProperty();
+
+    @FXML
+    private ImageView img5;
+
+    @FXML
+    private ImageView imgCheck5;
+    private BooleanProperty img5checked = new SimpleBooleanProperty();
+
+    @FXML
+    private ImageView img6;
+
+    @FXML
+    private ImageView imgCheck6;
+    private BooleanProperty img6checked = new SimpleBooleanProperty();
+
+    @FXML
+    private ImageView img7;
+
+    @FXML
+    private ImageView imgCheck7;
+    private BooleanProperty img7checked = new SimpleBooleanProperty();
+
+    @FXML
+    private ImageView img8;
+
+    @FXML
+    private ImageView imgCheck8;
+    private BooleanProperty img8checked = new SimpleBooleanProperty();
 
 
 
@@ -112,9 +172,8 @@ public class Controleur implements Initializable {
 
         setmap();
         initAnimation();
-        env.faireRang(10,4);
-
-
+        env.faireRang(31,7);
+        menu();
     }
 
     @FXML
@@ -261,5 +320,115 @@ public class Controleur implements Initializable {
                 })
         );
         gameLoop.getKeyFrames().add(kf);
+    }
+
+    // NE PAS MONTRER A SIMONOT
+    // QUESTION DE VIE OU DE MORT
+    // SVPPPPPPPPP
+    // J AI PAS EU LE TEMPS DE FINIR
+    public void menu(){
+        this.img1.scaleXProperty().bindBidirectional(this.img1.scaleYProperty());
+        this.imgCheck1.visibleProperty().bind(this.img1checked);
+        this.img1checked.bind(this.img1.scaleXProperty().isNotEqualTo(1));
+
+        this.img1.setOnMouseClicked(e -> {
+            reset();
+            if (this.img1checked.get())
+                this.img1.setScaleX(1);
+            else
+                this.img1.setScaleX(0.8);
+        });
+
+        this.img2.scaleXProperty().bindBidirectional(this.img2.scaleYProperty());
+        this.imgCheck2.visibleProperty().bind(this.img2checked);
+        this.img2checked.bind(this.img2.scaleXProperty().isNotEqualTo(1));
+
+        this.img2.setOnMouseClicked(e -> {
+            reset();
+            if (this.img2checked.get())
+                this.img2.setScaleX(1);
+            else
+                this.img2.setScaleX(0.8);
+        });
+
+        this.img3.scaleXProperty().bindBidirectional(this.img3.scaleYProperty());
+        this.imgCheck3.visibleProperty().bind(this.img3checked);
+        this.img3checked.bind(this.img3.scaleXProperty().isNotEqualTo(1));
+
+        this.img3.setOnMouseClicked(e -> {
+            reset();
+            if (this.img3checked.get())
+                this.img3.setScaleX(1);
+            else
+                this.img3.setScaleX(0.8);
+        });
+
+        this.img4.scaleXProperty().bindBidirectional(this.img4.scaleYProperty());
+        this.imgCheck4.visibleProperty().bind(this.img4checked);
+        this.img4checked.bind(this.img4.scaleXProperty().isNotEqualTo(1));
+
+        this.img4.setOnMouseClicked(e -> {
+            reset();
+            if (this.img4checked.get())
+                this.img4.setScaleX(1);
+            else
+                this.img4.setScaleX(0.8);
+        });
+
+        this.img5.scaleXProperty().bindBidirectional(this.img5.scaleYProperty());
+        this.imgCheck5.visibleProperty().bind(this.img5checked);
+        this.img5checked.bind(this.img5.scaleXProperty().isNotEqualTo(1));
+
+        this.img5.setOnMouseClicked(e -> {
+            reset();
+            if (this.img5checked.get())
+                this.img5.setScaleX(1);
+            else
+                this.img5.setScaleX(0.8);
+        });
+        this.img6.scaleXProperty().bindBidirectional(this.img6.scaleYProperty());
+        this.imgCheck6.visibleProperty().bind(this.img6checked);
+        this.img6checked.bind(this.img6.scaleXProperty().isNotEqualTo(1));
+
+        this.img6.setOnMouseClicked(e -> {
+            reset();
+            if (this.img6checked.get())
+                this.img6.setScaleX(1);
+            else
+                this.img6.setScaleX(0.8);
+        });
+        this.img7.scaleXProperty().bindBidirectional(this.img7.scaleYProperty());
+        this.imgCheck7.visibleProperty().bind(this.img7checked);
+        this.img7checked.bind(this.img7.scaleXProperty().isNotEqualTo(1));
+
+        this.img7.setOnMouseClicked(e -> {
+            reset();
+            if (this.img7checked.get())
+                this.img7.setScaleX(1);
+            else
+                this.img7.setScaleX(0.8);
+        });
+        this.img8.scaleXProperty().bindBidirectional(this.img8.scaleYProperty());
+        this.imgCheck8.visibleProperty().bind(this.img8checked);
+        this.img8checked.bind(this.img8.scaleXProperty().isNotEqualTo(1));
+
+        this.img8.setOnMouseClicked(e -> {
+            reset();
+            if (this.img8checked.get())
+                this.img8.setScaleX(1);
+            else
+                this.img8.setScaleX(0.8);
+        });
+    }
+
+    public void reset(){
+        this.img2.setScaleX(1);
+        this.img1.setScaleX(1);
+        this.img3.setScaleX(1);
+        this.img4.setScaleX(1);
+        this.img5.setScaleX(1);
+        this.img6.setScaleX(1);
+        this.img7.setScaleX(1);
+        this.img8.setScaleX(1);
     }
 }
