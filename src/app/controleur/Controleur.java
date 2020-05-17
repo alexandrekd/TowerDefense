@@ -119,8 +119,6 @@ public class Controleur implements Initializable {
     private ArrayList<ImageView> checkList;
     private ArrayList<BooleanProperty> checkedList;
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env = new Environnement(1600, 800);
@@ -141,6 +139,7 @@ public class Controleur implements Initializable {
         };
         this.env.getActeurs().addListener(listen);
 
+
         ListChangeListener<Missile> listen2= c ->{
             while (c.next()) {
                 for(Missile missile : c.getAddedSubList()) {
@@ -153,6 +152,19 @@ public class Controleur implements Initializable {
             }
         };
         this.env.getProject().addListener(listen2);
+
+        ListChangeListener<Zone> listen3= c->{
+            while (c.next()) {
+                for(Zone zone : c.getAddedSubList()) {
+                    creerCercle(zone);
+                }
+
+                for(Zone zone : c.getRemoved()) {
+                    removeSprite(zone.getId());
+                }
+            }
+        };
+        this.env.getZone().addListener(listen3);
 
 
         setmap();
@@ -229,6 +241,22 @@ public class Controleur implements Initializable {
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
+        }
+    }
+
+    public void creerCercle(Zone zone) {
+        Circle c = new Circle(zone.getTaille());
+        c.setId(zone.getId());
+        c.setFill(Color.valueOf(zone.getCouleur()));
+        c.setTranslateX(zone.getMissile().getX());
+        c.setTranslateY(zone.getMissile().getY());
+        plateau.getChildren().add(c);
+    }
+    //On Work
+    public void gererOpacity(double opacity,String id){
+        for (int i = 0;i < plateau.getChildren().size() ; i++){
+            if (plateau.getChildren().get(i).getId() == id)
+                plateau.getChildren().get(i).opacityProperty().setValue(plateau.getChildren().get(i).getOpacity() - opacity);
         }
     }
 
@@ -314,9 +342,6 @@ public class Controleur implements Initializable {
     @FXML
     void clickChoix(MouseEvent event) {
         int nombre = (int) (event.getY()/75);
-        System.out.println(nombre);
-        System.out.println(imageList.get(0).getY());
-        System.out.println(this.imageList.get(nombre).getY());
         this.imageList.get(nombre).scaleXProperty().bindBidirectional(this.imageList.get(nombre).scaleYProperty());
         this.checkList.get(nombre).visibleProperty().bind(this.checkedList.get(nombre));
         this.checkedList.get(nombre).bind(this.imageList.get(nombre).scaleXProperty().isNotEqualTo(1));
@@ -358,8 +383,6 @@ public class Controleur implements Initializable {
             choix = "Bossard";
         else if (this.img8.getScaleX() == 0.8)
             choix = "Simonot";
-
-        System.out.println(choix);
         return choix;
     }
 }

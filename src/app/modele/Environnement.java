@@ -16,11 +16,13 @@ public class Environnement {
     private ObservableList<Missile> project;
     private int nbTours;
     private List<node> rang;
+    private ObservableList<Zone> zone;
 
     public Environnement(int width, int height){
         acteurs = FXCollections.observableArrayList();
         this.width = width;
         this.height = height;
+        zone = FXCollections.observableArrayList();
         project = FXCollections.observableArrayList();
         rang = new ArrayList<node>();
         map = new ArrayList<Integer>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
@@ -140,6 +142,9 @@ public class Environnement {
         return null;
     }
 
+    public ObservableList<Zone> getZone() {
+        return zone;
+    }
 
     public void unTour(){
             for (int a = 0; a < 4; a++) {
