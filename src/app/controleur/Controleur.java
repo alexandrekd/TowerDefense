@@ -339,27 +339,32 @@ public class Controleur implements Initializable {
     @FXML
     void clickChoix(MouseEvent event) {
         int nombre = (int) (event.getY()/75);
-        this.imageList.get(nombre).scaleXProperty().bindBidirectional(this.imageList.get(nombre).scaleYProperty());
-        this.checkList.get(nombre).visibleProperty().bind(this.checkedList.get(nombre));
-        this.checkedList.get(nombre).bind(this.imageList.get(nombre).scaleXProperty().isNotEqualTo(1));
-
 
         this.imageList.get(nombre).setOnMouseClicked(e -> {
             reset(imageList.get(nombre));
-            if (this.checkedList.get(nombre).get())
+            if (checkList.get(nombre).visibleProperty().get()) {
                 this.imageList.get(nombre).setScaleX(1);
-            else
+                this.imageList.get(nombre).setScaleY(1);
+                this.checkList.get(nombre).visibleProperty().setValue(false);
+            }
+            else{
                 this.imageList.get(nombre).setScaleX(0.8);
+                this.imageList.get(nombre).setScaleY(0.8);
+                this.checkList.get(nombre).visibleProperty().setValue(true);
+            }
         });
 
 
 
     }
 
-    public void reset(ImageView Actuel){
-        for (int i = 0; i < this.imageList.size() ; i++){
-            if (this.imageList.get(i) != Actuel)
+    public void reset(ImageView actuel){
+        for (int i = 0; i < this.imageList.size() ; i++) {
+            if (this.imageList.get(i)!= actuel) {
                 this.imageList.get(i).setScaleX(1);
+                this.imageList.get(i).setScaleY(1);
+                this.checkList.get(i).visibleProperty().setValue(false);
+            }
         }
     }
 
