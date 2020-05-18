@@ -1,7 +1,6 @@
 package app.modele;
 
 import app.modele.Professeur.Homps;
-import app.modele.Professeur.Ricordo;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -51,9 +50,6 @@ public class Missile {
             if (this.debActeur instanceof Homps) { // Si trop d'effet -> faire une methode effet qui check le type de tourelle et applique l''effet desire
                 if(Math.random()*10 <= 2)
                     goToCaseDepart(this);
-            }
-            if (this.debActeur instanceof Ricordo) { // Si trop d'effet -> faire une methode effet qui check le type de tourelle et applique l''effet desire
-                    this.finActeur.ralentissement();
             }
 
             this.explosion = true;

@@ -1,7 +1,9 @@
 package app.controleur;
 
 import app.modele.Professeur.*;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.animation.KeyFrame;
+import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -32,6 +34,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class Controleur implements Initializable {
+
     private Timeline gameLoop;
 
     private int temps;
@@ -119,8 +122,6 @@ public class Controleur implements Initializable {
     private ArrayList<ImageView> checkList;
     private ArrayList<BooleanProperty> checkedList;
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env = new Environnement(1600, 800);
@@ -141,6 +142,7 @@ public class Controleur implements Initializable {
         };
         this.env.getActeurs().addListener(listen);
 
+
         ListChangeListener<Missile> listen2= c ->{
             while (c.next()) {
                 for(Missile missile : c.getAddedSubList()) {
@@ -154,10 +156,28 @@ public class Controleur implements Initializable {
         };
         this.env.getProject().addListener(listen2);
 
+        ListChangeListener<Zone> listen3= c->{
+            while (c.next()) {
+                for(Zone zone : c.getAddedSubList()) {
+                    creerCercle(zone);
+                }
+
+                for(Zone zone : c.getRemoved()) {
+                    removeSprite(zone.getId());
+                }
+            }
+        };
+        this.env.getZone().addListener(listen3);
+
 
         setmap();
         initAnimation();
         env.faireRang(31,7);
+    }
+
+    public void afficher(){
+        for (int i = 0; i < plateau.getChildren().size();i++)
+        System.out.println(plateau.getChildren().get(i).getOpacity());
     }
 
     @FXML
@@ -223,6 +243,27 @@ public class Controleur implements Initializable {
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
+        }
+    }
+
+    public void creerCercle(Zone zone) {
+        Circle c = new Circle(zone.getTaille());
+        c.setId(zone.getId());
+        c.setFill(Color.valueOf(zone.getCouleur()));
+        c.setTranslateX(zone.getX());
+        c.setTranslateY(zone.getY());
+        plateau.getChildren().add(c);
+    }
+
+    public void gererOpacity(){
+        for (int i = 0;i < this.env.getZone().size(); i++){
+            for (int z = 0;z < plateau.getChildren().size(); z++){
+                if (this.env.getZone().get(i).getId().equals(plateau.getChildren().get(z).getId())) {
+
+                    plateau.getChildren().get(z).opacityProperty().setValue(plateau.getChildren().get(z).getOpacity() - (1 / env.getZone().get(i).getTemps()));
+                    //System.out.println(plateau.getChildren().get(z).getOpacity());
+                }
+            }
         }
     }
 
@@ -295,6 +336,7 @@ public class Controleur implements Initializable {
                     }
                     else if (temps%5==0){
                         this.env.unTour();
+                        gererOpacity();
                     }
                 })
         );
@@ -308,15 +350,12 @@ public class Controleur implements Initializable {
     @FXML
     void clickChoix(MouseEvent event) {
         int nombre = (int) (event.getY()/75);
-        System.out.println(nombre);
-        System.out.println(imageList.get(0).getY());
-        System.out.println(this.imageList.get(nombre).getY());
         this.imageList.get(nombre).scaleXProperty().bindBidirectional(this.imageList.get(nombre).scaleYProperty());
         this.checkList.get(nombre).visibleProperty().bind(this.checkedList.get(nombre));
         this.checkedList.get(nombre).bind(this.imageList.get(nombre).scaleXProperty().isNotEqualTo(1));
 
         this.imageList.get(nombre).setOnMouseClicked(e -> {
-            reset();
+            reset(imageList.get(nombre));
             if (this.checkedList.get(nombre).get())
                 this.imageList.get(nombre).setScaleX(1);
             else
@@ -327,15 +366,11 @@ public class Controleur implements Initializable {
 
     }
 
-    public void reset(){
-        this.img2.setScaleX(1);
-        this.img1.setScaleX(1);
-        this.img3.setScaleX(1);
-        this.img4.setScaleX(1);
-        this.img5.setScaleX(1);
-        this.img6.setScaleX(1);
-        this.img7.setScaleX(1);
-        this.img8.setScaleX(1);
+    public void reset(ImageView Actuel){
+        for (int i = 0; i < this.imageList.size() ; i++){
+            if (this.imageList.get(i) != Actuel)
+                this.imageList.get(i).setScaleX(1);
+        }
     }
 
     public String select(){
@@ -356,8 +391,6 @@ public class Controleur implements Initializable {
             choix = "Bossard";
         else if (this.img8.getScaleX() == 0.8)
             choix = "Simonot";
-
-        System.out.println(choix);
         return choix;
     }
 }
