@@ -36,6 +36,8 @@ public class Attaquant extends Acteur {
 		super(x, y, env,1);
 		this.pv = pv;
 		this.vitesse = vitesse;
+		this.vitesseQuick = vitesse;
+		this.vitesseSlow = (int) (this.vitesse * 0.5);
 		this.img = img;
 		this.estRalentit = false;
 	}
@@ -107,6 +109,7 @@ public class Attaquant extends Acteur {
 
 	public void ralentissement(){
 		this.vitesse -= this.vitesseSlow;
+		System.out.println("vitesseSlow : " + this.vitesseSlow + " ; vitesse : " + this.vitesse);
 		this.estRalentit = true;
 	}
 
@@ -119,6 +122,7 @@ public class Attaquant extends Acteur {
 			this.dureeEffet++;
 			if(this.dureeEffet >= 10) {
 				this.vitesse = vitesseQuick;
+				System.out.println("vitesseQuick : " + this.vitesseQuick + " ; vitesse : " + this.vitesse);
 				this.estRalentit = false;
 			}
 		}

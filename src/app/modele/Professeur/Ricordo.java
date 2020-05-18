@@ -29,7 +29,6 @@ public class Ricordo extends Tourelle {
     @Override
     public Attaquant getCible() {
         Attaquant cible = null;
-        
 
         for (int i = 0; i < this.env.getActeurs().size();i++)
             if (this.env.getActeurs().get(i) instanceof Attaquant && !((Attaquant) this.env.getActeurs().get(i)).estRalentit())
