@@ -7,7 +7,7 @@ import app.modele.Tourelle;
 
 public class Simonot extends Tourelle {
     public Simonot(int x, int y, Environnement env) {
-        super(5, x, y, 2, 20, env,1,1);
+        super(5, x, y, 2, 20, env,1,8);
     }
 
     @Override

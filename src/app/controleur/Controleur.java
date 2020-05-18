@@ -343,16 +343,14 @@ public class Controleur implements Initializable {
         gameLoop.getKeyFrames().add(kf);
     }
 
-    // NE PAS MONTRER A SIMONOT
-    // QUESTION DE VIE OU DE MORT
-    // SVPPPPPPPPP
-    // J AI PAS EU LE TEMPS DE FINIR
+
     @FXML
     void clickChoix(MouseEvent event) {
         int nombre = (int) (event.getY()/75);
         this.imageList.get(nombre).scaleXProperty().bindBidirectional(this.imageList.get(nombre).scaleYProperty());
         this.checkList.get(nombre).visibleProperty().bind(this.checkedList.get(nombre));
         this.checkedList.get(nombre).bind(this.imageList.get(nombre).scaleXProperty().isNotEqualTo(1));
+
 
         this.imageList.get(nombre).setOnMouseClicked(e -> {
             reset(imageList.get(nombre));

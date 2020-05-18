@@ -56,7 +56,7 @@
                <children>
                   <ImageView id="img3" fx:id="img3" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/resources/skins/10.png" />
+                        <Image url="/resources/skins/3.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck3" fx:id="imgCheck3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">
@@ -126,7 +126,7 @@
                <children>
                   <ImageView id="img8" fx:id="img8" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/resources/skins/10.png" />
+                        <Image url="/resources/skins/8.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck8" fx:id="imgCheck8" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">
