@@ -7,7 +7,7 @@ import app.modele.Tourelle;
 
 public class Ricordo extends Tourelle {
     public Ricordo(int x, int y, Environnement env) {
-        super(5, x, y, 2, 150, env,1,1);
+        super(5, x, y, 50, 150, env,1,1);
     }
 
     @Override
@@ -29,6 +29,7 @@ public class Ricordo extends Tourelle {
     @Override
     public Attaquant getCible() {
         Attaquant cible = null;
+        
 
         for (int i = 0; i < this.env.getActeurs().size();i++)
             if (this.env.getActeurs().get(i) instanceof Attaquant && !((Attaquant) this.env.getActeurs().get(i)).estRalentit())
