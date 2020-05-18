@@ -108,7 +108,7 @@ public class Attaquant extends Acteur {
 	public void setPv(int pv) { this.pv = pv; }
 
 	public void ralentissement(){
-		this.vitesse -= this.vitesseSlow;
+		this.vitesse = this.vitesseSlow;
 		System.out.println("vitesseSlow : " + this.vitesseSlow + " ; vitesse : " + this.vitesse);
 		this.estRalentit = true;
 	}
