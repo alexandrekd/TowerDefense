@@ -1,7 +1,9 @@
 package app.controleur;
 
 import app.modele.Professeur.*;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.animation.KeyFrame;
+import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -32,6 +34,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class Controleur implements Initializable {
+
     private Timeline gameLoop;
 
     private int temps;
@@ -172,6 +175,11 @@ public class Controleur implements Initializable {
         env.faireRang(31,7);
     }
 
+    public void afficher(){
+        for (int i = 0; i < plateau.getChildren().size();i++)
+        System.out.println(plateau.getChildren().get(i).getOpacity());
+    }
+
     @FXML
     void poserTourelle(MouseEvent event) {
 
@@ -248,15 +256,20 @@ public class Controleur implements Initializable {
         Circle c = new Circle(zone.getTaille());
         c.setId(zone.getId());
         c.setFill(Color.valueOf(zone.getCouleur()));
-        c.setTranslateX(zone.getMissile().getX());
-        c.setTranslateY(zone.getMissile().getY());
+        c.setTranslateX(zone.getX());
+        c.setTranslateY(zone.getY());
         plateau.getChildren().add(c);
     }
-    //On Work
-    public void gererOpacity(double opacity,String id){
-        for (int i = 0;i < plateau.getChildren().size() ; i++){
-            if (plateau.getChildren().get(i).getId() == id)
-                plateau.getChildren().get(i).opacityProperty().setValue(plateau.getChildren().get(i).getOpacity() - opacity);
+
+    public void gererOpacity(){
+        for (int i = 0;i < this.env.getZone().size(); i++){
+            for (int z = 0;z < plateau.getChildren().size(); z++){
+                if (this.env.getZone().get(i).getId().equals(plateau.getChildren().get(z).getId())) {
+
+                    plateau.getChildren().get(z).opacityProperty().setValue(plateau.getChildren().get(z).getOpacity() - (1 / env.getZone().get(i).getTemps()));
+                    //System.out.println(plateau.getChildren().get(z).getOpacity());
+                }
+            }
         }
     }
 
@@ -329,6 +342,7 @@ public class Controleur implements Initializable {
                     }
                     else if (temps%5==0){
                         this.env.unTour();
+                        gererOpacity();
                     }
                 })
         );

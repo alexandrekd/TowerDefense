@@ -7,27 +7,46 @@ import javafx.scene.shape.Circle;
 public class Zone {
     private int taille;
     private String couleur;
-    private int temps;
+    private double temps;
     private int degats;
     private String id;
-    private Missile missile;
+    private int x;
+    private int y;
     private double opacity;
-    public Zone(int taille,String Couleur,int temps,int degats,Missile missile){
+    public Zone(int taille,String Couleur,double temps,int degats,int x,int y){
         this.taille = taille;
         this.couleur = Couleur;
         this.temps = temps;
         this.degats = degats;
-        this.missile = missile;
+        this.x = x;
+        this.y = y;
+        this.opacity = 1;
         this.id = "A" + Acteur.compteur;
         Acteur.compteur++;
     }
 
-    public Missile getMissile() {
-        return missile;
+    public int getX() {
+        return x;
     }
 
+    public int getY() {
+        return y;
+    }
+
+
     public void agit(){
-        Controleur.gererOpacity();
+        gererOpacity();
+    }
+
+    public void gererOpacity(){
+        this.opacity = this.opacity - (1/this.temps);
+    }
+
+    public boolean estVivant() {
+        if (this.opacity <= 0) {
+            return false;
+        }
+        return true;
     }
 
 
@@ -39,7 +58,7 @@ public class Zone {
         return degats;
     }
 
-    public int getTemps() {
+    public double getTemps() {
         return temps;
     }
 
@@ -49,5 +68,9 @@ public class Zone {
 
     public int getTaille() {
         return taille;
+    }
+
+    public double getOpacity() {
+        return opacity;
     }
 }

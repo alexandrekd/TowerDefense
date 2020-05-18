@@ -167,6 +167,17 @@ public class Environnement {
                 }
             }
         }
+        for (int i = 0; i < zone.size(); i++){
+            if (!(zone.get(i).estVivant())){
+                this.zone.remove(i);
+                i--;
+            }
+        }
+
+        for (int i = 0 ; i < this.zone.size();i++){
+            this.zone.get(i).agit();
+        }
+
 
         this.nbTours++;
     }

@@ -53,7 +53,7 @@ public class Missile {
                     goToCaseDepart(this);
             }
             else if(this.debActeur instanceof Comparot){
-                env.getZone().add(new Zone(10,"RED",200,5,this));
+                env.getZone().add(new Zone(10,"RED",20,5,this.getX(),this.getY()));
             }
 
             this.explosion = true;
