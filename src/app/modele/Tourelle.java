@@ -3,11 +3,6 @@ package app.modele;
 import java.util.ArrayList;
 
 public abstract class Tourelle extends Acteur{
-    /*private String id;
-    public static int compteur = 0;
-    private int x;
-    private int y;
-    private Environnement env;*/
 
     private int degat;
     private int rechargement;
@@ -22,7 +17,7 @@ public abstract class Tourelle extends Acteur{
         this.degat = degat;
         this.rechargement = rechargement;
         this.portee = portee;
-        dernierTire = rechargement;
+        this.dernierTire = rechargement;
         this.typeMissile = typeMissile;
     }
 

@@ -7,7 +7,7 @@ import app.modele.Tourelle;
 
 public class Bonnot extends Tourelle {
     public Bonnot(int x, int y, Environnement env) {
-        super(5, x, y, 50, 150, env,1,1);
+        super(5, x, y, 20, 150, env,1,1);
     }
 
     @Override
