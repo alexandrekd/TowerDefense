@@ -142,7 +142,7 @@ public class Environnement {
 
 
     public void unTour(){
-            for (int a = 0; a < 4; a++) {
+            for (int a = 0; a < 15; a++) {
                 for (int i = 0; i < this.project.size(); i++) {
                     this.project.get(i).bouge();
                     if (this.project.get(i).isExplosion()) {

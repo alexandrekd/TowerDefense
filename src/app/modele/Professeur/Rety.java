@@ -25,10 +25,10 @@ public class Rety extends Tourelle {
                 if (cible != null)
                     env.addProject(new Missile(this, cible, env));
                 setDernierTire(0);
-                if (boost == -50) {
+                if (boost == -10) {
                     vers++;
-                    setRechargement(50);
-                    boost = 0;
+                    setRechargement(20);
+                    /*boost = 0;*/
                 }
                 boost--;
             }
@@ -37,9 +37,10 @@ public class Rety extends Tourelle {
                 if (cible != null)
                     env.addProject(new Missile(this, cible, env));
                 setDernierTire(0);
-                if (boost == 10) {
+                if (boost == -6) {
+                    boost = 10;
                     vers--;
-                    setRechargement(10);
+                    setRechargement(2);
                 }
                 boost++;
             }

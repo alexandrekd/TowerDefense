@@ -210,22 +210,16 @@ public class Controleur implements Initializable {
 
     public void creerSprite(Acteur acteur){
         if(acteur instanceof Tourelle) {
-
             ImageView c = new ImageView("resources/skins/"+acteur.getCouleur()+".png");
             c.setId(acteur.getId());
-            c.setTranslateX(acteur.getX());
-            c.setTranslateY(acteur.getY());
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
-
         }
         else if(acteur instanceof Attaquant){
             Circle c = new Circle(5);
             c.setId(acteur.getId());
             c.setFill(Color.BLUE);
-            c.setTranslateX(acteur.getX());
-            c.setTranslateY(acteur.getY());
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
