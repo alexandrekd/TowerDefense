@@ -16,6 +16,7 @@ public class Attaquant extends Acteur {
 	private int dy;
 	private int vitesse;
 	private int img;
+	private boolean estRalentit;
 
 
 	public Attaquant(Environnement env, int pv, int vitesse, int img) {
@@ -23,6 +24,7 @@ public class Attaquant extends Acteur {
 		this.pv = pv;
 		this.vitesse = vitesse;
 		this.img = img;
+		this.estRalentit = false;
 	}
 
 	public Attaquant(Environnement env, int pv, int vitesse, int x, int y, int img) {
@@ -30,6 +32,7 @@ public class Attaquant extends Acteur {
 		this.pv = pv;
 		this.vitesse = vitesse;
 		this.img = img;
+		this.estRalentit = false;
 	}
 
 
@@ -99,5 +102,10 @@ public class Attaquant extends Acteur {
 
 	public void ralentissement(){
 		this.vitesse -= (int) this.vitesse*0.5;
+		this.estRalentit = true;
+	}
+
+	public boolean estRalentit(){
+		return this.estRalentit;
 	}
 }

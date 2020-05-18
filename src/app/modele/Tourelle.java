@@ -29,6 +29,10 @@ public abstract class Tourelle extends Acteur{
         return typeMissile;
     }
 
+    public int getPortee(){
+        return this.portee;
+    }
+
     //Cette méthode récupère une cible a la portée de la tour
     public Attaquant getCible() {
         Attaquant cible = null;
