@@ -109,7 +109,6 @@ public class Attaquant extends Acteur {
 
 	public void ralentissement(){
 		this.vitesse = this.vitesseSlow;
-		System.out.println("vitesseSlow : " + this.vitesseSlow + " ; vitesse : " + this.vitesse);
 		this.estRalentit = true;
 	}
 
@@ -120,10 +119,10 @@ public class Attaquant extends Acteur {
 	public void gererRalentissement(){
 		if(this.estRalentit){
 			this.dureeEffet++;
-			if(this.dureeEffet >= 10) {
+			if(this.dureeEffet >= 20) {
 				this.vitesse = vitesseQuick;
-				System.out.println("vitesseQuick : " + this.vitesseQuick + " ; vitesse : " + this.vitesse);
 				this.estRalentit = false;
+				this.dureeEffet = 0;
 			}
 		}
 	}
