@@ -304,14 +304,6 @@ public class Controleur implements Initializable {
         gameLoop.play();
     }
 
-    /*void update(){
-        plateau.getChildren().clear();
-        for(int i = 0; i < this.env.getActeurs().size(); i++){
-            String id = "A" + i;
-            creerSprite(this.env.getActeur(id));
-        }
-    }*/
-
     public void setmap() {
         for (int i = 0; i < env.getMap().size(); i++) {
             ImageView texture = new ImageView("resources/textures/" + env.getMap().get(i) + ".png");

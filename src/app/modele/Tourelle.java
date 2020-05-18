@@ -11,7 +11,6 @@ public abstract class Tourelle extends Acteur{
     private int dernierTire;
     private int skin;
 
-
     public Tourelle(int degat, int x, int y, int rechargement, int portee, Environnement env,int typeMissile,int couleur) {
         super(x, y, env,couleur);
         this.degat = degat;
@@ -27,6 +26,10 @@ public abstract class Tourelle extends Acteur{
 
     public int getTypeMissile() {
         return typeMissile;
+    }
+
+    public int getPortee(){
+        return this.portee;
     }
 
     //Cette méthode récupère une cible a la portée de la tour

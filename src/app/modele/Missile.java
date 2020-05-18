@@ -1,7 +1,7 @@
 package app.modele;
 
-import app.modele.Professeur.Comparot;
 import app.modele.Professeur.Homps;
+import app.modele.Professeur.Ricordo;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -52,8 +52,9 @@ public class Missile {
                 if(Math.random()*10 <= 2)
                     goToCaseDepart(this);
             }
-            else if(this.debActeur instanceof Comparot){
-                env.getZone().add(new Zone(10,"RED",20,5,this.getX(),this.getY()));
+
+            if (this.debActeur instanceof Ricordo) { // Si trop d'effet -> faire une methode effet qui check le type de tourelle et applique l''effet desire
+                this.finActeur.ralentissement();
             }
 
             this.explosion = true;
