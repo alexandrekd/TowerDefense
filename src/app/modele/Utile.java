@@ -1,5 +1,8 @@
 package app.modele;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class Utile {
@@ -34,6 +37,30 @@ public class Utile {
                     count++;
             }
         }
+    }
+
+    public static ArrayList<Attaquant> creerVague(int nbEnnemis, Environnement env){
+        ArrayList<Attaquant> vague = new ArrayList<>();
+        for(int i = 0; i < nbEnnemis; i++)
+            vague.add((Attaquant) creerEnnemi(env));
+        return vague;
+    }
+
+    public static Acteur creerEnnemi (Environnement env){
+        int random = (int) (Math.random() * env.getMap().parallelStream().filter(n-> n/900 == 1).collect(Collectors.toList()).size());
+        int count = 0;
+        Acteur attaquant = null;
+        for (int i = 0 ; i < env.getMap().size(); i++){
+            if(env.getMap().get(i)/900 ==1){
+                if (count == random){
+                    attaquant = new Normal(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
+                    count = 0;
+                }
+                else
+                    count++;
+            }
+        }
+        return attaquant;
     }
 
 }

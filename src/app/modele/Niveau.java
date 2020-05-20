@@ -1,6 +1,8 @@
 package app.modele;
 
 
+import javax.management.AttributeList;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,11 +14,14 @@ public class Niveau {
     private int vie;
     private int argent;
     private ArrayList<Integer> map;
+    private ArrayList<ArrayList<Attaquant>> vagues;
+    private int numVague;
     //private ArrayList<int> tourellesDispo;
 
     public Niveau(Environnement env){
         this.id = "Niv" + compteur++;
         this.env = env;
+        this.numVague = 0;
         this.vie = 500;
         this.argent = 1000;
         this.map = new ArrayList<Integer>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
@@ -34,8 +39,22 @@ public class Niveau {
                                                         101, 101, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 101, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 102, 102, 101, 101, 101, 101, 101, 101, 101,
                                                         101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 103, 103, 103, 103, 101, 101, 101, 101, 101, 101, 101, 101, 101, 103, 101, 101, 101, 101, 101,
                                                         101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
-                                                        101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101
-        ));
+                                                        101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101)
+        );
+
+        this.vagues = new ArrayList<>();
+        this.vagues.add(Utile.creerVague(10, this.env));
+        this.vagues.add(Utile.creerVague(5, this.env));
+    }
+
+    public void lancerVague(){
+        for(int i = 0; i < this.vagues.get(numVague).size(); i++)
+            this.env.getActeurs().add(this.vagues.get(numVague).get(i));
+        numVague++;
+    }
+
+    public void IncrémenterArgent(int argent){
+        this.argent += argent;
     }
 
     public ArrayList<Integer> getMap() {
@@ -53,4 +72,5 @@ public class Niveau {
     public String getId() {
         return id;
     }
+
 }

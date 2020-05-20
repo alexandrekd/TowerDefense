@@ -26,6 +26,7 @@ import app.modele.*;
 import javafx.util.Duration;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
+import javax.rmi.CORBA.Util;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,8 +38,6 @@ import java.util.stream.Collectors;
 public class Controleur implements Initializable {
 
     private Timeline gameLoop;
-
-    private int temps;
 
     @FXML
     private TilePane map;
@@ -57,8 +56,6 @@ public class Controleur implements Initializable {
 
     @FXML
     private TextField tfNbTour;
-
-    private Environnement env;
 
     @FXML
     private ImageView img1;
@@ -123,10 +120,14 @@ public class Controleur implements Initializable {
     private ArrayList<ImageView> checkList;
     private ArrayList<BooleanProperty> checkedList;
     private HashMap<String, String> skins;
+    private Niveau niveau;
+    private Environnement env;
+    private int temps;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env = new Environnement(1600, 800);
+        this.niveau = new Niveau(this.env);
         imageList = new ArrayList<ImageView>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
         checkList = new ArrayList<ImageView>(Arrays.asList(imgCheck1,imgCheck2,imgCheck3,imgCheck4,imgCheck5,imgCheck6,imgCheck7,imgCheck8));
         checkedList = new ArrayList<BooleanProperty>(Arrays.asList(img1checked,img2checked,img3checked,img4checked,img5checked,img6checked,img7checked,img8checked));
@@ -297,21 +298,10 @@ public class Controleur implements Initializable {
 
     @FXML
     void clickStart(MouseEvent event) {
-        int random = (int) (Math.random() * env.getMap().parallelStream().filter(n-> n/900 == 1).collect(Collectors.toList()).size());
-        int x,y,count = 0;
-        for (int i = 0 ; i < env.getMap().size(); i++){
-            if(env.getMap().get(i)/900 ==1){
-                if (count == random){
-                    Acteur attaquant = new Normal(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
-                    this.env.getActeurs().add(attaquant);
-                    count = 0;
-                }
-                else
-                    count++;
-            }
-        }
+        this.env.getActeurs().add(Utile.creerEnnemi(this.env));
+        this.niveau.lancerVague();
     }
-//env.getActeurs().parallelStream().filter(n -> n instanceof Attaquant).collect(Collectors.toList()).size() == 0
+
     @FXML
     void faireTours() {
         gameLoop.play();
