@@ -30,6 +30,7 @@ import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -121,6 +122,7 @@ public class Controleur implements Initializable {
     private ArrayList<ImageView> imageList;
     private ArrayList<ImageView> checkList;
     private ArrayList<BooleanProperty> checkedList;
+    private HashMap<String, String> skins;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -128,6 +130,17 @@ public class Controleur implements Initializable {
         imageList = new ArrayList<ImageView>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
         checkList = new ArrayList<ImageView>(Arrays.asList(imgCheck1,imgCheck2,imgCheck3,imgCheck4,imgCheck5,imgCheck6,imgCheck7,imgCheck8));
         checkedList = new ArrayList<BooleanProperty>(Arrays.asList(img1checked,img2checked,img3checked,img4checked,img5checked,img6checked,img7checked,img8checked));
+
+        skins = new HashMap<String, String>();
+            skins.put("Bonnot" , "resources/skins/1.png");
+            skins.put("Ricordo" , "resources/skins/1.png");
+            skins.put("Bossard" , "resources/skins/1.png");
+            skins.put("Homps" , "resources/skins/1.png");
+            skins.put("Lamolle" , "resources/skins/1.png");
+            skins.put("Ricordo" , "resources/skins/1.png");
+            skins.put("Rety" , "resources/skins/2.png");
+            skins.put("Comparot" , "resources/skins/3.png");
+            skins.put("Simonot" , "resources/skins/8.png");
 
         ListChangeListener<Acteur> listen= c->{
             while (c.next()) {
@@ -189,35 +202,35 @@ public class Controleur implements Initializable {
         int colRow = (int) event.getY();
         if ((env.getMap().get(Utile.toWidth(Utile.toTexture(colRow)) + Utile.toTexture(colIndex)) )% 2 == 1) {
             String choix = select();
-            if (choix == "Bonnot") {
+            if (choix.equals("Bonnot")) {
                 Acteur tourelle = new Bonnot(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if (choix == "Bossard"){
+            else if (choix.equals("Bossard")){
                 Acteur tourelle = new Bossard(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if (choix == "Comparot"){
+            else if (choix.equals("Comparot")){
                 Acteur tourelle = new Comparot(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(choix == "Ricordo"){
+            else if(choix.equals("Ricordo")){
                 Acteur tourelle = new Ricordo(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(choix == "Lamolle"){
+            else if(choix.equals("Lamolle")){
                 Acteur tourelle = new Lamolle(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(choix == "Homps"){
+            else if(choix.equals("Homps")){
                 Acteur tourelle = new Homps(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(choix == "Rety"){
+            else if(choix.equals("Rety")){
                 Acteur tourelle = new Rety(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(choix == "Simonot"){
+            else if(choix.equals("Simonot")){
                 Acteur tourelle = new Simonot(colIndex, colRow, this.env);
                 add(tourelle);
             }
@@ -230,7 +243,7 @@ public class Controleur implements Initializable {
 
     public void creerSprite(Acteur acteur){
         if(acteur instanceof Tourelle) {
-            ImageView c = new ImageView("resources/skins/"+acteur.getCouleur()+".png");
+            ImageView c = new ImageView(skins.get(acteur.getName()));
             c.setId(acteur.getId());
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());

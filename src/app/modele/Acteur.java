@@ -1,5 +1,6 @@
 package app.modele;
 
+import com.sun.jmx.snmp.SnmpUnknownAccContrModelException;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -11,19 +12,19 @@ public abstract class Acteur {
     private IntegerProperty xProperty, yProperty;
     public static int compteur = 0;
     public Environnement env;
-    private int couleur;
+    private String name;
 
-    public Acteur(int x, int y, Environnement env,int couleur){
+    public Acteur(int x, int y, Environnement env, String name){
         this.id = "A"+compteur;
         compteur++;
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.env = env;
-        this.couleur = couleur;
+        this.name = name;
     }
 
-    public int getCouleur() {
-        return couleur;
+    public String getName() {
+        return name;
     }
 
     public Acteur(Environnement env){

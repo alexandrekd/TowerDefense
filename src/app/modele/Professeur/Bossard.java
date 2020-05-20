@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Bossard extends Tourelle {
     public Bossard(int x, int y, Environnement env) {
-        super(5, x, y, 10, 150, env,2,1);
+        super(5, x, y, 10, 150, env,2,"Bossard");
     }
 
     @Override
