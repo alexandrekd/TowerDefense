@@ -197,7 +197,6 @@ public class Environnement {
 
     public void startVague(){
         this.vagueEnCours = true;
-        this.niveau.getVagues().fetchEnnemi();
     }
     public void stopVague(){
         this.vagueEnCours = false;
