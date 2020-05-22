@@ -1,5 +1,6 @@
 package app.modele;
 
+import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,23 +10,23 @@ import java.util.stream.Collectors;
 
 public class Environnement {
     private int width, height;
-    /*private List<Tourelle> tourelles;
-    private ObservableList<Attaquants> attaquants;*/
     private ObservableList<Acteur> acteurs;
     private List<Integer> map;
     private ObservableList<Missile> project;
     private int nbTours;
     private List<node> rang;
     private ObservableList<Zone> zone;
-
+    private boolean vagueEnCours;
+    private Niveau niveau;
     public Environnement(int width, int height){
-        acteurs = FXCollections.observableArrayList();
+        this.vagueEnCours = false;
+        this.acteurs = FXCollections.observableArrayList();
         this.width = width;
         this.height = height;
-        zone = FXCollections.observableArrayList();
-        project = FXCollections.observableArrayList();
-        rang = new ArrayList<node>();
-        map = new ArrayList<Integer>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
+        this.zone = FXCollections.observableArrayList();
+        this.project = FXCollections.observableArrayList();
+        this.rang = new ArrayList<node>();
+        this.map = new ArrayList<Integer>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                 101, 103, 101, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 101, 101, 101,
                 101, 101, 101, 102, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 102, 101, 101, 101,
                 101, 101, 101, 102, 101, 102, 101, 101, 101, 101, 101, 102, 101, 103, 103, 103, 103, 101, 102, 101, 101, 101, 101, 101, 102, 101, 103, 101, 102, 101, 101, 101,
@@ -42,18 +43,26 @@ public class Environnement {
                 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101
         ));
-
+        this.niveau = new Niveau(this);
     }
+
     public List<Integer> getMap(){
         return this.map;
     }
+
     public int getWidth(){
         return this.width;
     }
-
-
     public int getHeight(){
         return this.height;
+    }
+
+    public Niveau getNiveau(){
+        return this.niveau;
+    }
+
+    public int getNbTours(){
+        return this.nbTours;
     }
 
     public ObservableList<Acteur> getActeurs(){
@@ -157,6 +166,9 @@ public class Environnement {
                 }
             }
 
+        if (this.vagueEnCours)
+            this.niveau.getVagues().fetchEnnemi();
+
         for(int i = 0; i < this.acteurs.size(); i++){
             acteurs.get(i).agit();
 
@@ -180,8 +192,15 @@ public class Environnement {
 
 
         this.nbTours++;
+        System.out.println(nbTours);
     }
 
-    /*public*/
+    public void startVague(){
+        this.vagueEnCours = true;
+        this.niveau.getVagues().fetchEnnemi();
+    }
+    public void stopVague(){
+        this.vagueEnCours = false;
+    }
 
 }
