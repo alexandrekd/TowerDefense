@@ -4,6 +4,7 @@ import app.modele.Attaquant;
 import app.modele.Environnement;
 import app.modele.Missile;
 import app.modele.Tourelle;
+import app.modele.TypeMissile.Default;
 
 public class Rety extends Tourelle {
 
@@ -23,7 +24,7 @@ public class Rety extends Tourelle {
             if (vers == 0){
                 Attaquant cible = getCible();
                 if (cible != null)
-                    env.addProject(new Missile(this, cible, env));
+                    env.addProject(new Missile(this, cible, env,new Default()));
                 setDernierTire(0);
                 if (boost == -10) {
                     vers++;
@@ -35,7 +36,7 @@ public class Rety extends Tourelle {
             else{
                 Attaquant cible = getCible();
                 if (cible != null)
-                    env.addProject(new Missile(this, cible, env));
+                    env.addProject(new Missile(this, cible, env,new Default()));
                 setDernierTire(0);
                 if (boost == -6) {
                     boost = 10;

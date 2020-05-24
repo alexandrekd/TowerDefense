@@ -15,41 +15,34 @@ public class Attaquant extends Acteur {
 	private int dx; // dx et dy representent la direction de l'attaquant
 	private int dy;
 	private int vitesse;
-	private int vitesseSlow;
-	private int vitesseQuick;
+	private int consVitesse;
 	private int img;
-	private boolean estRalentit;
-	private int dureeEffet;
 
 	public Attaquant(Environnement env, int pv, int vitesse, int img) {
 		super(env);
 		this.pv = pv;
 		this.vitesse = vitesse;
-		this.vitesseQuick = vitesse;
-		this.vitesseSlow = (int) (this.vitesse * 0.5);
+		this.consVitesse = vitesse;
 		this.img = img;
-		this.estRalentit = false;
-		this.dureeEffet = 0;
 	}
 
 	public Attaquant(Environnement env, int pv, int vitesse, int x, int y, int img) {
 		super(x, y, env, "Attaquant");
 		this.pv = pv;
 		this.vitesse = vitesse;
-		this.vitesseQuick = vitesse;
-		this.vitesseSlow = (int) (this.vitesse * 0.5);
 		this.img = img;
-		this.estRalentit = false;
+		this.consVitesse = vitesse;
 	}
 
+	public int getConsVitesse() {
+		return consVitesse;
+	}
 
 	public void agit() {// Cette methode permet a l'attaquant de se deplacer, meme s'il peut changer de direction
 
 		int xB = Utile.toTexture(this.getX());
 		int yB = Utile.toTexture(this.getY());
 		int bestPos = 10000;
-
-		this.gererRalentissement();
 
 		if (RegardeUnVoisin(env.getUnNode(xB - 1, yB)) < bestPos) {
 			donneDirection(-1, 0);
@@ -107,24 +100,11 @@ public class Attaquant extends Acteur {
 
 	public void setPv(int pv) { this.pv = pv; }
 
-	public void ralentissement(){
-		this.vitesse = this.vitesseSlow;
-		this.estRalentit = true;
+	public int getVitesse() {
+		return vitesse;
 	}
 
-	public boolean estRalentit(){
-		return this.estRalentit;
+	public void setVitesse(int vitesse) {
+		this.vitesse = vitesse;
 	}
-
-	public void gererRalentissement(){
-		if(this.estRalentit){
-			this.dureeEffet++;
-			if(this.dureeEffet >= 20) {
-				this.vitesse = vitesseQuick;
-				this.estRalentit = false;
-				this.dureeEffet = 0;
-			}
-		}
-	}
-
 }

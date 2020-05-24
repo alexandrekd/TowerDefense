@@ -4,6 +4,7 @@ import app.modele.Attaquant;
 import app.modele.Environnement;
 import app.modele.Missile;
 import app.modele.Tourelle;
+import app.modele.TypeMissile.Default;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class Bossard extends Tourelle {
             ArrayList<Attaquant> cibles = getListeCible();
             int aleatoire = (int) (Math.random()*cibles.size());
             if (aleatoire != 0)
-                env.addProject(new Missile(this, cibles.get(aleatoire), env));
+                env.addProject(new Missile(this, cibles.get(aleatoire), env,new Default()));
             setDernierTire(0);;
         }
         else

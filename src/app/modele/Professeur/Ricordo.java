@@ -4,6 +4,8 @@ import app.modele.Attaquant;
 import app.modele.Environnement;
 import app.modele.Missile;
 import app.modele.Tourelle;
+import app.modele.TypeMissile.Default;
+import app.modele.TypeMissile.Ralentissement;
 
 public class Ricordo extends Tourelle {
     public Ricordo(int x, int y, Environnement env) {
@@ -19,7 +21,7 @@ public class Ricordo extends Tourelle {
         if(getRechargement() == getDernierTire()) {
             Attaquant cible = getCible();
             if (cible != null)
-                env.addProject(new Missile(this, cible, env));
+                env.addProject(new Missile(this, cible, env,new Ralentissement(0.5,env)));
             setDernierTire(0);;
         }
         else
@@ -31,10 +33,11 @@ public class Ricordo extends Tourelle {
         Attaquant cible = null;
 
         for (int i = 0; i < this.env.getActeurs().size();i++)
-            if (this.env.getActeurs().get(i) instanceof Attaquant && !((Attaquant) this.env.getActeurs().get(i)).estRalentit())
+            if (this.env.getActeurs().get(i) instanceof Attaquant) {
                 if (env.getActeurs().get(i).getX() <= this.getX() + getPortee() && env.getActeurs().get(i).getX() >= this.getX() - getPortee() && env.getActeurs().get(i).getY() <= this.getY() + getPortee() && env.getActeurs().get(i).getY() >= this.getY() - getPortee()) {
                     cible = (Attaquant) env.getActeurs().get(i);
                 }
+            }
         return cible;
     }
 }
