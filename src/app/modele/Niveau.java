@@ -14,7 +14,7 @@ public class Niveau {
     private int vie;
     private int argent;
     private ArrayList<Integer> map;
-    private ArrayList<ArrayList<Attaquant>> vagues;
+    private Vagues vagues;
     private int numVague;
     //private ArrayList<int> tourellesDispo;
 
@@ -42,15 +42,13 @@ public class Niveau {
                                                         101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101)
         );
 
-        this.vagues = new ArrayList<>();
-        this.vagues.add(Utile.creerVague(10, this.env));
-        this.vagues.add(Utile.creerVague(5, this.env));
+        this.vagues = new Vagues(this.env);
+        this.vagues.getVagues().add(this.vagues.creerVague(10));
+        this.vagues.getVagues().add(this.vagues.creerVague(20));
     }
 
-    public void lancerVague(){
-        for(int i = 0; i < this.vagues.get(numVague).size(); i++)
-            this.env.getActeurs().add(this.vagues.get(numVague).get(i));
-        numVague++;
+    public Vagues getVagues(){
+        return this.vagues;
     }
 
     public void IncrémenterArgent(int argent){

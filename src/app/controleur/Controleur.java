@@ -120,14 +120,12 @@ public class Controleur implements Initializable {
     private ArrayList<ImageView> checkList;
     private ArrayList<BooleanProperty> checkedList;
     private HashMap<String, String> skins;
-    private Niveau niveau;
     private Environnement env;
     private int temps;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env = new Environnement(1600, 800);
-        this.niveau = new Niveau(this.env);
         imageList = new ArrayList<ImageView>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
         checkList = new ArrayList<ImageView>(Arrays.asList(imgCheck1,imgCheck2,imgCheck3,imgCheck4,imgCheck5,imgCheck6,imgCheck7,imgCheck8));
         checkedList = new ArrayList<BooleanProperty>(Arrays.asList(img1checked,img2checked,img3checked,img4checked,img5checked,img6checked,img7checked,img8checked));
@@ -298,8 +296,9 @@ public class Controleur implements Initializable {
 
     @FXML
     void clickStart(MouseEvent event) {
-        this.env.getActeurs().add(Utile.creerEnnemi(this.env));
-        this.niveau.lancerVague();
+        /*this.env.getActeurs().add(Utile.creerEnnemi(this.env));*/
+        this.env.startVague();
+        gameLoop.play();
     }
 
     @FXML
@@ -323,7 +322,7 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.07),    //  0.017
                 (event -> {
-                    if(env.getActeurs().parallelStream().filter(n -> n instanceof Attaquant).collect(Collectors.toList()).size() == 0){
+                    if(this.env.getNiveau().getVagues().getVagues().size() == 0){       //env.getActeurs().parallelStream().filter(n -> n instanceof Attaquant).collect(Collectors.toList()).size() == 0)
                         while (env.getProject().size() != 0){
                             env.getProject().remove(0);
                         }

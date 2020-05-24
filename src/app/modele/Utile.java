@@ -39,13 +39,6 @@ public class Utile {
         }
     }
 
-    public static ArrayList<Attaquant> creerVague(int nbEnnemis, Environnement env){
-        ArrayList<Attaquant> vague = new ArrayList<>();
-        for(int i = 0; i < nbEnnemis; i++)
-            vague.add((Attaquant) creerEnnemi(env));
-        return vague;
-    }
-
     public static Acteur creerEnnemi (Environnement env){
         int random = (int) (Math.random() * env.getMap().parallelStream().filter(n-> n/900 == 1).collect(Collectors.toList()).size());
         int count = 0;
