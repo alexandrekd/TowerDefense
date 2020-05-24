@@ -57,7 +57,6 @@ public class Zone {
         quiEstDansLaZone();
         gererOpacity();
         effet.agit();
-        System.out.println(acteursDansLaZone.size()+"///"+env.getActeurs().size());
     }
 
     public void quiEstDansLaZone(){

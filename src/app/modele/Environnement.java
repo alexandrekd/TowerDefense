@@ -196,7 +196,6 @@ public class Environnement {
 
 
         this.nbTours++;
-        System.out.println(nbTours);
     }
 
     public void startVague(){
