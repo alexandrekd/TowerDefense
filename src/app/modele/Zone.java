@@ -6,6 +6,8 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Circle;
 
+import java.util.ArrayList;
+
 
 public class Zone {
     private ObservableList<Acteur> acteursDansLaZone;
@@ -69,9 +71,19 @@ public class Zone {
             }
             else{
                 if(env.getActeurs().get(i).getX() <= this.taille+x && env.getActeurs().get(i).getX() >= x-this.taille && env.getActeurs().get(i).getY() <= this.taille+y && env.getActeurs().get(i).getY() >= y-this.taille)
-                    acteursDansLaZone.add(env.getActeurs().get(i));
+                    if (env.getActeurs().get(i) instanceof Attaquant) {
+                        acteursDansLaZone.add(env.getActeurs().get(i));
+                    }
             }
         }
+    }
+
+    public ArrayList<Attaquant> getListeAttanquants(){
+        ArrayList<Attaquant> list = new ArrayList<Attaquant>();
+        for (int i = 0; i < acteursDansLaZone.size();i++){
+                list.add((Attaquant) acteursDansLaZone.get(i));
+        }
+        return list;
     }
 
     public boolean dansLaListe(Acteur acteur){

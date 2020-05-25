@@ -5,6 +5,8 @@ import app.modele.Effets;
 import app.modele.Environnement;
 import app.modele.Zone;
 
+import java.util.ArrayList;
+
 public class Poison implements Effets {
     private int degat;
     private Environnement env;
@@ -16,9 +18,12 @@ public class Poison implements Effets {
     }
     @Override
     public void agit() {
-        for (int i = 0; i < zone.getActeursDansLaZone().size();i++){
-            Attaquant z = (Attaquant) zone.getActeursDansLaZone().get(i);
-            z.recevoirTir(degat);
+        if(env.getNbTours() % 5 == 0) {
+            ArrayList<Attaquant> liste = zone.getListeAttanquants();
+            for (int i = 0; i < liste.size(); i++) {
+                Attaquant z = liste.get(i);
+                z.recevoirTir(degat);
+            }
         }
     }
 
@@ -34,8 +39,7 @@ public class Poison implements Effets {
 
     @Override
     public void Explosion(int x, int y) {
-        System.out.println("yo");
-        this.zone = new Zone(50,"GREEN",20,x,y,this,env);
+        this.zone = new Zone(50,"ORANGE",20,x,y,this,env);
         env.getZone().add(this.zone);
     }
 }
