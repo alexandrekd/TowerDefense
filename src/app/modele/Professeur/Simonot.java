@@ -5,10 +5,13 @@ import app.modele.Environnement;
 import app.modele.Missile;
 import app.modele.Tourelle;
 import app.modele.TypeMissile.Default;
+import app.modele.TypeMissile.Invocation;
+
+import java.util.stream.Collectors;
 
 public class Simonot extends Tourelle {
     public Simonot(int x, int y, Environnement env) {
-        super(5, x, y, 2, 20, env,1,"Simonot");
+        super(5, x, y, 10, 300, env,1,"Simonot");
     }
 
     @Override
@@ -19,8 +22,10 @@ public class Simonot extends Tourelle {
     public void tire() {
         if(getRechargement() == getDernierTire()) {
             Attaquant cible = getCible();
-            if (cible != null)
-                env.addProject(new Missile(this, cible, env,new Default()));
+            if (cible != null){
+                if (env.getActeurs().parallelStream().filter(n-> n instanceof Mur).collect(Collectors.toList()).size() == 0)
+                env.addProject(new Missile(this, cible, env,new Invocation(env,50)));
+            }
             setDernierTire(0);;
         }
         else

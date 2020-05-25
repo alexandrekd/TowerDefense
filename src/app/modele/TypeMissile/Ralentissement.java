@@ -5,15 +5,20 @@ import app.modele.*;
 public class Ralentissement implements Effets {
     private double ralentissement;
     private Environnement env;
+    private Zone zone;
 
     public Ralentissement(double ralentissement,Environnement env){
         this.ralentissement=ralentissement;
         this.env = env;
+        env.getEffects().add(this);
+        this.zone = null;
     }
 
     @Override
     public void agit() {
-
+        if (zone != null){
+            zone.agit();
+        }
     }
 
     @Override
@@ -30,7 +35,8 @@ public class Ralentissement implements Effets {
 
     @Override
     public void Explosion(int x,int y) {
-        env.getZone().add(new Zone(50,"GREEN",20,x,y,this,env));
+        this.zone = new Zone(50,"GREEN",20,x,y,this,env);
+        env.getZone().add(this.zone);
     }
 
 }

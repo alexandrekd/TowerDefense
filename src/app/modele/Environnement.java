@@ -1,5 +1,6 @@
 package app.modele;
 
+import app.modele.Professeur.Mur;
 import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
@@ -16,6 +17,7 @@ public class Environnement {
     private int nbTours;
     private List<node> rang;
     private ObservableList<Zone> zone;
+    private ArrayList<Effets> effects;
     private boolean vagueEnCours;
     private Niveau niveau;
 
@@ -26,6 +28,7 @@ public class Environnement {
         this.height = height;
         this.zone = FXCollections.observableArrayList();
         this.project = FXCollections.observableArrayList();
+        this.effects = new ArrayList<Effets>();
         this.rang = new ArrayList<node>();
         this.map = new ArrayList<Integer>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                 101, 103, 101, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 101, 101, 101,
@@ -45,6 +48,10 @@ public class Environnement {
                 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101
         ));
         this.niveau = new Niveau(this);
+    }
+
+    public ArrayList<Effets> getEffects() {
+        return effects;
     }
 
     public List<Integer> getMap(){
@@ -167,6 +174,10 @@ public class Environnement {
             }
         }
 
+        for (int i = 0; i < effects.size();i++){
+            effects.get(i).agit();
+        }
+
         // Si une vague est en cours, va chercher un ennemi a ajouter
         if (this.vagueEnCours)
             this.niveau.getVagues().fetchEnnemi();
@@ -180,6 +191,13 @@ public class Environnement {
                     i--;
                 }
             }
+            if(acteurs.get(i) instanceof Mur) {
+                if (!((Mur) acteurs.get(i)).estVivant()) {
+                    this.acteurs.remove(i);
+                    i--;
+                }
+            }
+
         }
 
         for (int i = 0; i < zone.size(); i++){

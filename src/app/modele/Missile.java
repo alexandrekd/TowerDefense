@@ -56,8 +56,6 @@ public class Missile {
             }
 
             effet.Explosion(finActeur.getX() , finActeur.getY());
-
-
             this.explosion = true;
         }
         else if (yarv < 0) {

@@ -255,6 +255,13 @@ public class Controleur implements Initializable {
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
         }
+        else if (acteur instanceof Mur){
+            ImageView c = new ImageView(skins.get(acteur.getName()));
+            c.setId(acteur.getId());
+            c.translateXProperty().bind(acteur.getXProperty());
+            c.translateYProperty().bind(acteur.getYProperty());
+            plateau.getChildren().add(c);
+        }
     }
 
     public void creerCercle(Zone zone) {

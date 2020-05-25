@@ -15,14 +15,19 @@ public class Poison implements Effets {
     public Poison(int degat,Environnement env){
         this.degat = degat;
         this.env = env;
+        this.zone = null;
+        this.env.getEffects().add(this);
     }
     @Override
     public void agit() {
-        if(env.getNbTours() % 5 == 0) {
-            ArrayList<Attaquant> liste = zone.getListeAttanquants();
-            for (int i = 0; i < liste.size(); i++) {
-                Attaquant z = liste.get(i);
-                z.recevoirTir(degat);
+        if (zone != null) {
+            zone.agit();
+            if (env.getNbTours() % 5 == 0) {
+                ArrayList<Attaquant> liste = zone.getListeAttanquants();
+                for (int i = 0; i < liste.size(); i++) {
+                    Attaquant z = liste.get(i);
+                    z.recevoirTir(degat);
+                }
             }
         }
     }

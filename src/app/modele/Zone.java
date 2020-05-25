@@ -58,7 +58,6 @@ public class Zone {
     public void agit(){
         quiEstDansLaZone();
         gererOpacity();
-        effet.agit();
     }
 
     public void quiEstDansLaZone(){
@@ -101,6 +100,7 @@ public class Zone {
 
     public boolean estVivant() {
         if (this.opacity <= 0) {
+            env.getEffects().remove(effet);
             return false;
         }
         return true;
