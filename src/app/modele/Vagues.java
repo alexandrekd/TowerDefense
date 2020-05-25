@@ -27,16 +27,19 @@ public class Vagues {
 
     // Recupere le premier ennemi de la vague et l'ajoute a l'environnement le retire de la liste tous les 15 tours
     // Si la liste est vide on incremente numVague et on stop celle en cours
-    public void fetchEnnemi(){
-        if(this.env.getNbTours()%15 == 0){
-            this.env.getActeurs().add(this.vagues.get(numVague).get(0));
+    public Acteur fetchEnnemi(int nbTours){
+        Acteur acteur = null;
+        if(nbTours%15 == 0){
+            acteur = this.vagues.get(numVague).get(0);
             this.vagues.get(numVague).remove(0);
+            return acteur;
         }
 
         if (this.vagues.get(numVague).size() == 0) {
             this.numVague++;
             this.env.stopVague();
         }
+        return acteur;
     }
 
 }

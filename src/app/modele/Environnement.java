@@ -169,10 +169,11 @@ public class Environnement {
 
         // Si une vague est en cours, va chercher un ennemi a ajouter
         if (this.vagueEnCours)
-            this.niveau.getVagues().fetchEnnemi();
+            //this.niveau.getVagues().fetchEnnemi();
+            this.acteurs.add(this.niveau.getVagues().fetchEnnemi(this.nbTours));
 
         for(int i = 0; i < this.acteurs.size(); i++){
-            acteurs.get(i).agit();
+            this.acteurs.get(i).agit();
 
             if(acteurs.get(i) instanceof Attaquant) {
                 if (!((Attaquant) acteurs.get(i)).estVivant()) {
