@@ -181,7 +181,11 @@ public class Environnement {
             }
         }
         for (int i = 0; i < zone.size(); i++){
+            zone.get(i).agit();
             if (!(zone.get(i).estVivant())){
+                while (this.zone.get(i).getActeursDansLaZone().size() != 0){
+                    this.zone.get(i).getActeursDansLaZone().remove(0);
+                }
                 this.zone.remove(i);
                 i--;
             }
@@ -193,7 +197,6 @@ public class Environnement {
 
 
         this.nbTours++;
-        System.out.println(nbTours);
     }
 
     public void startVague(){

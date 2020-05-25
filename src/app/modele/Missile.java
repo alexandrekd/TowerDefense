@@ -14,8 +14,9 @@ public class Missile {
     private IntegerProperty xProperty, yProperty;
     private boolean explosion;
     private Environnement env;
+    private Effets effet;
 
-    public Missile(Tourelle depart, Attaquant fin, Environnement env){
+    public Missile(Tourelle depart, Attaquant fin, Environnement env,Effets effet){
         this.env = env;
         this.debActeur = depart;
         this.finActeur = fin;
@@ -24,6 +25,7 @@ public class Missile {
         this.id = "A" + Acteur.compteur;
         Acteur.compteur++;
         explosion = false;
+        this.effet = effet;
     }
 
         public Tourelle getDebActeur() {
@@ -54,7 +56,7 @@ public class Missile {
             }
 
             if (this.debActeur instanceof Ricordo) { // Si trop d'effet -> faire une methode effet qui check le type de tourelle et applique l''effet desire
-                this.finActeur.ralentissement();
+                effet.Explosion(finActeur.getX() , finActeur.getY());
             }
 
             this.explosion = true;
