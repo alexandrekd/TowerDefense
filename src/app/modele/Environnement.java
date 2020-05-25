@@ -18,6 +18,7 @@ public class Environnement {
     private ObservableList<Zone> zone;
     private boolean vagueEnCours;
     private Niveau niveau;
+
     public Environnement(int width, int height){
         this.vagueEnCours = false;
         this.acteurs = FXCollections.observableArrayList();

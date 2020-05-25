@@ -39,6 +39,7 @@ public class Utile {
         }
     }
 
+    // Cree et retourne des ennemis positionnes sur la case depart de maniere aleatoire
     public static Acteur creerEnnemi (Environnement env){
         int random = (int) (Math.random() * env.getMap().parallelStream().filter(n-> n/900 == 1).collect(Collectors.toList()).size());
         int count = 0;
