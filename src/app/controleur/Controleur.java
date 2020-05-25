@@ -270,9 +270,7 @@ public class Controleur implements Initializable {
         for (int i = 0;i < this.env.getZone().size(); i++){
             for (int z = 0;z < plateau.getChildren().size(); z++){
                 if (this.env.getZone().get(i).getId().equals(plateau.getChildren().get(z).getId())) {
-
                     plateau.getChildren().get(z).opacityProperty().setValue(plateau.getChildren().get(z).getOpacity() - (1 / env.getZone().get(i).getTemps()));
-                    //System.out.println(plateau.getChildren().get(z).getOpacity());
                 }
             }
         }

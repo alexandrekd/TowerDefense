@@ -55,9 +55,8 @@ public class Missile {
                     goToCaseDepart(this);
             }
 
-            if (this.debActeur instanceof Ricordo) { // Si trop d'effet -> faire une methode effet qui check le type de tourelle et applique l''effet desire
-                effet.Explosion(finActeur.getX() , finActeur.getY());
-            }
+            effet.Explosion(finActeur.getX() , finActeur.getY());
+
 
             this.explosion = true;
         }
