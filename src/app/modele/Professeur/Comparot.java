@@ -9,7 +9,7 @@ import app.modele.TypeMissile.Poison;
 
 public class Comparot extends Tourelle {
     public Comparot(int x, int y, Environnement env) {
-        super(5, x, y, 20, 150, env,1,"Comparot");
+        super(0, x, y, 20, 150, env,1,"Comparot");
     }
 
     @Override

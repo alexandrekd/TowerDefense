@@ -34,7 +34,8 @@ public class Poison implements Effets {
 
     @Override
     public void Explosion(int x, int y) {
+        System.out.println("yo");
         this.zone = new Zone(50,"GREEN",20,x,y,this,env);
-        env.getZone().add(zone);
+        env.getZone().add(this.zone);
     }
 }
