@@ -199,35 +199,35 @@ public class Controleur implements Initializable {
         int colRow = (int) event.getY()-30;
         if ((env.getMap().get(Utile.toWidth(Utile.toTexture(colRow+30)) + Utile.toTexture(colIndex+25)) )% 2 == 1) {
             String choix = select();
-            if (choix.equals("Bonnot")) {
+            if (choix.equals("Bonnot") && this.env.checkArgent(5)) {
                 Acteur tourelle = new Bonnot(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if (choix.equals("Bossard")){
+            else if (choix.equals("Bossard") && this.env.checkArgent(5)){
                 Acteur tourelle = new Bossard(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if (choix.equals("Comparot")){
+            else if (choix.equals("Comparot") && this.env.checkArgent(5)){
                 Acteur tourelle = new Comparot(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(choix.equals("Ricordo")){
+            else if(choix.equals("Ricordo") && this.env.checkArgent(5)){
                 Acteur tourelle = new Ricordo(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(choix.equals("Lamolle")){
+            else if(choix.equals("Lamolle") && this.env.checkArgent(5)){
                 Acteur tourelle = new Lamolle(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(choix.equals("Homps")){
+            else if(choix.equals("Homps") && this.env.checkArgent(5)){
                 Acteur tourelle = new Homps(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(choix.equals("Rety")){
+            else if(choix.equals("Rety") && this.env.checkArgent(5)){
                 Acteur tourelle = new Rety(colIndex, colRow, this.env);
                 add(tourelle);
             }
-            else if(choix.equals("Simonot")){
+            else if(choix.equals("Simonot") && this.env.checkArgent(5)){
                 Acteur tourelle = new Simonot(colIndex, colRow, this.env);
                 add(tourelle);
             }

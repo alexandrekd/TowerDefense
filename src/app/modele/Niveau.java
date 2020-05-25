@@ -23,7 +23,7 @@ public class Niveau {
         this.env = env;
         this.numVague = 0;
         this.vie = 500;
-        this.argent = 1000;
+        this.argent = 22;
         this.map = new ArrayList<Integer>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                                                         101, 103, 101, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 101, 101, 101,
                                                         101, 101, 101, 102, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 102, 101, 101, 101,
@@ -53,6 +53,7 @@ public class Niveau {
 
     public void incrementerArgent(int argent){
         this.argent += argent;
+        System.out.println("\nTu a gagné " + argent + "€\nTu as " + this.argent + "€");
     }
 
     public ArrayList<Integer> getMap() {

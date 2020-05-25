@@ -8,7 +8,7 @@ import app.modele.TypeMissile.Default;
 
 public class Bonnot extends Tourelle {
     public Bonnot(int x, int y, Environnement env) {
-        super(5, x, y, 20, 150, env,1,"Bonnot", 1);
+        super(5, x, y, 20, 150, env,1,"Bonnot"/*, 1*/);
     }
 
     @Override

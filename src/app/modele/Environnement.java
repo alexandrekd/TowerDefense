@@ -209,4 +209,14 @@ public class Environnement {
         this.vagueEnCours = false;
     }
 
+    public boolean checkArgent(int prix){
+        System.out.println("\nArgent : " + this.niveau.getArgent() + "\nprix : " + prix);
+        if (this.niveau.getArgent() >= prix) {
+            this.niveau.incrementerArgent(-prix);
+            return true;
+        }
+        System.out.println("Pas assez d'argent");
+        return false;
+    }
+
 }
