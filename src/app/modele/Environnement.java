@@ -183,11 +183,12 @@ public class Environnement {
             this.niveau.getVagues().fetchEnnemi();
 
         for(int i = 0; i < this.acteurs.size(); i++){
-            acteurs.get(i).agit();
+            this.acteurs.get(i).agit();
 
             if(acteurs.get(i) instanceof Attaquant) {
                 if (!((Attaquant) acteurs.get(i)).estVivant()) {
                     this.acteurs.remove(i);
+                    this.niveau.incrementerArgent(5);
                     i--;
                 }
             }
@@ -224,6 +225,16 @@ public class Environnement {
     }
     public void stopVague(){
         this.vagueEnCours = false;
+    }
+
+    public boolean checkArgent(int prix){
+        System.out.println("\nArgent : " + this.niveau.getArgent() + "\nprix : " + prix);
+        if (this.niveau.getArgent() >= prix) {
+            this.niveau.incrementerArgent(-prix);
+            return true;
+        }
+        System.out.println("Pas assez d'argent");
+        return false;
     }
 
 }
