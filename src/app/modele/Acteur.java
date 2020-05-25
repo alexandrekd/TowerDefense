@@ -38,18 +38,18 @@ public abstract class Acteur {
         this.yProperty = new SimpleIntegerProperty(y);
     }
 
-    public  int getX() {
+    public int getX() {
         return xProperty.getValue();
     }
-    public  void setX(int n){
+    public void setX(int n){
         xProperty.setValue(n);
     }
     public final IntegerProperty getXProperty(){ return xProperty; }
     public abstract void agit();
-    public  int getY() {
+    public int getY() {
         return yProperty.getValue();
     }
-    public  void setY(int n){
+    public void setY(int n){
         yProperty.setValue(n);
     }
     public final IntegerProperty getYProperty(){ return yProperty; }

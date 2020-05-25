@@ -75,13 +75,12 @@ public class Zone {
     }
 
     public boolean dansLaListe(Acteur acteur){
-        boolean result= false;
         for (int i = 0; i < acteursDansLaZone.size();i++){
             if (acteursDansLaZone.get(i) == acteur){
-                result = true;
+                return true;
             }
         }
-        return result;
+        return false;
     }
 
     public void gererOpacity(){

@@ -194,12 +194,10 @@ public class Controleur implements Initializable {
 
     @FXML
     void poserTourelle(MouseEvent event) {
-
-
         Node source = (Node)event.getSource();
-        int colIndex = (int) event.getX();
-        int colRow = (int) event.getY();
-        if ((env.getMap().get(Utile.toWidth(Utile.toTexture(colRow)) + Utile.toTexture(colIndex)) )% 2 == 1) {
+        int colIndex = (int) event.getX()-25;
+        int colRow = (int) event.getY()-30;
+        if ((env.getMap().get(Utile.toWidth(Utile.toTexture(colRow+30)) + Utile.toTexture(colIndex+25)) )% 2 == 1) {
             String choix = select();
             if (choix.equals("Bonnot")) {
                 Acteur tourelle = new Bonnot(colIndex, colRow, this.env);
@@ -235,6 +233,7 @@ public class Controleur implements Initializable {
             }
         }
     }
+
      public void add(Acteur tourelle){
          this.env.getActeurs().add(tourelle);
          creerSprite(tourelle);
@@ -320,9 +319,9 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.07),    //  0.017
+                Duration.seconds(0.07),
                 (event -> {
-                    if(this.env.getNiveau().getVagues().getVagues().size() == 0){       //env.getActeurs().parallelStream().filter(n -> n instanceof Attaquant).collect(Collectors.toList()).size() == 0)
+                    if(this.env.getNiveau().getVagues().getVagues().size() == 0){       // on stop la boucle s'il n'y a plus de vagues dans le niveau
                         while (env.getProject().size() != 0){
                             env.getProject().remove(0);
                         }
