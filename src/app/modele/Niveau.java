@@ -51,7 +51,7 @@ public class Niveau {
         return this.vagues;
     }
 
-    public void IncrémenterArgent(int argent){
+    public void incrementerArgent(int argent){
         this.argent += argent;
     }
 

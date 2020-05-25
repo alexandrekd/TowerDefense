@@ -81,10 +81,6 @@ public class Attaquant extends Acteur {
 		this.dy = dyA;
 	}
 
-	public void mourir() {
-		this.pv = 0;
-	}
-
 	public boolean estVivant() {
 		if (this.pv <= 0) {
 			return false;

@@ -177,6 +177,7 @@ public class Environnement {
             if(acteurs.get(i) instanceof Attaquant) {
                 if (!((Attaquant) acteurs.get(i)).estVivant()) {
                     this.acteurs.remove(i);
+                    this.niveau.incrementerArgent(5);
                     i--;
                 }
             }
