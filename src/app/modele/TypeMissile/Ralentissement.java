@@ -3,12 +3,14 @@ package app.modele.TypeMissile;
 import app.modele.*;
 
 public class Ralentissement implements Effets {
-     private double ralentissement;
-     private Environnement env;
+    private double ralentissement;
+    private Environnement env;
+
     public Ralentissement(double ralentissement,Environnement env){
         this.ralentissement=ralentissement;
         this.env = env;
     }
+
     @Override
     public void agit() {
 
@@ -20,6 +22,7 @@ public class Ralentissement implements Effets {
         System.out.println((int) speed);
         acteur.setVitesse((int) speed);
     }
+
     @Override
     public void Sortir(Attaquant acteur){
         acteur.setVitesse(acteur.getConsVitesse());

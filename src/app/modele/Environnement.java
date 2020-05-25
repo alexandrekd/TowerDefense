@@ -157,16 +157,17 @@ public class Environnement {
     }
 
     public void unTour(){
-            for (int a = 0; a < 15; a++) {
-                for (int i = 0; i < this.project.size(); i++) {
-                    this.project.get(i).bouge();
-                    if (this.project.get(i).isExplosion()) {
-                        this.project.remove(i);
-                        i--;
-                    }
+        for (int a = 0; a < 15; a++) {
+            for (int i = 0; i < this.project.size(); i++) {
+                this.project.get(i).bouge();
+                if (this.project.get(i).isExplosion()) {
+                    this.project.remove(i);
+                    i--;
                 }
             }
+        }
 
+        // Si une vague est en cours, va chercher un ennemi a ajouter
         if (this.vagueEnCours)
             this.niveau.getVagues().fetchEnnemi();
 
@@ -180,6 +181,7 @@ public class Environnement {
                 }
             }
         }
+
         for (int i = 0; i < zone.size(); i++){
             zone.get(i).agit();
             if (!(zone.get(i).estVivant())){

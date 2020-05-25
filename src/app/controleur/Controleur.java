@@ -322,7 +322,7 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.07),    //  0.017
                 (event -> {
-                    if(this.env.getNiveau().getVagues().getVagues().size() == 0){       //env.getActeurs().parallelStream().filter(n -> n instanceof Attaquant).collect(Collectors.toList()).size() == 0)
+                    if(this.env.getNiveau().getVagues().getVagues().size() == 0){       // on stop la boucle s'il n'y a plus de vagues dans le niveau
                         while (env.getProject().size() != 0){
                             env.getProject().remove(0);
                         }
