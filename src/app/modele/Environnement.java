@@ -235,9 +235,9 @@ public class Environnement {
     public ArrayList<Attaquant> getAttaquantsInActeurs(){
         ArrayList<Attaquant> attaquants = new ArrayList<>();
         for(int i = 0; i < this.getActeurs().size(); i++)
-            if ()
-
-        return
+            if (this.getActeurs().get(i) instanceof Attaquant)
+                attaquants.add((Attaquant) this.getActeurs().get(i));
+        return attaquants;
     }
 
 }
