@@ -22,7 +22,7 @@ public class Bonnot extends Tourelle {
         if(getRechargement() == getDernierTire()) {
             Attaquant cible = getCible();
             if (cible != null)
-                env.addProject(new Missile(this, cible, env,new Degat(cible, degat )));
+                env.addProject(new Missile(this, cible, env,new Degat()));
             setDernierTire(0);;
         }
         else
