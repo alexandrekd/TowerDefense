@@ -190,7 +190,7 @@ public class Environnement {
                     i--;
                 }
             }
-            if(acteurs.get(i) instanceof Mur) {
+            else if(this.acteurs.get(i) instanceof Mur) {
                 if (!((Mur) acteurs.get(i)).estVivant()) {
                     this.acteurs.remove(i);
                     i--;
@@ -223,7 +223,7 @@ public class Environnement {
     }
 
     public boolean checkArgent(int prix){
-        System.out.println("\nArgent : " + this.niveau.getArgentProperty() + "\nprix : " + prix);
+        System.out.println("\nArgent : " + this.niveau.getArgent() + "\nprix : " + prix);
         if (this.niveau.getArgent() >= prix) {
             this.niveau.incrementerArgent(-prix);
             return true;
