@@ -2,6 +2,7 @@ package app.modele.TypeMissile;
 
 import app.modele.Attaquant;
 import app.modele.Effets;
+import app.modele.Missile;
 
 public class Default implements Effets {
 
@@ -21,8 +22,9 @@ public class Default implements Effets {
     }
 
     @Override
-    public void Explosion(int x, int y) {
+    public void Explosion(Missile missile) {
 
     }
+
 
 }

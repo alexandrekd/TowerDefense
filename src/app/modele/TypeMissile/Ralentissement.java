@@ -34,9 +34,10 @@ public class Ralentissement implements Effets {
     }
 
     @Override
-    public void Explosion(int x,int y) {
-        this.zone = new Zone(50,"GREEN",20,x,y,this,env);
+    public void Explosion(Missile missile) {
+        this.zone = new Zone(50,"GREEN",20,missile.getX(),missile.getY(),this,env);
         env.getZone().add(this.zone);
     }
+
 
 }

@@ -1,9 +1,6 @@
 package app.modele.TypeMissile;
 
-import app.modele.Attaquant;
-import app.modele.Effets;
-import app.modele.Environnement;
-import app.modele.Zone;
+import app.modele.*;
 
 import java.util.ArrayList;
 
@@ -43,8 +40,9 @@ public class Poison implements Effets {
     }
 
     @Override
-    public void Explosion(int x, int y) {
-        this.zone = new Zone(50,"ORANGE",20,x,y,this,env);
+    public void Explosion(Missile missile) {
+        this.zone = new Zone(50,"ORANGE",20,missile.getX(),missile.getY(),this,env);
         env.getZone().add(this.zone);
     }
+
 }

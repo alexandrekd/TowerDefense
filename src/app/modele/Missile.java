@@ -50,12 +50,7 @@ public class Missile {
         if (yarv == 0 && xarv == 0) {
             this.finActeur.recevoirTir(debActeur.getDegat());
 
-            if (this.debActeur instanceof Homps) { // Si trop d'effet -> faire une methode effet qui check le type de tourelle et applique l''effet desire
-                if(Math.random()*10 <= 2)
-                    goToCaseDepart(this);
-            }
-
-            effet.Explosion(finActeur.getX() , finActeur.getY());
+            effet.Explosion(this);
             this.explosion = true;
         }
         else if (yarv < 0) {

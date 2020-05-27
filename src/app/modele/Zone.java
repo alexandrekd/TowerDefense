@@ -1,15 +1,15 @@
 package app.modele;
 
-import app.controleur.Controleur;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 
 
-public class Zone {
+public class Zone{
     private ObservableList<Acteur> acteursDansLaZone;
     private int taille;
     private String couleur;
@@ -18,7 +18,7 @@ public class Zone {
     private String id;
     private int x;
     private int y;
-    private double opacity;
+    private DoubleProperty opacityProperty;
     private Environnement env;
     public Zone(int taille,String Couleur,double temps,int x,int y,Effets effet,Environnement env){
         this.taille = taille;
@@ -27,7 +27,7 @@ public class Zone {
         this.effet = effet;
         this.x = x;
         this.y = y;
-        this.opacity = 1;
+        this.opacityProperty = new SimpleDoubleProperty(1);
         this.id = "A" + Acteur.compteur;
         Acteur.compteur++;
         this.env = env;
@@ -95,11 +95,11 @@ public class Zone {
     }
 
     public void gererOpacity(){
-        this.opacity = this.opacity - (1/this.temps);
+        this.setOpacity(this.getOpacity() - (1/this.temps));
     }
 
     public boolean estVivant() {
-        if (this.opacity <= 0) {
+        if (this.getOpacity() <= 0) {
             env.getEffects().remove(effet);
             return false;
         }
@@ -123,9 +123,13 @@ public class Zone {
         return taille;
     }
 
-    public double getOpacity() {
-        return opacity;
+    public final DoubleProperty opacityProperty() {
+        return opacityProperty;
     }
+
+    public final double getOpacity(){ return this.opacityProperty.get(); }
+
+    public final void setOpacity(double opacity){  this.opacityProperty.set(opacity); }
 
     public ObservableList<Acteur> getActeursDansLaZone() {
         return acteursDansLaZone;

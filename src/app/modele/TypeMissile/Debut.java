@@ -3,9 +3,11 @@ package app.modele.TypeMissile;
 import app.modele.Attaquant;
 import app.modele.Effets;
 import app.modele.Missile;
+import app.modele.Professeur.Homps;
 
-public class Degat implements Effets {
+import static app.modele.Utile.goToCaseDepart;
 
+public class Debut implements Effets {
     @Override
     public void agit() {
 
@@ -24,5 +26,7 @@ public class Degat implements Effets {
     @Override
     public void Explosion(Missile missile) {
         missile.getFinActeur().recevoirTir(missile.getDebActeur().getDegat());
+            if(Math.random()*10 <= 2)
+                goToCaseDepart(missile);
     }
 }

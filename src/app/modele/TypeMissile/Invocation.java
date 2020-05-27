@@ -47,7 +47,8 @@ public class Invocation implements Effets {
     }
 
     @Override
-    public void Explosion(int xarr, int yarr) {
-        spawnMur(xarr, yarr);
+    public void Explosion(Missile missile) {
+        spawnMur(missile.getX(), missile.getY());
     }
+
 }
