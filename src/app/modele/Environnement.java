@@ -212,9 +212,6 @@ public class Environnement {
             }
         }
 
-        for (int i = 0 ; i < this.zone.size();i++){
-            this.zone.get(i).agit();
-        }
 
 
         this.nbTours++;

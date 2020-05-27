@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class Simonot extends Tourelle {
     public Simonot(int x, int y, Environnement env) {
-        super(5, x, y, 10, 300, env,1,"Simonot");
+        super(0, x, y, 10, 300, env,1,"Simonot");
     }
 
     @Override
@@ -26,7 +26,7 @@ public class Simonot extends Tourelle {
                 if (env.getActeurs().parallelStream().filter(n-> n instanceof Mur).collect(Collectors.toList()).size() == 0)
                 env.addProject(new Missile(this, cible, env,new Invocation(env,50)));
             }
-            setDernierTire(0);;
+            setDernierTire(0);
         }
         else
             setDernierTire(getDernierTire()+1);
