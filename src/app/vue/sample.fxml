@@ -145,19 +145,19 @@
             <VBox prefHeight="100.0" prefWidth="157.0">
                <children>
                   <Label prefHeight="38.0" prefWidth="157.0" text="Vous êtes au round :" />
-                  <Label prefHeight="17.0" prefWidth="126.0" text="0" />
+                  <Label fx:id="round" prefHeight="17.0" prefWidth="126.0" text="0" />
                </children>
             </VBox>
             <VBox prefHeight="100.0" prefWidth="151.0">
                <children>
                   <Label prefHeight="38.0" prefWidth="143.0" text="Votre compte en banque :" />
-                  <Label prefHeight="17.0" prefWidth="204.0" text="0" />
+                  <Label fx:id="argent" prefHeight="17.0" prefWidth="204.0" text="0" />
                </children>
             </VBox>
             <VBox prefHeight="100.0" prefWidth="120.0">
                <children>
                   <Label prefHeight="40.0" prefWidth="127.0" text="Votre vie est de : " />
-                  <Label prefHeight="17.0" prefWidth="60.0" text="0" />
+                  <Label fx:id="vie" prefHeight="17.0" prefWidth="60.0" text="0" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
