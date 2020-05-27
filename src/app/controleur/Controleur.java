@@ -1,9 +1,7 @@
 package app.controleur;
 
 import app.modele.Professeur.*;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.animation.KeyFrame;
-import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -12,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -21,16 +18,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
 import javafx.util.Duration;
-import org.omg.CORBA.PUBLIC_MEMBER;
 
-import javax.rmi.CORBA.Util;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class Controleur implements Initializable {
 
@@ -119,7 +112,8 @@ public class Controleur implements Initializable {
     @FXML
     private Label round;
 
-    @FXML Label vie;
+    @FXML
+    private Label vie;
 
     private ArrayList<ImageView> imageList;
     private ArrayList<ImageView> checkList;
@@ -134,6 +128,8 @@ public class Controleur implements Initializable {
         imageList = new ArrayList<ImageView>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
         checkList = new ArrayList<ImageView>(Arrays.asList(imgCheck1,imgCheck2,imgCheck3,imgCheck4,imgCheck5,imgCheck6,imgCheck7,imgCheck8));
         checkedList = new ArrayList<BooleanProperty>(Arrays.asList(img1checked,img2checked,img3checked,img4checked,img5checked,img6checked,img7checked,img8checked));
+
+        this.argent.textProperty().bind(this.env.getNiveau().getArgentProperty().asString());
 
         skins = new HashMap<String, String>();
             skins.put("Bonnot" , "resources/skins/1.png");

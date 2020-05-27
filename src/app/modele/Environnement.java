@@ -1,8 +1,6 @@
 package app.modele;
 
 import app.modele.Professeur.Mur;
-import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -225,7 +223,7 @@ public class Environnement {
     }
 
     public boolean checkArgent(int prix){
-        System.out.println("\nArgent : " + this.niveau.getArgent() + "\nprix : " + prix);
+        System.out.println("\nArgent : " + this.niveau.getArgentProperty() + "\nprix : " + prix);
         if (this.niveau.getArgent() >= prix) {
             this.niveau.incrementerArgent(-prix);
             return true;
