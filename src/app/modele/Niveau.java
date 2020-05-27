@@ -7,6 +7,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static app.modele.Utile.toTexture;
+
 public class Niveau {
 
     private String id;
@@ -55,6 +57,21 @@ public class Niveau {
     public void incrementerArgent(int argent){
         setArgent(this.getArgent() + argent);
         System.out.println("\nTu a gagné " + argent + "€\nTu as " + this.getArgent() + "€");
+    }
+
+    public void ennemiAttaqueJoueur(Attaquant ennemi){ //Cette fonction a pour rôle de s'occuper de l'ennemi lorsqu'il arrive à la fin de la map,
+        //c'est à dire, infliger des dégats au joueur et disparaitre.
+        int x = toTexture(ennemi.getX());
+        int y = toTexture(ennemi.getY()); //x et y sont les coordonées de la tuile sur laquelle l'ennemi se situe
+
+        int xArrive = env.getArrivé().getX();
+        int yArrive = env.getArrivé().getY(); //xArrive et yArrive sont les coordonées de la tuile d'arrivé
+
+        if (x == xArrive && y == yArrive ){
+            this.vie = this.vie - ennemi.getPv();
+            ennemi.estVivant();
+        }
+
     }
 
     public ArrayList<Integer> getMap() {

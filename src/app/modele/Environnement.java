@@ -75,6 +75,15 @@ public class Environnement {
         return this.acteurs;
     }
 
+    public node getArrivé() {        //Cette fonction permet tout simplement de renvoyer la tuile d'arrivé
+        for (node tuile : rang) {
+            if (tuile.getDistance() == 0) {
+                return tuile;
+            }
+        }
+        return rang.get(0); //Cette partie la ne sert à rien, mais on est obligé d'avoir un autre return en dehors de la boucle
+    }
+
     public void faireRang(int x,int y){
         rang.add(new node(0,x,y));
         for (int i = 0; i < getMap().parallelStream().filter(n-> n%2==0 ).collect(Collectors.toList()).size(); i++){
