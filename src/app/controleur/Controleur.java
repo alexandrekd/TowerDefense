@@ -301,9 +301,10 @@ public class Controleur implements Initializable {
 
     @FXML
     void clickStart(MouseEvent event) {
-        /*this.env.getActeurs().add(Utile.creerEnnemi(this.env));*/
-        this.env.startVague();
-        gameLoop.play();
+        if (this.env.getNiveau().getVagues().getVagues().size() > 0) {
+            this.env.startVague();
+            gameLoop.play();
+        }
     }
 
     @FXML
@@ -327,7 +328,7 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.07),
                 (event -> {
-                    if(this.env.getNiveau().getVagues().getVagues().size() == 0){       // on stop la boucle s'il n'y a plus de vagues dans le niveau
+                    if(this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getActeurs().){       // on stop la boucle s'il n'y a plus de vagues dans le niveau et s'il n'y a plus d'ennemi sur le terrain
                         while (env.getProject().size() != 0){
                             env.getProject().remove(0);
                         }

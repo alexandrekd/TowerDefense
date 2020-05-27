@@ -177,8 +177,8 @@ public class Environnement {
         }
 
         // Si une vague est en cours, va chercher un ennemi a ajouter
-        if (this.vagueEnCours)
-            this.niveau.getVagues().fetchEnnemi();
+        if (this.vagueEnCours && this.nbTours%15 == 0)
+            this.acteurs.add(this.niveau.getVagues().fetchEnnemi());
 
         for(int i = 0; i < this.acteurs.size(); i++){
             this.acteurs.get(i).agit();
@@ -230,6 +230,14 @@ public class Environnement {
         }
         System.out.println("Pas assez d'argent");
         return false;
+    }
+
+    public ArrayList<Attaquant> getAttaquantsInActeurs(){
+        ArrayList<Attaquant> attaquants = new ArrayList<>();
+        for(int i = 0; i < this.getActeurs().size(); i++)
+            if ()
+
+        return
     }
 
 }

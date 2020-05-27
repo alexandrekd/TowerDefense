@@ -44,8 +44,8 @@ public class Niveau {
         );
 
         this.vagues = new Vagues(this.env);
-        this.vagues.getVagues().add(this.vagues.creerVague(10));
-        this.vagues.getVagues().add(this.vagues.creerVague(20));
+        this.vagues.getVagues().add(this.vagues.creerVague(5));
+        this.vagues.getVagues().add(this.vagues.creerVague(5));
     }
 
     public Vagues getVagues(){
