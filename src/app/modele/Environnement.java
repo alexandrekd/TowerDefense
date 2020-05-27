@@ -1,8 +1,6 @@
 package app.modele;
 
 import app.modele.Professeur.Mur;
-import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -75,6 +73,15 @@ public class Environnement {
 
     public ObservableList<Acteur> getActeurs(){
         return this.acteurs;
+    }
+
+    public node getArrivé() {        //Cette fonction permet tout simplement de renvoyer la tuile d'arrivé
+        for (node tuile : rang) {
+            if (tuile.getDistance() == 0) {
+                return tuile;
+            }
+        }
+        return rang.get(0); //Cette partie la ne sert à rien, mais on est obligé d'avoir un autre return en dehors de la boucle
     }
 
     public void faireRang(int x,int y){
@@ -179,8 +186,8 @@ public class Environnement {
         }
 
         // Si une vague est en cours, va chercher un ennemi a ajouter
-        if (this.vagueEnCours)
-            this.niveau.getVagues().fetchEnnemi();
+        if (this.vagueEnCours && this.nbTours%15 == 0)
+            this.acteurs.add(this.niveau.getVagues().fetchEnnemi());
 
         for(int i = 0; i < this.acteurs.size(); i++){
             this.acteurs.get(i).agit();
@@ -192,7 +199,7 @@ public class Environnement {
                     i--;
                 }
             }
-            if(acteurs.get(i) instanceof Mur) {
+            else if(this.acteurs.get(i) instanceof Mur) {
                 if (!((Mur) acteurs.get(i)).estVivant()) {
                     this.acteurs.remove(i);
                     i--;
@@ -232,6 +239,14 @@ public class Environnement {
         }
         System.out.println("Pas assez d'argent");
         return false;
+    }
+
+    public ArrayList<Attaquant> getAttaquantsInActeurs(){
+        ArrayList<Attaquant> attaquants = new ArrayList<>();
+        for(int i = 0; i < this.getActeurs().size(); i++)
+            if (this.getActeurs().get(i) instanceof Attaquant)
+                attaquants.add((Attaquant) this.getActeurs().get(i));
+        return attaquants;
     }
 
 }

@@ -5,12 +5,6 @@ import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import java.util.Random;
 
 public class Attaquant extends Acteur {
-	/*private int x; // x et y representent les coordonnees actuelles de l'attaquant
-	private int y;
-	static String id;
-	public static int compteur = 0;
-	private Environnement env;*/
-
 	private int pv;
 	private int dx; // dx et dy representent la direction de l'attaquant
 	private int dy;
@@ -61,7 +55,6 @@ public class Attaquant extends Acteur {
 			bestPos = RegardeUnVoisin(env.getUnNode(xB, yB + 1));
 		}
 
-		//System.out.println(dx +""+ dy);
 		this.setX(this.getX() + this.vitesse * this.dx);
 		//Pas besoin de else, vu que si le prochain deplacement en x depasse l'environnement, il ne bouge pas
 		this.setY(this.getY() + this.vitesse * this.dy);

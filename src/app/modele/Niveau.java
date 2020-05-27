@@ -1,10 +1,13 @@
 package app.modele;
 
 
-import javax.management.AttributeList;
-import java.lang.reflect.Array;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static app.modele.Utile.toTexture;
 
 public class Niveau {
 
@@ -12,7 +15,7 @@ public class Niveau {
     private static int compteur = 0;
     private Environnement env;
     private int vie;
-    private int argent;
+    private IntegerProperty argentProperty;
     private ArrayList<Integer> map;
     private Vagues vagues;
     private int numVague;
@@ -23,7 +26,7 @@ public class Niveau {
         this.env = env;
         this.numVague = 0;
         this.vie = 500;
-        this.argent = 22;
+        this.argentProperty = new SimpleIntegerProperty(20);
         this.map = new ArrayList<Integer>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                                                         101, 103, 101, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 101, 101, 101,
                                                         101, 101, 101, 102, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 102, 101, 101, 101,
@@ -43,8 +46,8 @@ public class Niveau {
         );
 
         this.vagues = new Vagues(this.env);
-        this.vagues.getVagues().add(this.vagues.creerVague(10));
-        this.vagues.getVagues().add(this.vagues.creerVague(20));
+        this.vagues.getVagues().add(this.vagues.creerVague(5));
+        this.vagues.getVagues().add(this.vagues.creerVague(5));
     }
 
     public Vagues getVagues(){
@@ -52,16 +55,37 @@ public class Niveau {
     }
 
     public void incrementerArgent(int argent){
-        this.argent += argent;
-        System.out.println("\nTu a gagné " + argent + "€\nTu as " + this.argent + "€");
+        setArgent(this.getArgent() + argent);
+        System.out.println("\nTu a gagné " + argent + "€\nTu as " + this.getArgent() + "€");
+    }
+
+    public void ennemiAttaqueJoueur(Attaquant ennemi){ //Cette fonction a pour rôle de s'occuper de l'ennemi lorsqu'il arrive à la fin de la map,
+        //c'est à dire, infliger des dégats au joueur et disparaitre.
+        int x = toTexture(ennemi.getX());
+        int y = toTexture(ennemi.getY()); //x et y sont les coordonées de la tuile sur laquelle l'ennemi se situe
+
+        int xArrive = env.getArrivé().getX();
+        int yArrive = env.getArrivé().getY(); //xArrive et yArrive sont les coordonées de la tuile d'arrivé
+
+        if (x == xArrive && y == yArrive ){
+            this.vie = this.vie - ennemi.getPv();
+            ennemi.estVivant();
+        }
+
     }
 
     public ArrayList<Integer> getMap() {
         return map;
     }
 
-    public int getArgent() {
-        return argent;
+    public IntegerProperty getArgentProperty() {
+        return argentProperty;
+    }
+    public int getArgent(){
+        return this.argentProperty.getValue();
+    }
+    public void setArgent(int v){
+        this.argentProperty.setValue(v);
     }
 
     public int getVie() {

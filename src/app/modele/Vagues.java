@@ -5,12 +5,10 @@ import java.util.ArrayList;
 public class Vagues {
     private Environnement env;
     private ArrayList<ArrayList<Attaquant>> vagues; // liste de listes de vagues
-    private int numVague;   // numéro de la vague en cours
 
     public Vagues(Environnement env){
         this.env = env;
         this.vagues = new ArrayList<>();
-        this.numVague = 0;
     }
 
     public ArrayList<ArrayList<Attaquant>> getVagues() {
@@ -26,17 +24,17 @@ public class Vagues {
     }
 
     // Recupere le premier ennemi de la vague et l'ajoute a l'environnement le retire de la liste tous les 15 tours
-    // Si la liste est vide on incremente numVague et on stop celle en cours
-    public void fetchEnnemi(){
-        if(this.env.getNbTours()%15 == 0){
-            this.env.getActeurs().add(this.vagues.get(numVague).get(0));
-            this.vagues.get(numVague).remove(0);
-        }
+    // Si la liste est vide on la suprime et on stop celle en cours
+    public Acteur fetchEnnemi(){
+        Acteur acteur = this.vagues.get(0).get(0);
+        this.vagues.get(0).remove(0);
 
-        if (this.vagues.get(numVague).size() == 0) {
-            this.numVague++;
+        if (this.vagues.get(0).size() == 0) {
+            this.vagues.remove(0);
             this.env.stopVague();
         }
+
+        return acteur;
     }
 
 }
