@@ -28,12 +28,12 @@
                <children>
                   <ImageView id="img1" fx:id="img1" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/resources/skins/1.png" />
+                        <Image url="@../../resources/skins/1.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck1" fx:id="imgCheck1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">
                      <image>
-                        <Image url="/resources/skins/ok.png" />
+                        <Image url="@../../resources/skins/ok.png" />
                      </image>
                   </ImageView>
                </children>
@@ -42,12 +42,12 @@
                <children>
                   <ImageView id="img2" fx:id="img2" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/resources/skins/2.png" />
+                        <Image url="@../../resources/skins/2.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck2" fx:id="imgCheck2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">
                      <image>
-                        <Image url="/resources/skins/ok.png" />
+                        <Image url="@../../resources/skins/ok.png" />
                      </image>
                   </ImageView>
                </children>
@@ -56,12 +56,12 @@
                <children>
                   <ImageView id="img3" fx:id="img3" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/resources/skins/3.png" />
+                        <Image url="@../../resources/skins/3.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck3" fx:id="imgCheck3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">
                      <image>
-                        <Image url="/resources/skins/ok.png" />
+                        <Image url="@../../resources/skins/ok.png" />
                      </image>
                   </ImageView>
                </children>
@@ -70,12 +70,12 @@
                <children>
                   <ImageView id="img4" fx:id="img4" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/resources/skins/10.png" />
+                        <Image url="@../../resources/skins/10.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck4" fx:id="imgCheck4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">
                      <image>
-                        <Image url="/resources/skins/ok.png" />
+                        <Image url="@../../resources/skins/ok.png" />
                      </image>
                   </ImageView>
                </children>
@@ -84,12 +84,12 @@
                <children>
                   <ImageView id="img5" fx:id="img5" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/resources/skins/10.png" />
+                        <Image url="@../../resources/skins/10.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck5" fx:id="imgCheck5" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">
                      <image>
-                        <Image url="/resources/skins/ok.png" />
+                        <Image url="@../../resources/skins/ok.png" />
                      </image>
                   </ImageView>
                </children>
@@ -98,12 +98,12 @@
                <children>
                   <ImageView id="img6" fx:id="img6" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/resources/skins/10.png" />
+                        <Image url="@../../resources/skins/10.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck6" fx:id="imgCheck6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">
                      <image>
-                        <Image url="/resources/skins/ok.png" />
+                        <Image url="@../../resources/skins/ok.png" />
                      </image>
                   </ImageView>
                </children>
@@ -112,12 +112,12 @@
                <children>
                   <ImageView id="img7" fx:id="img7" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/resources/skins/10.png" />
+                        <Image url="@../../resources/skins/10.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck7" fx:id="imgCheck7" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">
                      <image>
-                        <Image url="/resources/skins/ok.png" />
+                        <Image url="@../../resources/skins/ok.png" />
                      </image>
                   </ImageView>
                </children>
@@ -126,12 +126,12 @@
                <children>
                   <ImageView id="img8" fx:id="img8" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/resources/skins/8.png" />
+                        <Image url="@../../resources/skins/8.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck8" fx:id="imgCheck8" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">
                      <image>
-                        <Image url="/resources/skins/ok.png" />
+                        <Image url="@../../resources/skins/ok.png" />
                      </image>
                   </ImageView>
                </children>

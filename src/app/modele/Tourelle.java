@@ -9,17 +9,16 @@ public abstract class Tourelle extends Acteur{
     private int portee;
     private int typeMissile;
     private int dernierTire;
-    //private int prix;
-    //private int skin;
+    private Attaquant cible;
 
-    public Tourelle(int degat, int x, int y, int rechargement, int portee, Environnement env, int typeMissile, String name/*, int prix*/) {
+    public Tourelle(int degat, int x, int y, int rechargement, int portee, Environnement env, int typeMissile, String name) {
         super(x, y, env, name);
         this.degat = degat;
         this.rechargement = rechargement;
         this.portee = portee;
         this.dernierTire = rechargement;
         this.typeMissile = typeMissile;
-        //this.prix = prix;
+        this.cible = null;
     }
 
     public void setRechargement(int rechargement) {
@@ -34,19 +33,23 @@ public abstract class Tourelle extends Acteur{
         return this.portee;
     }
 
-    /*public int getPrix(){
-        return this.prix;
-    }*/
-
-    //Cette méthode récupère une cible a la portée de la tour
+    // Cette méthode récupère une cible a la portée de la tour, à moins d'en avoir deja une
     public Attaquant getCible() {
-        Attaquant cible = null;
+        if (this.cible == null)
+            this.cible = trouverCible();
 
-        for (int i = 0; i < this.env.getActeurs().size();i++)
+        else if (!(this.cible.getX() <= this.getX() + portee && this.cible.getX() >= this.getX() - portee && this.cible.getY() <= this.getY() + portee && this.cible.getY() >= this.getY() - portee) || !this.cible.estVivant())
+            this.cible = trouverCible();
+
+        return cible;
+    }
+
+    public Attaquant trouverCible(){
+        Attaquant cible = null;
+        for (int i = 0; i < this.env.getActeurs().size(); i++)
             if (this.env.getActeurs().get(i) instanceof Attaquant)
-                if(env.getActeurs().get(i).getX() <= this.getX()+portee && env.getActeurs().get(i).getX() >= this.getX()-portee && env.getActeurs().get(i).getY() <= this.getY()+portee && env.getActeurs().get(i).getY() >= this.getY()-portee){
-                    cible = (Attaquant) env.getActeurs().get(i);
-                }
+                if (env.getActeurs().get(i).getX() <= this.getX() + portee && env.getActeurs().get(i).getX() >= this.getX() - portee && env.getActeurs().get(i).getY() <= this.getY() + portee && env.getActeurs().get(i).getY() >= this.getY() - portee)
+                    return cible = (Attaquant) env.getActeurs().get(i);
         return cible;
     }
 
