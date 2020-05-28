@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.ControleurDebut">
+    <top>
+        <Label text="LE JEU DE LA PUISSANCE" textFill="RED" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+    </top>
+
+   <center>
+       <HBox>
+             <ImageView id="img1" fx:id="img1" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../../resources/skins/1.png" />
+                 </image>
+             </ImageView>
+       </HBox>
+   </center>
+</BorderPane>

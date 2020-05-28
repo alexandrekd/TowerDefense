@@ -18,13 +18,11 @@ public class Niveau {
     private IntegerProperty argentProperty;
     private ArrayList<Integer> map;
     private Vagues vagues;
-    private int numVague;
     //private ArrayList<int> tourellesDispo;
 
     public Niveau(Environnement env){
         this.id = "Niv" + compteur++;
         this.env = env;
-        this.numVague = 0;
         this.vie = 500;
         this.argentProperty = new SimpleIntegerProperty(20);
         this.map = new ArrayList<Integer>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,

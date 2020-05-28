@@ -130,6 +130,7 @@ public class Controleur implements Initializable {
         checkedList = new ArrayList<BooleanProperty>(Arrays.asList(img1checked,img2checked,img3checked,img4checked,img5checked,img6checked,img7checked,img8checked));
 
         this.argent.textProperty().bind(this.env.getNiveau().getArgentProperty().asString());
+        this.round.textProperty().bind(this.env.getNumVagueProperty().asString());
 
         skins = new HashMap<String, String>();
             skins.put("Bonnot" , "resources/skins/1.png");

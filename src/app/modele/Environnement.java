@@ -1,6 +1,8 @@
 package app.modele;
 
 import app.modele.Professeur.Mur;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -18,6 +20,7 @@ public class Environnement {
     private ArrayList<Effets> effects;
     private boolean vagueEnCours;
     private Niveau niveau;
+    private IntegerProperty numVagueProperty;
 
     public Environnement(int width, int height){
         this.vagueEnCours = false;
@@ -46,6 +49,7 @@ public class Environnement {
                 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101
         ));
         this.niveau = new Niveau(this);
+        this.numVagueProperty = new SimpleIntegerProperty(0);
     }
 
     public ArrayList<Effets> getEffects() {
@@ -71,11 +75,22 @@ public class Environnement {
         return this.nbTours;
     }
 
+    public int getNumVague(){
+        return this.numVagueProperty.getValue();
+    }
+    public IntegerProperty getNumVagueProperty(){
+        return this.numVagueProperty;
+    }
+    public void setNumVague (int v){
+        this.numVagueProperty.set(v);
+    }
+
     public ObservableList<Acteur> getActeurs(){
         return this.acteurs;
     }
 
-    public node getArrivé() {        //Cette fonction permet tout simplement de renvoyer la tuile d'arrivé
+    // Cette fonction permet tout simplement de renvoyer la tuile d'arrivé
+    public node getArrivé() {
         for (node tuile : rang) {
             if (tuile.getDistance() == 0) {
                 return tuile;
@@ -226,6 +241,7 @@ public class Environnement {
 
     public void startVague(){
         this.vagueEnCours = true;
+        setNumVague(this.getNumVague()+1);
     }
     public void stopVague(){
         this.vagueEnCours = false;
