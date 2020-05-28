@@ -6,7 +6,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.ControleurDebut">
    <center>
-      <Label fx:id="play" onMouseClicked="#Jouer" prefHeight="105.0" prefWidth="213.0" text="JOUER" BorderPane.alignment="CENTER">
+      <Label fx:id="play" onMouseClicked="#Jouer" prefHeight="105.0" prefWidth="213.0" style="-fx-border-color: black;" text="JOUER" BorderPane.alignment="CENTER">
          <font>
             <Font size="72.0" />
          </font>
