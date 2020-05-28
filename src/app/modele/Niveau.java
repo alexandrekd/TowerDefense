@@ -69,7 +69,7 @@ public class Niveau {
 
         if (x == xArrive && y == yArrive ){
             this.vie = this.vie - ennemi.getPv();
-            ennemi.estVivant();
+            ennemi.setPv(0);
         }
 
     }

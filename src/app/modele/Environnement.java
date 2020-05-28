@@ -183,6 +183,9 @@ public class Environnement {
 
         for (int i = 0; i < effects.size();i++){
             effects.get(i).agit();
+            if (!(effects.get(i).estVivant())){
+                this.effects.remove(effects.get(i));
+            }
         }
 
         // Si une vague est en cours, va chercher un ennemi a ajouter
@@ -193,6 +196,7 @@ public class Environnement {
             this.acteurs.get(i).agit();
 
             if(acteurs.get(i) instanceof Attaquant) {
+                niveau.ennemiAttaqueJoueur(((Attaquant) acteurs.get(i)));
                 if (!((Attaquant) acteurs.get(i)).estVivant()) {
                     this.acteurs.remove(i);
                     this.niveau.incrementerArgent(5);
@@ -208,20 +212,17 @@ public class Environnement {
 
         }
 
-        for (int i = 0; i < zone.size(); i++){
-            zone.get(i).agit();
-            if (!(zone.get(i).estVivant())){
-                while (this.zone.get(i).getActeursDansLaZone().size() != 0){
-                    this.zone.get(i).getActeursDansLaZone().remove(0);
-                }
-                this.zone.remove(i);
-                i--;
-            }
-        }
 
 
 
         this.nbTours++;
+    }
+
+    public void zoneMorte(Zone zone){
+        while (zone.getActeursDansLaZone().size() != 0){
+            zone.getActeursDansLaZone().remove(0);
+        }
+        this.zone.remove(zone);
     }
 
     public void startVague(){

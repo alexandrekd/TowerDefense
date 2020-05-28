@@ -13,37 +13,18 @@ public class Zone{
     private ObservableList<Acteur> acteursDansLaZone;
     private int taille;
     private String couleur;
-    private double temps;
-    private Effets effet;
     private String id;
     private int x;
     private int y;
-    private DoubleProperty opacityProperty;
     private Environnement env;
-    public Zone(int taille,String Couleur,double temps,int x,int y,Effets effet,Environnement env){
+    public Zone(int taille,String Couleur,int x,int y,Environnement env,String id){
         this.taille = taille;
         this.couleur = Couleur;
-        this.temps = temps;
-        this.effet = effet;
         this.x = x;
         this.y = y;
-        this.opacityProperty = new SimpleDoubleProperty(1);
-        this.id = "A" + Acteur.compteur;
-        Acteur.compteur++;
+        this.id = id;
         this.env = env;
         acteursDansLaZone = FXCollections.observableArrayList();
-        ListChangeListener<Acteur> liste= c->{
-            while (c.next()) {
-                for(Acteur acteur : c.getAddedSubList()) {
-                    effet.Entrer((Attaquant) acteur);
-                }
-
-                for(Acteur acteur : c.getRemoved()) {
-                    effet.Sortir((Attaquant) acteur);
-                }
-            }
-        };
-        acteursDansLaZone.addListener(liste);
     }
 
     public int getX() {
@@ -57,7 +38,6 @@ public class Zone{
 
     public void agit(){
         quiEstDansLaZone();
-        gererOpacity();
     }
 
     public void quiEstDansLaZone(){
@@ -94,25 +74,18 @@ public class Zone{
         return false;
     }
 
-    public void gererOpacity(){
-        this.setOpacity(this.getOpacity() - (1/this.temps));
+    public Effets trouveTonAmeSoeur(){
+        Effets effets = null;
+        for (int i = 0 ;i < env.getEffects().size(); i++)
+            if (this.id == env.getEffects().get(i).getId())
+                effets = env.getEffects().get(i);
+            return effets;
     }
 
-    public boolean estVivant() {
-        if (this.getOpacity() <= 0) {
-            env.getEffects().remove(effet);
-            return false;
-        }
-        return true;
-    }
 
 
     public String getId() {
         return id;
-    }
-
-    public double getTemps() {
-        return temps;
     }
 
     public String getCouleur() {
@@ -123,15 +96,8 @@ public class Zone{
         return taille;
     }
 
-    public final DoubleProperty opacityProperty() {
-        return opacityProperty;
-    }
-
-    public final double getOpacity(){ return this.opacityProperty.get(); }
-
-    public final void setOpacity(double opacity){  this.opacityProperty.set(opacity); }
-
     public ObservableList<Acteur> getActeursDansLaZone() {
         return acteursDansLaZone;
     }
+
 }

@@ -51,8 +51,8 @@ public class Mur extends Acteur {
     }
 
     public boolean dejaChezQuelquun(Attaquant ci){
-        List<Mur> mur = Collections.singletonList((Mur) env.getActeurs().parallelStream().filter(n -> n instanceof Mur).collect(Collectors.toList()));
-        Boolean result = false;
+        List<Mur> mur =  env.getActeurs().parallelStream().filter(n -> n instanceof Mur).map(n ->(Mur) n).collect(Collectors.toList());
+        boolean result = false;
         for (int i = 0;i < mur.size();i++){
             if(mur.get(i).getCible() == ci)
                 result = true;

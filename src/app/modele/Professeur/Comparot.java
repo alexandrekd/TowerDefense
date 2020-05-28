@@ -21,7 +21,7 @@ public class Comparot extends Tourelle {
         if(getRechargement() == getDernierTire()) {
             Attaquant cible = getCible();
             if (cible != null)
-                env.addProject(new Missile(this, cible, env,new Poison(2,env)));
+                env.addProject(new Missile(this, cible, env,new Poison(2,env,20)));
             setDernierTire(0);
         }
         else
