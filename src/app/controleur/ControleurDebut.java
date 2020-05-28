@@ -16,7 +16,7 @@ public class ControleurDebut {
     @FXML
     void Jouer(MouseEvent event) {
         try {
-            BorderPane root = FXMLLoader.load(getClass().getResource("../vue/sample.fxml"));
+            BorderPane root = FXMLLoader.load(getClass().getResource("../vue/sampleChoixDuNiveau.fxml"));
             Scene scene = new Scene(root,1920,1080);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(scene);

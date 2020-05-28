@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.ControleurDebut">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.ControleurChoixDuNiveau">
     <top>
         <Label text="LE JEU DE LA PUISSANCE" textFill="RED" BorderPane.alignment="CENTER">
             <font>
@@ -16,7 +16,7 @@
 
    <center>
        <HBox>
-             <ImageView id="img1" fx:id="img1" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+             <ImageView id="img1" fx:id="niveau1" fitHeight="80.0" fitWidth="89.0" onMouseClicked="#click1" pickOnBounds="true" preserveRatio="true">
                  <image>
                      <Image url="@../../resources/skins/1.png" />
                  </image>
