@@ -5,8 +5,6 @@ import app.modele.Professeur.Mur;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
-import java.util.stream.Collectors;
-
 public class Invocation implements Effets {
     private Environnement env;
     private int portee;

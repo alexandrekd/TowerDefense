@@ -136,9 +136,8 @@ public class Controleur implements Initializable {
             skins.put("Bonnot" , "resources/skins/1.png");
             skins.put("Ricordo" , "resources/skins/1.png");
             skins.put("Bossard" , "resources/skins/1.png");
-            skins.put("Homps" , "resources/skins/1.png");
+            skins.put("Homps" , "resources/skins/6.png");
             skins.put("Lamolle" , "resources/skins/1.png");
-            skins.put("Ricordo" , "resources/skins/1.png");
             skins.put("Rety" , "resources/skins/2.png");
             skins.put("Comparot" , "resources/skins/3.png");
             skins.put("Simonot" , "resources/skins/8.png");
@@ -186,7 +185,7 @@ public class Controleur implements Initializable {
 
         setmap();
         initAnimation();
-        env.faireRang(31,7);
+        env.faireRang(31,1);
     }
 
     public void afficher(){

@@ -1,11 +1,7 @@
 package app.modele;
 
-import app.modele.Professeur.Homps;
-import app.modele.Professeur.Ricordo;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-
-import static app.modele.Utile.goToCaseDepart;
 
 public class Missile {
     private String id;

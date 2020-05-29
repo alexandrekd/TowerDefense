@@ -4,7 +4,6 @@ import app.modele.Acteur;
 import app.modele.Attaquant;
 import app.modele.Effets;
 import app.modele.Missile;
-import app.modele.Professeur.Homps;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 

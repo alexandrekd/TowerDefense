@@ -5,8 +5,6 @@ import app.modele.Environnement;
 import app.modele.Missile;
 import app.modele.Tourelle;
 import app.modele.TypeMissile.Debut;
-import app.modele.TypeMissile.Default;
-import app.modele.TypeMissile.Degat;
 
 public class Homps extends Tourelle {
     public Homps(int x, int y, Environnement env) {
