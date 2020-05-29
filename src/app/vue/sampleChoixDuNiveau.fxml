@@ -16,9 +16,9 @@
 
    <center>
        <HBox>
-             <ImageView id="img1" fx:id="niveau1" fitHeight="80.0" fitWidth="89.0" onMouseClicked="#click1" pickOnBounds="true" preserveRatio="true">
+             <ImageView id="img1" fx:id="niveau1" fitHeight="327.0" fitWidth="587.0" onMouseClicked="#click1" pickOnBounds="true" preserveRatio="true" translateX="100.0" translateY="250.0">
                  <image>
-                     <Image url="@../../resources/skins/1.png" />
+                     <Image url="@../../resources/niveaux/map1.PNG" />
                  </image>
              </ImageView>
        </HBox>
