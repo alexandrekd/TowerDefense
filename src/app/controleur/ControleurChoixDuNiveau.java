@@ -42,7 +42,6 @@ public class ControleurChoixDuNiveau {
                     101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101
             )));
 
-            System.out.println(Environnement.getMap());
             BorderPane root = FXMLLoader.load(getClass().getResource("../vue/sample.fxml"));
             Scene scene = new Scene(root,1920,1080);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -74,7 +73,6 @@ public class ControleurChoixDuNiveau {
                     101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101
             )));
 
-            System.out.println(Environnement.getMap());
             BorderPane root = FXMLLoader.load(getClass().getResource("../vue/sample.fxml"));
             Scene scene = new Scene(root,1920,1080);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
