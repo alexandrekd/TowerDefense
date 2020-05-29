@@ -37,7 +37,6 @@ public class Mur extends Acteur {
                     if(env.getActeurs().get(i).getX() <= this.getX()+portee && env.getActeurs().get(i).getX() >= this.getX()-portee && env.getActeurs().get(i).getY() <= this.getY()+portee && env.getActeurs().get(i).getY() >= this.getY()-portee) {
                         if (!dejaChezQuelquun((Attaquant) this.env.getActeurs().get(i))){
                             cible = (Attaquant) env.getActeurs().get(i);
-                            System.out.println("hey");
                              attraper = true;
                           }
                     }
@@ -66,10 +65,8 @@ public class Mur extends Acteur {
         for (int i = 0;i < mur.size();i++){
             if(mur.get(i).getCible() == ci){
                 result = true;
-                System.out.println(mur.get(i).getCible() +"///"+ ci);
             }
         }
-        System.out.println("Activation dejachezquelquun result : "+ result);
         return result;
     }
 
