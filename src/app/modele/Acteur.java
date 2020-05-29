@@ -26,8 +26,9 @@ public abstract class Acteur {
         return name;
     }
 
-    public Acteur(Environnement env){
+    public Acteur(Environnement env,String name){
         this.env = env;
+        this.name = name;
         this.id = "A"+compteur;
         compteur++;
         Random random=new Random();

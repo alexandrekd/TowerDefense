@@ -1,7 +1,10 @@
 package app.modele;
 
-public class Attaquant extends Acteur {
+import org.omg.CosNaming.BindingIterator;
+
+public abstract class Attaquant extends Acteur {
 	private int pv;
+	private int constante;
 	private int dx; // dx et dy representent la direction de l'attaquant
 	private int dy;
 	private int vitesse;
@@ -9,52 +12,25 @@ public class Attaquant extends Acteur {
 	private int img;
 
 	public Attaquant(Environnement env, int pv, int vitesse, int img) {
-		super(env);
-		this.pv = pv;
-		this.vitesse = vitesse;
-		this.consVitesse = vitesse;
-		this.img = img;
+		super(env,"Simonot");
+		init(pv,vitesse,img);
 	}
 
 	public Attaquant(Environnement env, int pv, int vitesse, int x, int y, int img) {
 		super(x, y, env, "Attaquant");
+		init(pv,vitesse,img);
+	}
+
+	public void init(int pv, int vitesse, int img){
 		this.pv = pv;
 		this.vitesse = vitesse;
 		this.img = img;
+		this.constante = pv;
 		this.consVitesse = vitesse;
 	}
 
 	public int getConsVitesse() {
 		return consVitesse;
-	}
-
-	public void agit() {// Cette methode permet a l'attaquant de se deplacer, meme s'il peut changer de direction
-
-		int xB = Utile.toTexture(this.getX());
-		int yB = Utile.toTexture(this.getY());
-		int bestPos = 10000;
-
-		if (RegardeUnVoisin(env.getUnNode(xB - 1, yB)) < bestPos) {
-			donneDirection(-1, 0);
-			bestPos = RegardeUnVoisin(env.getUnNode(xB - 1, yB));
-		}
-		if (RegardeUnVoisin(env.getUnNode(xB + 1, yB)) < bestPos) {
-			donneDirection(1, 0);
-			bestPos = RegardeUnVoisin(env.getUnNode(xB + 1, yB));
-		}
-		if (RegardeUnVoisin(env.getUnNode(xB, yB - 1)) < bestPos) {
-			donneDirection(0, -1);
-			bestPos = RegardeUnVoisin(env.getUnNode(xB, yB - 1));
-		}
-		if (RegardeUnVoisin(env.getUnNode(xB, yB + 1)) < bestPos) {
-			donneDirection(0, 1);
-			bestPos = RegardeUnVoisin(env.getUnNode(xB, yB + 1));
-		}
-
-		this.setX(this.getX() + this.vitesse * this.dx);
-		//Pas besoin de else, vu que si le prochain deplacement en x depasse l'environnement, il ne bouge pas
-		this.setY(this.getY() + this.vitesse * this.dy);
-		//Pas besoin de else, vu que si le prochain deplacement en y depasse l'environnement, il ne bouge pas
 	}
 
 	public int RegardeUnVoisin(node voisin) {
@@ -83,6 +59,9 @@ public class Attaquant extends Acteur {
 
 	public int getPv() { return pv; }
 
+	public void gagneDeLaVie(int pv){this.pv += pv;
+	}
+
 	public void setPv(int pv) { this.pv = pv; }
 
 	public int getVitesse() {
@@ -91,5 +70,17 @@ public class Attaquant extends Acteur {
 
 	public void setVitesse(int vitesse) {
 		this.vitesse = vitesse;
+	}
+
+	public int getDx() {
+		return dx;
+	}
+
+	public int getDy() {
+		return dy;
+	}
+
+	public int getPV() {
+		return constante;
 	}
 }
