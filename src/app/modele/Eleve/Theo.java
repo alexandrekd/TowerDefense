@@ -47,13 +47,9 @@ public class Theo extends Attaquant {
 
         if (env.getNbTours() % 5 == 0) {
             for (int i = 0; i < liste.size(); i++) {
-                System.out.println(liste.get(i).getPv() + "///" + liste.get(i).getPV());
                 if (liste.get(i).getPv() < liste.get(i).getPV()) {
-                    System.out.println(liste.get(i).getPv() + "///" + liste.get(i).getPV());
                     if (liste.get(i).getX() <= this.getX() + this.portee && liste.get(i).getX() >= this.getX() - this.portee && liste.get(i).getY() <= this.getY() + this.portee && liste.get(i).getY() >= this.getY() - this.portee) {
-                        System.out.println(liste.get(i).getPv() + "bodel");
                         liste.get(i).gagneDeLaVie(1);
-                        System.out.println(liste.get(i).getPv());
                     }
                 }
             }

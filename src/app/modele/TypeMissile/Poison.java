@@ -69,6 +69,7 @@ public class Poison implements Effets {
 
     @Override
     public void Explosion(Missile missile) {
+        this.env.getEffects().add(this);
         this.zone = new Zone(50,"ORANGE",missile.getX(),missile.getY(),env,id);
         env.getZone().add(this.zone);
 
@@ -84,7 +85,6 @@ public class Poison implements Effets {
             }
         };
         this.zone.getActeursDansLaZone().addListener(liste);
-        this.env.getEffects().add(this);
     }
 
     @Override

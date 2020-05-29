@@ -74,7 +74,7 @@ public class Zone{
     public Effets trouveTonAmeSoeur(){
         Effets effets = null;
         for (int i = 0 ;i < env.getEffects().size(); i++)
-            if (this.id == env.getEffects().get(i).getId())
+            if (this.id.equals(env.getEffects().get(i).getId()))
                 effets = env.getEffects().get(i);
             return effets;
     }

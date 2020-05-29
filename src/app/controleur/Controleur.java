@@ -275,6 +275,7 @@ public class Controleur implements Initializable {
         c.setFill(Color.valueOf(zone.getCouleur()));
         c.setTranslateX(zone.getX());
         c.setTranslateY(zone.getY());
+        System.out.println(zone.trouveTonAmeSoeur());
         c.opacityProperty().bind(zone.trouveTonAmeSoeur().vieProperty());
         plateau.getChildren().add(c);
     }
