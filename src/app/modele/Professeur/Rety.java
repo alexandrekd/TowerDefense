@@ -4,7 +4,6 @@ import app.modele.Attaquant;
 import app.modele.Environnement;
 import app.modele.Missile;
 import app.modele.Tourelle;
-import app.modele.TypeMissile.Default;
 import app.modele.TypeMissile.Degat;
 
 public class Rety extends Tourelle {

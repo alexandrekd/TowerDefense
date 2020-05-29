@@ -4,12 +4,11 @@ import app.modele.Attaquant;
 import app.modele.Environnement;
 import app.modele.Missile;
 import app.modele.Tourelle;
-import app.modele.TypeMissile.Default;
 import app.modele.TypeMissile.Degat;
 
 public class Lamolle extends Tourelle {
     public Lamolle(int x, int y, Environnement env) {
-        super(15, x, y, 5, 250, env,1,"Lamolle");
+        super(50, x, y, 30, 1000000, env,1,"Lamolle");
     }
 
     @Override

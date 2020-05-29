@@ -4,10 +4,7 @@ import app.modele.Attaquant;
 import app.modele.Environnement;
 import app.modele.Missile;
 import app.modele.Tourelle;
-import app.modele.TypeMissile.Default;
 import app.modele.TypeMissile.Invocation;
-
-import java.util.stream.Collectors;
 
 public class Simonot extends Tourelle {
     public Simonot(int x, int y, Environnement env) {

@@ -3,10 +3,7 @@ package app.modele.Professeur;
 import app.modele.Acteur;
 import app.modele.Attaquant;
 import app.modele.Environnement;
-import app.modele.Zone;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
