@@ -59,7 +59,7 @@ public class Niveau {
         System.out.println("\nTu a gagné " + argent + "€\nTu as " + this.getArgent() + "€");
     }
 
-    public void ennemiAttaqueJoueur(Attaquant ennemi){ //Cette fonction a pour rôle de s'occuper de l'ennemi lorsqu'il arrive à la fin de la map,
+    public void ennemiAttaqueJoueur(Attaquant ennemi){ //Cette méthode a pour rôle de s'occuper de l'ennemi lorsqu'il arrive à la fin de la map,
         //c'est à dire, infliger des dégats au joueur et disparaitre.
         int x = toTexture(ennemi.getX());
         int y = toTexture(ennemi.getY()); //x et y sont les coordonées de la tuile sur laquelle l'ennemi se situe
@@ -72,6 +72,26 @@ public class Niveau {
             ennemi.setPv(0);
         }
 
+    }
+
+    public boolean joueurVivant(){  //Cette méthode renvoie true si le joueur est vivant ou renvoie false si le jour à des pv inférieurs ou égal à 0.
+        if(this.vie > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean joueurAvoirGagne(){  //Cette méthode renvoie true si le joueur a gagné (plus d'ennemis sur le plateau et plus d'ennemis qui
+                                        //vont apparaitre), ou renvoie false si le joueur est encore en cours de partie
+
+        if(this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public ArrayList<Integer> getMap() {

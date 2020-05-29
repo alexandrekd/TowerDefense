@@ -7,18 +7,23 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -301,6 +306,8 @@ public class Controleur implements Initializable {
     @FXML
     void faireTours() {
         gameLoop.play();
+        gameOver();
+        gameWin();
     }
 
     public void setmap() {
@@ -386,4 +393,37 @@ public class Controleur implements Initializable {
             choix = "Simonot";
         return choix;
     }
+
+    public void gameOver() {
+
+        if(this.env.getNiveau().joueurVivant() == false){ //On fait appel ici à la méthode joueurVivant() pour savoir si le joueur est encore vivant, si ça renvoie non, alors le joueur a perdu et on affiche la scène de défaite
+            try {
+                BorderPane root = FXMLLoader.load(getClass().getResource("../vue/gameOver.fxml"));
+                Scene scene = new Scene(root,1920,1080);
+                Stage window = (Stage)(map.getScene().getWindow());
+                window.setScene(scene);
+                window.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public void gameWin() {
+
+        if(this.env.getNiveau().joueurAvoirGagne() == true){ //On fait appel ici à la méthode joueurAvoirGagne() pour savoir si le joueur a gagné. Si il gagne, alors on affiche la scène de victoire
+            try {
+                BorderPane root = FXMLLoader.load(getClass().getResource("../vue/gameWin.fxml"));
+                Scene scene = new Scene(root,1920,1080);
+                Stage window = (Stage)(map.getScene().getWindow());
+                window.setScene(scene);
+                window.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 }
