@@ -1,5 +1,8 @@
 package app.modele;
 
+import app.modele.Eleve.Normal;
+import app.modele.Eleve.Theo;
+
 import java.util.stream.Collectors;
 
 public class Utile {
@@ -44,7 +47,7 @@ public class Utile {
         for (int i = 0 ; i < env.getMap().size(); i++){
             if(env.getMap().get(i)/900 ==1){
                 if (count == random){
-                    attaquant = new Normal(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
+                    attaquant = new Theo(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
                     count = 0;
                 }
                 else

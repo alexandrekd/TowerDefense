@@ -35,7 +35,6 @@ public class Ralentissement implements Effets {
     @Override
     public void Entrer(Attaquant acteur) {
         double speed = acteur.getConsVitesse() * ralentissement;
-        System.out.println((int) speed);
         acteur.setVitesse((int) speed);
     }
 
