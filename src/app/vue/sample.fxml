@@ -175,6 +175,7 @@
       <Pane fx:id="plateau" maxHeight="800.0" maxWidth="1600.0" minHeight="800.0" minWidth="1600.0" onMouseClicked="#poserTourelle" prefHeight="800.0" prefWidth="1600.0" BorderPane.alignment="CENTER">
          <children>
             <TilePane fx:id="map" maxHeight="800.0" maxWidth="1600.0" minHeight="800.0" minWidth="1600.0" prefHeight="800.0" prefWidth="1600.0" />
+
          </children></Pane>
    </center>
 </BorderPane>
