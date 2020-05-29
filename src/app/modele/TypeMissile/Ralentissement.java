@@ -16,7 +16,6 @@ public class Ralentissement implements Effets {
     public Ralentissement(double ralentissement,Environnement env,double temps){
         this.ralentissement=ralentissement;
         this.env = env;
-        env.getEffects().add(this);
         this.zone = null;
         this.temps = temps;
         this.vie = new SimpleDoubleProperty(1);
@@ -45,6 +44,7 @@ public class Ralentissement implements Effets {
 
     @Override
     public void Explosion(Missile missile) {
+        this.env.getEffects().add(this);
         this.zone = new Zone(50,"GREEN",missile.getX(),missile.getY(),env,id);
         env.getZone().add(this.zone);
         ListChangeListener<Acteur> liste= c->{

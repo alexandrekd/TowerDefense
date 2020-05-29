@@ -50,7 +50,7 @@ public class Niveau {
 
         if (x == xArrive && y == yArrive ){
             this.vie = this.vie - ennemi.getPv();
-            ennemi.setPv(0);
+            env.getActeurs().remove(ennemi);
         }
 
     }
