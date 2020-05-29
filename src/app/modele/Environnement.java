@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class Environnement {
     private int width, height;
     private ObservableList<Acteur> acteurs;
-    private List<Integer> map;
+    private static List<Integer> map;
     private ObservableList<Missile> project;
     private int nbTours;
     private List<node> rang;
@@ -33,7 +33,7 @@ public class Environnement {
         this.project = FXCollections.observableArrayList();
         this.effects = new ArrayList<Effets>();
         this.rang = new ArrayList<node>();
-        this.map = new ArrayList<Integer>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
+        /*this.map = new ArrayList<Integer>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                 101, 103, 101, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 101, 101, 101,
                 101, 101, 101, 102, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 102, 101, 101, 101,
                 101, 101, 101, 102, 101, 102, 101, 101, 101, 101, 101, 102, 101, 103, 103, 103, 103, 101, 102, 101, 101, 101, 101, 101, 102, 101, 103, 101, 102, 101, 101, 101,
@@ -50,7 +50,8 @@ public class Environnement {
                 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101
 
-        ));
+        ));*/
+
         this.niveau = new Niveau(this);
         this.numVagueProperty = new SimpleIntegerProperty(0);
 
@@ -62,11 +63,15 @@ public class Environnement {
         System.out.println("x : " + this.xFin + "\n" + "y : " + this.yFin);
     }
 
+    public static void setMap(ArrayList<Integer> list){
+        map = list;
+    }
+
     public ArrayList<Effets> getEffects() {
         return effects;
     }
 
-    public List<Integer> getMap(){
+    public static List<Integer> getMap(){
         return this.map;
     }
 
