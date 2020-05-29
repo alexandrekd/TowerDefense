@@ -1,11 +1,7 @@
 package app.modele;
 
-import app.modele.Professeur.Homps;
-import app.modele.Professeur.Ricordo;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-
-import static app.modele.Utile.goToCaseDepart;
 
 public class Missile {
     private String id;
@@ -48,14 +44,7 @@ public class Missile {
         }
 
         if (yarv == 0 && xarv == 0) {
-            this.finActeur.recevoirTir(debActeur.getDegat());
-
-            if (this.debActeur instanceof Homps) { // Si trop d'effet -> faire une methode effet qui check le type de tourelle et applique l''effet desire
-                if(Math.random()*10 <= 2)
-                    goToCaseDepart(this);
-            }
-
-            effet.Explosion(finActeur.getX() , finActeur.getY());
+            effet.Explosion(this);
             this.explosion = true;
         }
         else if (yarv < 0) {

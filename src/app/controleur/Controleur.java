@@ -140,9 +140,8 @@ public class Controleur implements Initializable {
             skins.put("Bonnot" , "resources/skins/1.png");
             skins.put("Ricordo" , "resources/skins/1.png");
             skins.put("Bossard" , "resources/skins/1.png");
-            skins.put("Homps" , "resources/skins/1.png");
+            skins.put("Homps" , "resources/skins/6.png");
             skins.put("Lamolle" , "resources/skins/1.png");
-            skins.put("Ricordo" , "resources/skins/1.png");
             skins.put("Rety" , "resources/skins/2.png");
             skins.put("Comparot" , "resources/skins/3.png");
             skins.put("Simonot" , "resources/skins/8.png");
@@ -190,7 +189,7 @@ public class Controleur implements Initializable {
 
         setmap();
         initAnimation();
-        env.faireRang(31,7);
+        env.faireRang(31,1);
     }
 
     public void afficher(){
@@ -276,18 +275,10 @@ public class Controleur implements Initializable {
         c.setFill(Color.valueOf(zone.getCouleur()));
         c.setTranslateX(zone.getX());
         c.setTranslateY(zone.getY());
+        c.opacityProperty().bind(zone.trouveTonAmeSoeur().vieProperty());
         plateau.getChildren().add(c);
     }
 
-    public void gererOpacity(){
-        for (int i = 0;i < this.env.getZone().size(); i++){
-            for (int z = 0;z < plateau.getChildren().size(); z++){
-                if (this.env.getZone().get(i).getId().equals(plateau.getChildren().get(z).getId())) {
-                    plateau.getChildren().get(z).opacityProperty().setValue(plateau.getChildren().get(z).getOpacity() - (1 / env.getZone().get(i).getTemps()));
-                }
-            }
-        }
-    }
 
     public void creerSpriteMissile(Missile missile){
 
@@ -343,7 +334,6 @@ public class Controleur implements Initializable {
                     }
                     else if (temps%5==0){
                         this.env.unTour();
-                        gererOpacity();
                     }
                 })
         );

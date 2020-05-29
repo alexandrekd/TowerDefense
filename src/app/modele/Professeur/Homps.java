@@ -4,7 +4,7 @@ import app.modele.Attaquant;
 import app.modele.Environnement;
 import app.modele.Missile;
 import app.modele.Tourelle;
-import app.modele.TypeMissile.Default;
+import app.modele.TypeMissile.Debut;
 
 public class Homps extends Tourelle {
     public Homps(int x, int y, Environnement env) {
@@ -20,7 +20,7 @@ public class Homps extends Tourelle {
         if(getRechargement() == getDernierTire()) {
             Attaquant cible = getCible();
             if (cible != null)
-                env.addProject(new Missile(this, cible, env,new Default()));
+                env.addProject(new Missile(this, cible, env,new Debut()));
             setDernierTire(0);
         }
         else

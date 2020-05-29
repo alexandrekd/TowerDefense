@@ -4,7 +4,6 @@ import app.modele.Attaquant;
 import app.modele.Environnement;
 import app.modele.Missile;
 import app.modele.Tourelle;
-import app.modele.TypeMissile.Default;
 import app.modele.TypeMissile.Poison;
 
 public class Comparot extends Tourelle {
@@ -21,7 +20,7 @@ public class Comparot extends Tourelle {
         if(getRechargement() == getDernierTire()) {
             Attaquant cible = getCible();
             if (cible != null)
-                env.addProject(new Missile(this, cible, env,new Poison(2,env)));
+                env.addProject(new Missile(this, cible, env,new Poison(2,env,20)));
             setDernierTire(0);
         }
         else

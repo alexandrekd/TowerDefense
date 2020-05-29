@@ -1,9 +1,5 @@
 package app.modele;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
-import java.util.Random;
-
 public class Attaquant extends Acteur {
 	private int pv;
 	private int dx; // dx et dy representent la direction de l'attaquant

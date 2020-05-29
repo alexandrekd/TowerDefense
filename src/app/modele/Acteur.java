@@ -1,6 +1,5 @@
 package app.modele;
 
-import com.sun.jmx.snmp.SnmpUnknownAccContrModelException;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 

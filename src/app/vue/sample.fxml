@@ -98,7 +98,7 @@
                <children>
                   <ImageView id="img6" fx:id="img6" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/skins/10.png" />
+                        <Image url="@../../resources/skins/6.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck6" fx:id="imgCheck6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">
