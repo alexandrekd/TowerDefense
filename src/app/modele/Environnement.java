@@ -72,7 +72,7 @@ public class Environnement {
     }
 
     public static List<Integer> getMap(){
-        return this.map;
+        return map;
     }
 
     public int getWidth(){
