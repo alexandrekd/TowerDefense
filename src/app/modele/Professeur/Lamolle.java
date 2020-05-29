@@ -5,6 +5,7 @@ import app.modele.Environnement;
 import app.modele.Missile;
 import app.modele.Tourelle;
 import app.modele.TypeMissile.Default;
+import app.modele.TypeMissile.Degat;
 
 public class Lamolle extends Tourelle {
     public Lamolle(int x, int y, Environnement env) {
@@ -20,7 +21,7 @@ public class Lamolle extends Tourelle {
         if(getRechargement() == getDernierTire()) {
             Attaquant cible = getCible();
             if (cible != null)
-                env.addProject(new Missile(this, cible, env,new Default()));
+                env.addProject(new Missile(this, cible, env,new Degat()));
             setDernierTire(0);;
         }
         else

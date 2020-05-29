@@ -48,8 +48,6 @@ public class Missile {
         }
 
         if (yarv == 0 && xarv == 0) {
-            this.finActeur.recevoirTir(debActeur.getDegat());
-
             effet.Explosion(this);
             this.explosion = true;
         }
