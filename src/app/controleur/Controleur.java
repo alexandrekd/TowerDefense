@@ -185,7 +185,7 @@ public class Controleur implements Initializable {
 
         setmap();
         initAnimation();
-        env.faireRang(31,1);
+        env.faireRang();
     }
 
     public void afficher(){
