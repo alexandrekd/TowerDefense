@@ -21,7 +21,7 @@ public class Ricordo extends Tourelle {
         if(getRechargement() == getDernierTire()) {
             Attaquant cible = getCible();
             if (cible != null)
-                env.addProject(new Missile(this, cible, env,new Ralentissement(0.5,env)));
+                env.addProject(new Missile(this, cible, env,new Ralentissement(0.5,env,20)));
             setDernierTire(0);;
         }
         else

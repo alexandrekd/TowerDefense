@@ -4,18 +4,21 @@ import app.modele.Acteur;
 import app.modele.Attaquant;
 import app.modele.Effets;
 import app.modele.Missile;
+import app.modele.Professeur.Homps;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
-public class Default implements Effets {
+import static app.modele.Utile.goToCaseDepart;
 
+public class Debut implements Effets {
     private DoubleProperty vie = new SimpleDoubleProperty(1);
     private String id;
 
-    public Default(){
+    public Debut(){
         this.id = "A" + Acteur.compteur;
         Acteur.compteur++;
     }
+
     @Override
     public void agit() {
 
@@ -33,12 +36,11 @@ public class Default implements Effets {
 
     @Override
     public void Explosion(Missile missile) {
-        setVie(0);
-    }
+        missile.getFinActeur().recevoirTir(missile.getDebActeur().getDegat());
+            if(Math.random()*10 <= 2)
+                goToCaseDepart(missile);
+            setVie(0);
 
-    @Override
-    public String getId() {
-        return this.id;
     }
 
     @Override
@@ -50,6 +52,11 @@ public class Default implements Effets {
     }
 
     @Override
+    public String getId() {
+        return this.id;
+    }
+
+    @Override
     public final DoubleProperty vieProperty() {
         return vie;
     }
@@ -57,6 +64,4 @@ public class Default implements Effets {
     public final double getVie(){ return this.vie.get(); }
 
     public final void setVie(double newVie){  this.vie.set(newVie); }
-
-
 }
