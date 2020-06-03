@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import javax.rmi.CORBA.Util;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -205,12 +204,12 @@ public class Environnement {
             this.acteurs.get(i).agit();
 
             if(acteurs.get(i) instanceof Attaquant) {
-                niveau.ennemiAttaqueJoueur(((Attaquant) acteurs.get(i)));
                 if (!((Attaquant) acteurs.get(i)).estVivant()) {
                     this.acteurs.remove(i);
                     this.niveau.incrementerArgent(5);
                     i--;
                 }
+                niveau.ennemiAttaqueJoueur(((Attaquant) acteurs.get(i)));
             }
             else if(this.acteurs.get(i) instanceof Mur) {
                 if (!((Mur) acteurs.get(i)).estVivant()) {

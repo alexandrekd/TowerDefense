@@ -17,6 +17,7 @@ public class Niveau {
     private int vie;
     private IntegerProperty argentProperty;
     private static Vagues vagues;
+    private static int idVagues;
     //private ArrayList<int> tourellesDispo;
 
     public Niveau(Environnement env){
@@ -25,9 +26,28 @@ public class Niveau {
         this.vie = 500;
         this.argentProperty = new SimpleIntegerProperty(20);
 
-        this.vagues = new Vagues(this.env);
-        this.vagues.getVagues().add(this.vagues.creerVague(5));
-        this.vagues.getVagues().add(this.vagues.creerVague(5));
+        vagues = new Vagues(this.env);
+        setVagues();
+    }
+
+    public static void setIdVagues(int id){
+        idVagues = id;
+    }
+
+    public static void setVagues(){
+
+        switch (idVagues){
+            case 1:
+                vagues.getVagues().add(vagues.creerVague(5));
+                vagues.getVagues().add(vagues.creerVague(5));
+                break;
+
+            case 2:
+                vagues.getVagues().add(vagues.creerVague(15));
+                vagues.getVagues().add(vagues.creerVague(10));
+                break;
+        }
+
     }
 
     public Vagues getVagues(){

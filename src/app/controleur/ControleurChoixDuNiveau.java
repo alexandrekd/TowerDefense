@@ -1,6 +1,7 @@
 package app.controleur;
 
 import app.modele.Environnement;
+import app.modele.Niveau;
 import app.modele.Vagues;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +42,7 @@ public class ControleurChoixDuNiveau {
                     101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                     101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101
             )));
+            Niveau.setIdVagues(1);
 
             BorderPane root = FXMLLoader.load(getClass().getResource("../vue/sample.fxml"));
             Scene scene = new Scene(root,1920,1080);
@@ -72,6 +74,7 @@ public class ControleurChoixDuNiveau {
                     101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                     101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101
             )));
+            Niveau.setIdVagues(2);
 
             BorderPane root = FXMLLoader.load(getClass().getResource("../vue/sample.fxml"));
             Scene scene = new Scene(root,1920,1080);
