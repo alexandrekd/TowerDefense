@@ -11,7 +11,7 @@ public class Rety extends Tourelle {
     int boost = 10;
     int vers = 0;
     public Rety(int x, int y, Environnement env) {
-        super(5, x, y, 2, 150, env,3,"Rety");
+        super(5, x, y, 2, 150, env,3,"Rety", 5);
     }
 
     @Override

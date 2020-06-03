@@ -8,7 +8,7 @@ import app.modele.TypeMissile.Invocation;
 
 public class Simonot extends Tourelle {
     public Simonot(int x, int y, Environnement env) {
-        super(0, x, y, 20, 300, env,1,"Simonot");
+        super(0, x, y, 20, 300, env,1,"Simonot", 5);
     }
 
     @Override
