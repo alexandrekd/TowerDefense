@@ -56,7 +56,6 @@ public class Niveau {
 
     public void incrementerArgent(int argent){
         setArgent(this.getArgent() + argent);
-        System.out.println("\nTu a gagné " + argent + "€\nTu as " + this.getArgent() + "€");
     }
 
     // Cette méthode a pour rôle de s'occuper de l'ennemi lorsqu'il arrive à la fin de la map,

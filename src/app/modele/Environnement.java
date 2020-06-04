@@ -178,6 +178,7 @@ public class Environnement {
         return zone;
     }
 
+
     public void unTour(){
         for (int a = 0; a < 15; a++) {
             for (int i = 0; i < this.project.size(); i++) {
@@ -240,16 +241,6 @@ public class Environnement {
     }
     public void stopVague(){
         this.vagueEnCours = false;
-    }
-
-    public boolean checkArgent(int prix){
-        System.out.println("\nArgent : " + this.niveau.getArgent() + "\nprix : " + prix);
-        if (this.niveau.getArgent() >= prix) {
-            this.niveau.incrementerArgent(-prix);
-            return true;
-        }
-        System.out.println("Pas assez d'argent");
-        return false;
     }
 
     public ArrayList<Attaquant> getAttaquantsInActeurs(){

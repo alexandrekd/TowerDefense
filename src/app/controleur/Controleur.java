@@ -47,15 +47,11 @@ public class Controleur implements Initializable {
     private Button btStart;
 
     @FXML
-    private Button btLancer;
-
-    @FXML
     private TextField tfNbTour;
+
 
     @FXML
     private ImageView img1;
-
-
 
     @FXML
     private ImageView imgCheck1;
@@ -63,11 +59,10 @@ public class Controleur implements Initializable {
 
     @FXML
     private ImageView img2;
-    private BooleanProperty img2checked = new SimpleBooleanProperty();
 
     @FXML
     private ImageView imgCheck2;
-
+    private BooleanProperty img2checked = new SimpleBooleanProperty();
 
     @FXML
     private ImageView img3;
@@ -110,6 +105,7 @@ public class Controleur implements Initializable {
     @FXML
     private ImageView imgCheck8;
     private BooleanProperty img8checked = new SimpleBooleanProperty();
+
 
     @FXML
     private Label argent;
@@ -356,7 +352,6 @@ public class Controleur implements Initializable {
     @FXML
     void clickChoix(MouseEvent event) {
         int nombre = (int) (event.getY()/80);
-        System.out.println(nombre);
 
         try {
             this.imageList.get(nombre).setOnMouseClicked(e -> {

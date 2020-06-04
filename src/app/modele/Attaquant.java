@@ -11,23 +11,28 @@ public abstract class Attaquant extends Acteur {
 	private int consVitesse;
 	private int img;
 
-	public Attaquant(Environnement env, int pv, int vitesse, int img) {
+	/*public Attaquant(Environnement env, int pv, int vitesse, int img) {
 		super(env,"Simonot");
 		init(pv,vitesse,img);
-	}
+	}*/
 
 	public Attaquant(Environnement env, int pv, int vitesse, int x, int y, int img) {
 		super(x, y, env, "Attaquant");
-		init(pv,vitesse,img);
-	}
-
-	public void init(int pv, int vitesse, int img){
 		this.pv = pv;
 		this.vitesse = vitesse;
 		this.img = img;
 		this.constante = pv;
 		this.consVitesse = vitesse;
+		//init(pv,vitesse,img);
 	}
+
+	/*public void init(int pv, int vitesse, int img){
+		this.pv = pv;
+		this.vitesse = vitesse;
+		this.img = img;
+		this.constante = pv;
+		this.consVitesse = vitesse;
+	}*/
 
 	public int getConsVitesse() {
 		return consVitesse;
