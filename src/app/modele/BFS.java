@@ -60,9 +60,6 @@ public class BFS {
     }
 
     public static int sensY(Attaquant attaquant,int x,int y,Environnement env){
-       // System.out.println(attaquant.getY()+"////"+attaquant.getX());
-
-        //System.out.println(Utile.toPixel(env.getUnNode(xB , yB).getX()));
         int direction;
         if (attaquant.getY() == Utile.toPixel(env.getUnNode(x , y).getY()) + 25
                 + attaquant.getDistanceMilieu()){

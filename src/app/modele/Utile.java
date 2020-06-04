@@ -31,7 +31,7 @@ public class Utile {
         for (int i = 0 ; i < missile.getEnv().getMap().size(); i++){
             if(missile.getEnv().getMap().get(i)/900 ==1){
                 if (count == random){
-                    missile.getFinActeur().setX(Utile.toX(i));
+                    missile.getFinActeur().setX(Utile.toX(i));  // new Normal(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
                     missile.getFinActeur().setY(Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
                     count = 0;
                 }
