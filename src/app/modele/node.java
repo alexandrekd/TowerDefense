@@ -1,8 +1,8 @@
 package app.modele;
 
 public class node {
-    int distance;
-    int x,y;
+    private int  distance;
+    private int  x,y;
 
     public node(int distance,int x,int y){
         this.distance = distance;

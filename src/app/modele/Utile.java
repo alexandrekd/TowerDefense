@@ -19,6 +19,8 @@ public class Utile {
 
     public static int toHeight(int val){return val*16;}
 
+    public static int toXPixel(int val){return  val%50;}
+
     public static int toX(int val){return val%32;}
 
     public static int toY(int val){return val/32;}
@@ -47,7 +49,7 @@ public class Utile {
         for (int i = 0 ; i < env.getMap().size(); i++){
             if(env.getMap().get(i)/900 ==1){
                 if (count == random){
-                    attaquant = new Theo(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
+                    attaquant = new Theo(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 5 +(int) (Math.random()*40));
                     count = 0;
                 }
                 else

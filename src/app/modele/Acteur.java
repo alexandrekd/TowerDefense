@@ -10,6 +10,7 @@ public abstract class Acteur {
     private String id;
     private IntegerProperty xProperty, yProperty;
     public static int compteur = 0;
+    private int distanceMilieu;
     public Environnement env;
     private String name;
 
@@ -20,6 +21,7 @@ public abstract class Acteur {
         this.yProperty = new SimpleIntegerProperty(y);
         this.env = env;
         this.name = name;
+        this.distanceMilieu = Utile.toXPixel(y)-25;
     }
 
     public String getName() {
@@ -34,6 +36,7 @@ public abstract class Acteur {
         Random random=new Random();
         int x = random.nextInt(env.getWidth()-1);
         int y = random.nextInt(env.getHeight()-1);
+        this.distanceMilieu = x - 25;
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
     }
@@ -58,4 +61,7 @@ public abstract class Acteur {
         return this.id;
     }
 
+    public int getDistanceMilieu() {
+        return distanceMilieu;
+    }
 }
