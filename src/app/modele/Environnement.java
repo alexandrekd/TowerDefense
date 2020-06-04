@@ -209,7 +209,8 @@ public class Environnement {
                     this.niveau.incrementerArgent(5);
                     i--;
                 }
-                niveau.ennemiAttaqueJoueur(((Attaquant) acteurs.get(i)));
+                else
+                    niveau.ennemiAttaqueJoueur(((Attaquant) acteurs.get(i)));
             }
             else if(this.acteurs.get(i) instanceof Mur) {
                 if (!((Mur) acteurs.get(i)).estVivant()) {

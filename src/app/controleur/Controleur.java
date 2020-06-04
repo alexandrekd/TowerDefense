@@ -205,37 +205,47 @@ public class Controleur implements Initializable {
         int colRow = (int) event.getY()-30;
         if ((env.getMap().get(Utile.toWidth(Utile.toTexture(colRow+30)) + Utile.toTexture(colIndex+25)) )% 2 == 1) {
             String choix = select();
-            if (choix.equals("Bonnot") && this.env.checkArgent(5)) {
-                Acteur tourelle = new Bonnot(colIndex, colRow, this.env);
-                add(tourelle);
+
+            Tourelle bonnot = new Bonnot(colIndex, colRow, this.env);
+            Tourelle bossard = new Bossard(colIndex, colRow, this.env);
+            Tourelle comparot = new Comparot(colIndex, colRow, this.env);
+            Tourelle ricordo = new Ricordo(colIndex, colRow, this.env);
+            Tourelle lamolle = new Lamolle(colIndex, colRow, this.env);
+            Tourelle homps = new Homps(colIndex, colRow, this.env);
+            Tourelle rety = new Rety(colIndex, colRow, this.env);
+            Tourelle simonot = new Simonot(colIndex, colRow, this.env);
+
+            if (choix.equals("Bonnot") && this.env.getNiveau().getArgent() >= bonnot.getPrix()) {
+                add(bonnot);
+                this.env.getNiveau().incrementerArgent(-bonnot.getPrix());
             }
-            else if (choix.equals("Bossard") && this.env.checkArgent(5)){
-                Acteur tourelle = new Bossard(colIndex, colRow, this.env);
-                add(tourelle);
+            else if (choix.equals("Bossard") && this.env.getNiveau().getArgent() >= bossard.getPrix()){
+                add(bossard);
+                this.env.getNiveau().incrementerArgent(-bossard.getPrix());
             }
-            else if (choix.equals("Comparot") && this.env.checkArgent(5)){
-                Acteur tourelle = new Comparot(colIndex, colRow, this.env);
-                add(tourelle);
+            else if (choix.equals("Comparot") && this.env.getNiveau().getArgent() >= comparot.getPrix()){
+                add(comparot);
+                this.env.getNiveau().incrementerArgent(-comparot.getPrix());
             }
-            else if(choix.equals("Ricordo") && this.env.checkArgent(5)){
-                Acteur tourelle = new Ricordo(colIndex, colRow, this.env);
-                add(tourelle);
+            else if(choix.equals("Ricordo") && this.env.getNiveau().getArgent() >= ricordo.getPrix()){
+                add(ricordo);
+                this.env.getNiveau().incrementerArgent(-ricordo.getPrix());
             }
-            else if(choix.equals("Lamolle") && this.env.checkArgent(5)){
-                Acteur tourelle = new Lamolle(colIndex, colRow, this.env);
-                add(tourelle);
+            else if(choix.equals("Lamolle") && this.env.getNiveau().getArgent() >= lamolle.getPrix()){
+                add(lamolle);
+                this.env.getNiveau().incrementerArgent(-lamolle.getPrix());
             }
-            else if(choix.equals("Homps") && this.env.checkArgent(5)){
-                Acteur tourelle = new Homps(colIndex, colRow, this.env);
-                add(tourelle);
+            else if(choix.equals("Homps") && this.env.getNiveau().getArgent() >= homps.getPrix()){
+                add(homps);
+                this.env.getNiveau().incrementerArgent(-homps.getPrix());
             }
-            else if(choix.equals("Rety") && this.env.checkArgent(5)){
-                Acteur tourelle = new Rety(colIndex, colRow, this.env);
-                add(tourelle);
+            else if(choix.equals("Rety") && this.env.getNiveau().getArgent() >= rety.getPrix()){
+                add(rety);
+                this.env.getNiveau().incrementerArgent(-rety.getPrix());
             }
-            else if(choix.equals("Simonot") && this.env.checkArgent(5)){
-                Acteur tourelle = new Simonot(colIndex, colRow, this.env);
-                add(tourelle);
+            else if(choix.equals("Simonot") && this.env.getNiveau().getArgent() >= simonot.getPrix()){
+                add(simonot);
+                this.env.getNiveau().incrementerArgent(-simonot.getPrix());
             }
         }
     }

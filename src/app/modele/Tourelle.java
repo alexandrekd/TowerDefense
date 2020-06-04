@@ -10,8 +10,9 @@ public abstract class Tourelle extends Acteur{
     private int typeMissile;
     private int dernierTire;
     private Attaquant cible;
+    private int prix;
 
-    public Tourelle(int degat, int x, int y, int rechargement, int portee, Environnement env, int typeMissile, String name) {
+    public Tourelle(int degat, int x, int y, int rechargement, int portee, Environnement env, int typeMissile, String name, int prix) {
         super(x, y, env, name);
         this.degat = degat;
         this.rechargement = rechargement;
@@ -19,6 +20,11 @@ public abstract class Tourelle extends Acteur{
         this.dernierTire = rechargement;
         this.typeMissile = typeMissile;
         this.cible = null;
+        this.prix = prix;
+    }
+
+    public int getPrix(){
+        return this.prix;
     }
 
     public void setRechargement(int rechargement) {
