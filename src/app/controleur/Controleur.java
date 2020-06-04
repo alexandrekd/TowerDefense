@@ -355,21 +355,25 @@ public class Controleur implements Initializable {
 
     @FXML
     void clickChoix(MouseEvent event) {
-        int nombre = (int) (event.getY()/75);
+        int nombre = (int) (event.getY()/80);
+        System.out.println(nombre);
 
-        this.imageList.get(nombre).setOnMouseClicked(e -> {
-            reset(imageList.get(nombre));
-            if (checkList.get(nombre).visibleProperty().get()) {
-                this.imageList.get(nombre).setScaleX(1);
-                this.imageList.get(nombre).setScaleY(1);
-                this.checkList.get(nombre).visibleProperty().setValue(false);
-            }
-            else{
-                this.imageList.get(nombre).setScaleX(0.8);
-                this.imageList.get(nombre).setScaleY(0.8);
-                this.checkList.get(nombre).visibleProperty().setValue(true);
-            }
-        });
+        try {
+            this.imageList.get(nombre).setOnMouseClicked(e -> {
+                reset(imageList.get(nombre));
+                if (checkList.get(nombre).visibleProperty().get()) {
+                    this.imageList.get(nombre).setScaleX(1);
+                    this.imageList.get(nombre).setScaleY(1);
+                    this.checkList.get(nombre).visibleProperty().setValue(false);
+                } else {
+                    this.imageList.get(nombre).setScaleX(0.8);
+                    this.imageList.get(nombre).setScaleY(0.8);
+                    this.checkList.get(nombre).visibleProperty().setValue(true);
+                }
+            });
+        } catch (Exception e){
+            System.out.println("La selection n'a pas marchee; nombre = " + nombre);
+        }
 
 
 
