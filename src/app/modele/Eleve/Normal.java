@@ -11,7 +11,7 @@ public class Normal extends Attaquant {
     }
 
     public void agit() {// Cette methode permet a l'attaquant de se deplacer, meme s'il peut changer de direction
-        BFS.BFS(this,env);
+            BFS.BFS(this, env);
     }
 }
 

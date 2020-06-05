@@ -55,6 +55,7 @@ public class Missile {
         }
 
     }
+
     public  int getX() {
         return xProperty.getValue();
     }

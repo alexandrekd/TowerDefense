@@ -203,7 +203,7 @@ public class Controleur implements Initializable {
 
     @FXML
     void poserTourelle(MouseEvent event) {
-        Node source = (Node)event.getSource();
+        //Node source = (Node)event.getSource();
         int colIndex = (int) event.getX()-25;
         int colRow = (int) event.getY()-30;
         if ((env.getMap().get(Utile.toWidth(Utile.toTexture(colRow+30)) + Utile.toTexture(colIndex+25)) )% 2 == 1) {
@@ -283,7 +283,7 @@ public class Controleur implements Initializable {
             plateau.getChildren().add(c);
         }
         else if(acteur instanceof Mateo){
-            Circle c = new Circle(5);
+            Circle c = new Circle(10);
             c.setId(acteur.getId());
             c.setFill(Color.GREEN);
             c.translateXProperty().bind(acteur.getXProperty());

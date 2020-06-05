@@ -75,6 +75,10 @@ public abstract class Attaquant extends Acteur {
 		return constante;
 	}
 
+	public Environnement getEnv(){
+		return this.env;
+	}
+
 	public void bouge(){
 		int xB = Utile.toTexture(this.getX());
 		int yB = Utile.toTexture(this.getY());

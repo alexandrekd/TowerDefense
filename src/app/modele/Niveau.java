@@ -38,15 +38,21 @@ public class Niveau {
     public void setVagues(){
 
         switch (idVagues){
-            case 1:
+            /*case 1:
                 vagues.getVagues().add(vagues.creerVague(5));
+                vagues.getVagues().get(0).add(0, Utile.creerEnnemi(this.env, 3));
                 vagues.getVagues().add(vagues.creerVague(4));
                 vagues.getVagues().get(1).add(1, Utile.creerEnnemi(this.env, 2));
                 vagues.getVagues().get(1).add(4, Utile.creerEnnemi(this.env, 2));
+                break;*/
+            case 1:
+                vagues.getVagues().add(vagues.creerVague(0));
+                vagues.getVagues().get(0).add(Utile.creerEnnemi(this.env, 3));
                 break;
 
             case 2:
                 vagues.getVagues().add(vagues.creerVague(15));
+                vagues.getVagues().get(0).add(0, Utile.creerEnnemi(this.env, 3));
                 vagues.getVagues().add(vagues.creerVague(10));
                 vagues.getVagues().get(1).add(2, Utile.creerEnnemi(this.env, 2));
                 vagues.getVagues().get(1).add(4, Utile.creerEnnemi(this.env, 2));
