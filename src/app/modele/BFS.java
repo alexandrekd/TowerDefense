@@ -14,25 +14,29 @@ public class BFS {
 
         int bestPos = 10000;
 
-        if (attaquant.RegardeUnVoisin(env.getUnNode(xB - 1, yB)) < bestPos) {
-            directionX = -1;
-            directionY = sensY(attaquant,xB,yB,env);
-            bestPos = attaquant.RegardeUnVoisin(env.getUnNode(xB - 1, yB));
-        }
-        if (attaquant.RegardeUnVoisin(env.getUnNode(xB + 1, yB)) < bestPos) {
-            directionX = 1;
-            directionY = sensY(attaquant,xB,yB,env);
-            bestPos = attaquant.RegardeUnVoisin(env.getUnNode(xB + 1, yB));
-        }
-        if (attaquant.RegardeUnVoisin(env.getUnNode(xB, yB - 1)) < bestPos) {
-            directionX = sensX(attaquant,xB,yB,env);
-            directionY = -1;
-            bestPos = attaquant.RegardeUnVoisin(env.getUnNode(xB, yB - 1));
-        }
-        if (attaquant.RegardeUnVoisin(env.getUnNode(xB, yB + 1)) < bestPos) {
-            directionX = sensX(attaquant,xB,yB,env);
-            directionY = 1;
-            bestPos = attaquant.RegardeUnVoisin(env.getUnNode(xB, yB + 1));
+        try {
+            if (attaquant.RegardeUnVoisin(env.getUnNode(xB - 1, yB)) < bestPos) {
+                directionX = -1;
+                directionY = sensY(attaquant, xB, yB, env);
+                bestPos = attaquant.RegardeUnVoisin(env.getUnNode(xB - 1, yB));
+            }
+            if (attaquant.RegardeUnVoisin(env.getUnNode(xB + 1, yB)) < bestPos) {
+                directionX = 1;
+                directionY = sensY(attaquant, xB, yB, env);
+                bestPos = attaquant.RegardeUnVoisin(env.getUnNode(xB + 1, yB));
+            }
+            if (attaquant.RegardeUnVoisin(env.getUnNode(xB, yB - 1)) < bestPos) {
+                directionX = sensX(attaquant, xB, yB, env);
+                directionY = -1;
+                bestPos = attaquant.RegardeUnVoisin(env.getUnNode(xB, yB - 1));
+            }
+            if (attaquant.RegardeUnVoisin(env.getUnNode(xB, yB + 1)) < bestPos) {
+                directionX = sensX(attaquant, xB, yB, env);
+                directionY = 1;
+                bestPos = attaquant.RegardeUnVoisin(env.getUnNode(xB, yB + 1));
+            }
+        } catch (Exception e){
+            System.out.println("Un ennemi a essaye de sortir du chemin");
         }
 
         attaquant.donneDirection(directionX,directionY);
@@ -61,8 +65,8 @@ public class BFS {
 
     public static int sensY(Attaquant attaquant,int x,int y,Environnement env){
         int direction;
-        if (attaquant.getY() == Utile.toPixel(env.getUnNode(x , y).getY()) + 25
-                + attaquant.getDistanceMilieu()){
+
+        if (attaquant.getY() == Utile.toPixel(env.getUnNode(x , y).getY()) + 25 + attaquant.getDistanceMilieu()){
             direction = 0;
         }
         else if (attaquant.getY() < Utile.toPixel(env.getUnNode(x , y).getY()) + 25 + attaquant.getDistanceMilieu()){

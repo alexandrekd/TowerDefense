@@ -1,5 +1,7 @@
 package app.controleur;
 
+import app.modele.Eleve.Normal;
+import app.modele.Eleve.Theo;
 import app.modele.Professeur.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -259,10 +261,18 @@ public class Controleur implements Initializable {
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
         }
-        else if(acteur instanceof Attaquant){
+        else if(acteur instanceof Normal){
             Circle c = new Circle(5);
             c.setId(acteur.getId());
             c.setFill(Color.BLUE);
+            c.translateXProperty().bind(acteur.getXProperty());
+            c.translateYProperty().bind(acteur.getYProperty());
+            plateau.getChildren().add(c);
+        }
+        else if(acteur instanceof Theo){
+            Circle c = new Circle(5);
+            c.setId(acteur.getId());
+            c.setFill(Color.RED);
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
@@ -282,7 +292,7 @@ public class Controleur implements Initializable {
         c.setFill(Color.valueOf(zone.getCouleur()));
         c.setTranslateX(zone.getX());
         c.setTranslateY(zone.getY());
-        System.out.println(zone.trouveTonAmeSoeur());
+        //System.out.println(zone.trouveTonAmeSoeur());
         c.opacityProperty().bind(zone.trouveTonAmeSoeur().vieProperty());
         plateau.getChildren().add(c);
     }

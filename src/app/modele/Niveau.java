@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static app.modele.Utile.creerEnnemi;
 import static app.modele.Utile.toTexture;
 
 public class Niveau {
@@ -34,17 +35,22 @@ public class Niveau {
         idVagues = id;
     }
 
-    public static void setVagues(){
+    public void setVagues(){
 
         switch (idVagues){
             case 1:
                 vagues.getVagues().add(vagues.creerVague(5));
-                vagues.getVagues().add(vagues.creerVague(5));
+                vagues.getVagues().add(vagues.creerVague(4));
+                vagues.getVagues().get(1).add(1, Utile.creerEnnemi(this.env, 2));
+                vagues.getVagues().get(1).add(4, Utile.creerEnnemi(this.env, 2));
                 break;
 
             case 2:
                 vagues.getVagues().add(vagues.creerVague(15));
                 vagues.getVagues().add(vagues.creerVague(10));
+                vagues.getVagues().get(1).add(2, Utile.creerEnnemi(this.env, 2));
+                vagues.getVagues().get(1).add(4, Utile.creerEnnemi(this.env, 2));
+                vagues.getVagues().get(1).add(6, Utile.creerEnnemi(this.env, 2));
                 break;
         }
 
