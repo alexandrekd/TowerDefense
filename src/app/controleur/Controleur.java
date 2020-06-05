@@ -1,7 +1,5 @@
 package app.controleur;
 
-import app.modele.Eleve.Normal;
-import app.modele.Eleve.Theo;
 import app.modele.Professeur.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -49,11 +47,15 @@ public class Controleur implements Initializable {
     private Button btStart;
 
     @FXML
-    private TextField tfNbTour;
+    private Button btLancer;
 
+    @FXML
+    private TextField tfNbTour;
 
     @FXML
     private ImageView img1;
+
+
 
     @FXML
     private ImageView imgCheck1;
@@ -61,10 +63,11 @@ public class Controleur implements Initializable {
 
     @FXML
     private ImageView img2;
+    private BooleanProperty img2checked = new SimpleBooleanProperty();
 
     @FXML
     private ImageView imgCheck2;
-    private BooleanProperty img2checked = new SimpleBooleanProperty();
+
 
     @FXML
     private ImageView img3;
@@ -107,7 +110,6 @@ public class Controleur implements Initializable {
     @FXML
     private ImageView imgCheck8;
     private BooleanProperty img8checked = new SimpleBooleanProperty();
-
 
     @FXML
     private Label argent;
@@ -261,18 +263,10 @@ public class Controleur implements Initializable {
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
         }
-        else if(acteur instanceof Normal){
+        else if(acteur instanceof Attaquant){
             Circle c = new Circle(5);
             c.setId(acteur.getId());
             c.setFill(Color.BLUE);
-            c.translateXProperty().bind(acteur.getXProperty());
-            c.translateYProperty().bind(acteur.getYProperty());
-            plateau.getChildren().add(c);
-        }
-        else if(acteur instanceof Theo){
-            Circle c = new Circle(5);
-            c.setId(acteur.getId());
-            c.setFill(Color.RED);
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
@@ -292,7 +286,7 @@ public class Controleur implements Initializable {
         c.setFill(Color.valueOf(zone.getCouleur()));
         c.setTranslateX(zone.getX());
         c.setTranslateY(zone.getY());
-        //System.out.println(zone.trouveTonAmeSoeur());
+        System.out.println(zone.trouveTonAmeSoeur());
         c.opacityProperty().bind(zone.trouveTonAmeSoeur().vieProperty());
         plateau.getChildren().add(c);
     }
@@ -362,6 +356,7 @@ public class Controleur implements Initializable {
     @FXML
     void clickChoix(MouseEvent event) {
         int nombre = (int) (event.getY()/80);
+        System.out.println(nombre);
 
         try {
             this.imageList.get(nombre).setOnMouseClicked(e -> {
