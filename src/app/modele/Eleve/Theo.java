@@ -22,14 +22,11 @@ public class Theo extends Attaquant {
         BFS.BFS(this,env);
         List<Attaquant> liste = env.getActeurs().parallelStream().filter(n -> n instanceof Attaquant).map(n -> (Attaquant) n).collect(Collectors.toList());
 
-        if (env.getNbTours() % 5 == 0) {
-            for (int i = 0; i < liste.size(); i++) {
-                if (liste.get(i).getPv() < liste.get(i).getPV()) {
-                    if (liste.get(i).getX() <= this.getX() + this.portee && liste.get(i).getX() >= this.getX() - this.portee && liste.get(i).getY() <= this.getY() + this.portee && liste.get(i).getY() >= this.getY() - this.portee) {
+        if (env.getNbTours() % 5 == 0)
+            for (int i = 0; i < liste.size(); i++)
+                if (liste.get(i).getPv() < liste.get(i).getPV())
+                    if (liste.get(i).getX() <= this.getX() + this.portee && liste.get(i).getX() >= this.getX() - this.portee && liste.get(i).getY() <= this.getY() + this.portee && liste.get(i).getY() >= this.getY() - this.portee)
                         liste.get(i).gagneDeLaVie(1);
-                    }
-                }
-            }
-        }
+
     }
 }

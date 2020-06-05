@@ -1,5 +1,6 @@
 package app.controleur;
 
+import app.modele.Eleve.Mateo;
 import app.modele.Eleve.Normal;
 import app.modele.Eleve.Theo;
 import app.modele.Professeur.*;
@@ -281,6 +282,14 @@ public class Controleur implements Initializable {
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
         }
+        else if(acteur instanceof Mateo){
+            Circle c = new Circle(5);
+            c.setId(acteur.getId());
+            c.setFill(Color.GREEN);
+            c.translateXProperty().bind(acteur.getXProperty());
+            c.translateYProperty().bind(acteur.getYProperty());
+            plateau.getChildren().add(c);
+        }
         else if (acteur instanceof Mur){
             ImageView c = new ImageView(skins.get(acteur.getName()));
             c.setId(acteur.getId());
@@ -384,9 +393,6 @@ public class Controleur implements Initializable {
         } catch (Exception e){
             System.out.println("La selection n'a pas marchee; nombre = " + nombre);
         }
-
-
-
     }
 
     public void reset(ImageView actuel){
