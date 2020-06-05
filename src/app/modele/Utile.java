@@ -32,7 +32,7 @@ public class Utile {
             if(missile.getEnv().getMap().get(i)/900 ==1){
                 if (count == random){
                     missile.getFinActeur().setX(Utile.toX(i));  // new Normal(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
-                    missile.getFinActeur().setY(Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
+                    missile.getFinActeur().setY(Utile.toPixel(Utile.toY(i)) +10+ (int) (Math.random()*30));
                     count = 0;
                 }
                 else
@@ -49,7 +49,7 @@ public class Utile {
         for (int i = 0 ; i < env.getMap().size(); i++){
             if(env.getMap().get(i)/900 ==1){
                 if (count == random){
-                    attaquant = new Theo(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 5 +(int) (Math.random()*40));
+                    attaquant = new Theo(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
                     count = 0;
                 }
                 else
