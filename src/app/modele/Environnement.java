@@ -1,6 +1,7 @@
 package app.modele;
 
 import app.modele.Professeur.Mur;
+import app.modele.TypeMissile.EffetsZone;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
@@ -17,7 +18,7 @@ public class Environnement {
     private int nbTours;
     private List<node> rang;
     private ObservableList<Zone> zone;
-    private ArrayList<Effets> effects;
+    private ArrayList<EffetsZone> effects;
     private boolean vagueEnCours;
     private Niveau niveau;
     private IntegerProperty numVagueProperty;
@@ -30,7 +31,7 @@ public class Environnement {
         this.height = height;
         this.zone = FXCollections.observableArrayList();
         this.project = FXCollections.observableArrayList();
-        this.effects = new ArrayList<Effets>();
+        this.effects = new ArrayList<EffetsZone>();
         this.rang = new ArrayList<node>();
 
         this.niveau = new Niveau(this);
@@ -46,7 +47,7 @@ public class Environnement {
         map = list;
     }
 
-    public ArrayList<Effets> getEffects() {
+    public ArrayList<EffetsZone> getEffects() {
         return effects;
     }
 
@@ -223,7 +224,9 @@ public class Environnement {
         for(int i = 0; i < this.acteurs.size(); i++){
             this.acteurs.get(i).agit();
 
+
             if(acteurs.get(i) instanceof Attaquant) {
+                System.out.println(((Attaquant) acteurs.get(i)).getPv());
                 if (!((Attaquant) acteurs.get(i)).estVivant()) {
                     this.acteurs.remove(i);
                     this.niveau.incrementerArgent(5);

@@ -19,10 +19,7 @@ public class Invocation implements Effets {
         Acteur.compteur++;
     }
 
-    @Override
-    public void agit() {
 
-    }
 
     public void spawnMur(int xarr,int yarr){
         donneCoAléatoireSurChemmin(xarr,yarr);
@@ -42,15 +39,6 @@ public class Invocation implements Effets {
     }
 
 
-    @Override
-    public void Entrer(Attaquant acteur) {
-
-    }
-
-    @Override
-    public void Sortir(Attaquant acteur) {
-
-    }
 
     @Override
     public boolean estVivant() {
