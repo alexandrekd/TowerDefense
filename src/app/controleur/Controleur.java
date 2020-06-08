@@ -44,6 +44,10 @@ public class Controleur implements Initializable {
     private Pane plateau;
 
     @FXML
+    private Pane paneActeur;
+
+
+    @FXML
     private RadioButton btTourelleSimple;
 
     @FXML
@@ -268,7 +272,7 @@ public class Controleur implements Initializable {
             c.setId(acteur.getId());
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
-            plateau.getChildren().add(c);
+            paneActeur.getChildren().add(c);
         }
         else if(acteur instanceof Normal){
             Circle c = new Circle(5);
@@ -276,7 +280,7 @@ public class Controleur implements Initializable {
             c.setFill(Color.BLUE);
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
-            plateau.getChildren().add(c);
+            paneActeur.getChildren().add(c);
         }
         else if(acteur instanceof Theo){
             Circle c = new Circle(5);
@@ -284,7 +288,7 @@ public class Controleur implements Initializable {
             c.setFill(Color.RED);
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
-            plateau.getChildren().add(c);
+            paneActeur.getChildren().add(c);
         }
         else if(acteur instanceof Mateo){
             Circle c = new Circle(10);
@@ -292,14 +296,14 @@ public class Controleur implements Initializable {
             c.setFill(Color.GREEN);
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
-            plateau.getChildren().add(c);
+            paneActeur.getChildren().add(c);
         }
         else if (acteur instanceof Mur){
             ImageView c = new ImageView(skins.get(acteur.getName()));
             c.setId(acteur.getId());
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
-            plateau.getChildren().add(c);
+            paneActeur.getChildren().add(c);
         }
     }
 
@@ -311,7 +315,7 @@ public class Controleur implements Initializable {
         c.setTranslateY(zone.getY());
         System.out.println(zone.trouveTonAmeSoeur());
         c.opacityProperty().bind(zone.trouveTonAmeSoeur().vieProperty());
-        plateau.getChildren().add(c);
+        paneActeur.getChildren().add(c);
     }
 
 
@@ -323,11 +327,11 @@ public class Controleur implements Initializable {
         project.setTranslateY(missile.getY());
         project.translateXProperty().bind(missile.getXProperty());
         project.translateYProperty().bind(missile.getYProperty());
-        plateau.getChildren().add(project);
+        paneActeur.getChildren().add(project);
     }
 
     public void removeSprite(String id){
-        plateau.getChildren().remove(plateau.lookup("#"+id));
+        paneActeur.getChildren().remove(paneActeur.lookup("#"+id));
     }
 
     @FXML
@@ -365,8 +369,11 @@ public class Controleur implements Initializable {
                         while (env.getProject().size() != 0){
                             env.getProject().remove(0);
                         }
+                        while (env.getZone().size() != 0){
+                            env.getZone().remove(0);
+                        }
                         gameLoop.stop();
-                        this.finLabel.setOpacity(1);
+                        this.finLabel.setVisible(true);
                     }
                     else if (temps%5==0){
                         this.env.unTour();
@@ -378,7 +385,7 @@ public class Controleur implements Initializable {
 
     @FXML
     void changerScene(MouseEvent event) {
-        if (this.finLabel.getOpacity() == 1) {
+        if (this.finLabel.isVisible()) {
             if (this.env.getNiveau().getVie() <= 0) {
                 try {
                     BorderPane root = FXMLLoader.load(getClass().getResource("../vue/gameOver.fxml"));

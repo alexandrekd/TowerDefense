@@ -58,8 +58,8 @@ public class BFS {
 
         node node = null;
         for (int i = 0; i < attaquant.getEnv().getRang().size(); i++){
-            if (Utile.toTexture(attaquant.getEnv().getRang().get(i).getX()) <= Utile.toTexture(attaquant.getX())+2 && Utile.toTexture(attaquant.getEnv().getRang().get(i).getX()) >= Utile.toTexture(attaquant.getX())-2 &&
-                Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) <= Utile.toTexture(attaquant.getY())+2 && Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) >= Utile.toTexture(attaquant.getY())-2)
+            if (Utile.toTexture(attaquant.getEnv().getRang().get(i).getX()) <= Utile.toTexture(attaquant.getX())+1 && Utile.toTexture(attaquant.getEnv().getRang().get(i).getX()) >= Utile.toTexture(attaquant.getX())-1 &&
+                Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) <= Utile.toTexture(attaquant.getY())+1 && Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) >= Utile.toTexture(attaquant.getY())-1)
                 node = attaquant.getEnv().getRang().get(i);
         }
         System.out.println("node " + node);

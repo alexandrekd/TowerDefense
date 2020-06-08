@@ -171,7 +171,8 @@
       <Pane fx:id="plateau" maxHeight="800.0" maxWidth="1600.0" minHeight="800.0" minWidth="1600.0" onMouseClicked="#poserTourelle" prefHeight="800.0" prefWidth="1600.0" BorderPane.alignment="CENTER">
          <children>
             <TilePane fx:id="map" maxHeight="800.0" maxWidth="1600.0" minHeight="800.0" minWidth="1600.0" prefHeight="800.0" prefWidth="1600.0" />
-            <Label fx:id="finLabel" alignment="CENTER" onMouseClicked="#changerScene" onMouseEntered="#estDessus" onMouseExited="#estPasDessus" prefHeight="211.0" prefWidth="419.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 5; -fx-opacity: 0;" text="FIN" translateX="630.0" translateY="275.0">
+            <Pane fx:id="paneActeur" prefHeight="800.0" prefWidth="1600.0" />
+            <Label fx:id="finLabel" alignment="CENTER" onMouseClicked="#changerScene" onMouseEntered="#estDessus" onMouseExited="#estPasDessus" prefHeight="211.0" prefWidth="419.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 5;" text="FIN" translateX="630.0" translateY="275.0" visible="false">
                <font>
                   <Font size="96.0" />
                </font>

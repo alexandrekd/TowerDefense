@@ -44,11 +44,7 @@ public class Niveau {
                 vagues.getVagues().add(vagues.creerVague(4));
                 vagues.getVagues().get(1).add(1, Utile.creerEnnemi(this.env, 2));
                 vagues.getVagues().get(1).add(4, Utile.creerEnnemi(this.env, 2));
-                vagues.getVagues().get(1).add(Utile.creerEnnemi(this.env, 3));
-                break;*/
-            case 1:
-                vagues.getVagues().add(vagues.creerVague(0));
-                vagues.getVagues().get(0).add( Utile.creerEnnemi(this.env, 3));
+                vagues.getVagues().get(1).add(Utile.creerEnnemi(this.env, 3));*/
                 break;
 
             case 2:

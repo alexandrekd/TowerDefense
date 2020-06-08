@@ -150,22 +150,6 @@ public class Environnement {
         return result;
     }
 
-    public static int[] getMilieuChemin(Attaquant attaquant){
-        int[] coordoneesMilieu = new int[2];
-
-        node node = null;
-        for (int i = 0; i < attaquant.getEnv().getRang().size(); i++){
-            if (Utile.toTexture(attaquant.getEnv().getRang().get(i).getX()) <= Utile.toTexture(attaquant.getX())+2 && Utile.toTexture(attaquant.getEnv().getRang().get(i).getX()) >= Utile.toTexture(attaquant.getX())-2 &&
-                    Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) <= Utile.toTexture(attaquant.getY())+2 && Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) >= Utile.toTexture(attaquant.getY())-2)
-                node = attaquant.getEnv().getRang().get(i);
-        }
-        System.out.println("node " + node);
-        coordoneesMilieu[0] = Utile.toPixel(node.getX()) + 25;
-        coordoneesMilieu[1] = Utile.toPixel(node.getX()) + 25;
-
-        return coordoneesMilieu;
-    }
-
     public boolean estDejaLa(int x,int y){
         boolean result = false;
         for (int i = 0; i < rang.size() ; i++){
@@ -198,8 +182,16 @@ public class Environnement {
 
 
     public void unTour(){
-        //faire methodes pour chaque if
+        gererProj();
+        gererEffet();
+        // Si une vague est en cours, va chercher un ennemi a ajouter
+        ajouterEnnemi();
+        gererActeur();
 
+        this.nbTours++;
+    }
+
+    private void gererProj(){
         for (int a = 0; a < 15; a++) {
             for (int i = 0; i < this.project.size(); i++) {
                 this.project.get(i).bouge();
@@ -209,18 +201,23 @@ public class Environnement {
                 }
             }
         }
+    }
 
+    private void gererEffet(){
         for (int i = 0; i < effects.size();i++){
             effects.get(i).agit();
             if (!(effects.get(i).estVivant())){
                 this.effects.remove(effects.get(i));
             }
         }
+    }
 
-        // Si une vague est en cours, va chercher un ennemi a ajouter
+    private void ajouterEnnemi(){
         if (this.vagueEnCours && this.nbTours%15 == 0)
             this.acteurs.add(this.niveau.getVagues().fetchEnnemi());
+    }
 
+    private void gererActeur(){
         for(int i = 0; i < this.acteurs.size(); i++){
             this.acteurs.get(i).agit();
 
@@ -242,12 +239,8 @@ public class Environnement {
                 }
             }
         }
-
-
-
-
-        this.nbTours++;
     }
+
 
     public void zoneMorte(Zone zone){
         while (zone.getActeursDansLaZone().size() != 0){
