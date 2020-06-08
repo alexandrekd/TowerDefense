@@ -24,7 +24,7 @@ public class Niveau {
     public Niveau(Environnement env){
         this.id = "Niv" + compteur++;
         this.env = env;
-        this.vieProperty = new SimpleIntegerProperty(500);
+        this.vieProperty = new SimpleIntegerProperty(1);
         this.argentProperty = new SimpleIntegerProperty(20);
 
         vagues = new Vagues(this.env);
@@ -38,13 +38,16 @@ public class Niveau {
     public void setVagues(){
 
         switch (idVagues){
-            case 1:
+            /*case 1:
                 vagues.getVagues().add(vagues.creerVague(5));
                 vagues.getVagues().get(0).add(0, Utile.creerEnnemi(this.env, 3));
                 vagues.getVagues().add(vagues.creerVague(4));
                 vagues.getVagues().get(1).add(1, Utile.creerEnnemi(this.env, 2));
                 vagues.getVagues().get(1).add(4, Utile.creerEnnemi(this.env, 2));
                 vagues.getVagues().get(1).add(Utile.creerEnnemi(this.env, 3));
+                break;*/
+            case 1:
+                vagues.getVagues().add(vagues.creerVague(1));
                 break;
 
             case 2:
