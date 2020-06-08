@@ -44,6 +44,10 @@ public class Controleur implements Initializable {
     private Pane plateau;
 
     @FXML
+    private Pane paneActeur;
+
+
+    @FXML
     private RadioButton btTourelleSimple;
 
     @FXML
@@ -122,6 +126,9 @@ public class Controleur implements Initializable {
 
     @FXML
     private Label vie;
+
+    @FXML
+    private Label finLabel;
 
     private ArrayList<ImageView> imageList;
     private ArrayList<ImageView> checkList;
@@ -265,7 +272,7 @@ public class Controleur implements Initializable {
             c.setId(acteur.getId());
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
-            plateau.getChildren().add(c);
+            paneActeur.getChildren().add(c);
         }
         else if(acteur instanceof Normal){
             Circle c = new Circle(5);
@@ -273,7 +280,7 @@ public class Controleur implements Initializable {
             c.setFill(Color.BLUE);
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
-            plateau.getChildren().add(c);
+            paneActeur.getChildren().add(c);
         }
         else if(acteur instanceof Theo){
             Circle c = new Circle(5);
@@ -281,7 +288,7 @@ public class Controleur implements Initializable {
             c.setFill(Color.RED);
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
-            plateau.getChildren().add(c);
+            paneActeur.getChildren().add(c);
         }
         else if(acteur instanceof Mateo){
             Circle c = new Circle(10);
@@ -289,14 +296,14 @@ public class Controleur implements Initializable {
             c.setFill(Color.GREEN);
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
-            plateau.getChildren().add(c);
+            paneActeur.getChildren().add(c);
         }
         else if (acteur instanceof Mur){
             ImageView c = new ImageView(skins.get(acteur.getName()));
             c.setId(acteur.getId());
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
-            plateau.getChildren().add(c);
+            paneActeur.getChildren().add(c);
         }
     }
 
@@ -308,7 +315,7 @@ public class Controleur implements Initializable {
         c.setTranslateY(zone.getY());
         System.out.println(zone.trouveTonAmeSoeur());
         c.opacityProperty().bind(zone.trouveTonAmeSoeur().vieProperty());
-        plateau.getChildren().add(c);
+        paneActeur.getChildren().add(c);
     }
 
 
@@ -320,11 +327,11 @@ public class Controleur implements Initializable {
         project.setTranslateY(missile.getY());
         project.translateXProperty().bind(missile.getXProperty());
         project.translateYProperty().bind(missile.getYProperty());
-        plateau.getChildren().add(project);
+        paneActeur.getChildren().add(project);
     }
 
     public void removeSprite(String id){
-        plateau.getChildren().remove(plateau.lookup("#"+id));
+        paneActeur.getChildren().remove(paneActeur.lookup("#"+id));
     }
 
     @FXML
@@ -358,11 +365,15 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.07),
                 (event -> {
-                    if(this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0){       // on stop la boucle s'il n'y a plus de vagues dans le niveau et s'il n'y a plus d'ennemi sur le terrain
+                    if((this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0) || this.env.getNiveau().getVie() <= 0){       // on stop la boucle s'il n'y a plus de vagues dans le niveau et s'il n'y a plus d'ennemi sur le terrain
                         while (env.getProject().size() != 0){
                             env.getProject().remove(0);
                         }
+                        while (env.getZone().size() != 0){
+                            env.getZone().remove(0);
+                        }
                         gameLoop.stop();
+                        this.finLabel.setVisible(true);
                     }
                     else if (temps%5==0){
                         this.env.unTour();
@@ -370,6 +381,47 @@ public class Controleur implements Initializable {
                 })
         );
         gameLoop.getKeyFrames().add(kf);
+    }
+
+    @FXML
+    void changerScene(MouseEvent event) {
+        if (this.finLabel.isVisible()) {
+            if (this.env.getNiveau().getVie() <= 0) {
+                try {
+                    BorderPane root = FXMLLoader.load(getClass().getResource("../vue/gameOver.fxml"));
+                    Scene scene = new Scene(root, 1920, 1080);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (this.env.getNiveau().getVie() > 0) {
+                try {
+                    BorderPane root = FXMLLoader.load(getClass().getResource("../vue/gameWin.fxml"));
+                    Scene scene = new Scene(root, 1920, 1080);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @FXML
+    void estDessus(MouseEvent event) {
+        this.finLabel.setScaleX(1.1);
+        this.finLabel.setScaleY(1.1);
+    }
+
+    @FXML
+    void estPasDessus(MouseEvent event) {
+        this.finLabel.setScaleX(1);
+        this.finLabel.setScaleY(1);
     }
 
 

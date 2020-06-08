@@ -18,20 +18,6 @@ public class Debut implements Effets {
         Acteur.compteur++;
     }
 
-    @Override
-    public void agit() {
-
-    }
-
-    @Override
-    public void Entrer(Attaquant acteur) {
-
-    }
-
-    @Override
-    public void Sortir(Attaquant acteur) {
-
-    }
 
     @Override
     public void Explosion(Missile missile) {

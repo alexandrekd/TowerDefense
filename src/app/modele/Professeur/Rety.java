@@ -16,15 +16,11 @@ public class Rety extends Tourelle {
 
     @Override
     public void agit() {
-        tire();
-    }
-
-    public void tire() {
         if(getRechargement() == getDernierTire()) {
             if (vers == 0){
                 Attaquant cible = getCible();
                 if (cible != null)
-                    env.addProject(new Missile(this, cible, env,new Degat()));
+                    env.addProject(creerMissile(cible));
                 setDernierTire(0);
                 if (boost == -10) {
                     vers++;
@@ -36,7 +32,7 @@ public class Rety extends Tourelle {
             else{
                 Attaquant cible = getCible();
                 if (cible != null)
-                    env.addProject(new Missile(this, cible, env,new Degat()));
+                    env.addProject(creerMissile(cible));
                 setDernierTire(0);
                 if (boost == -6) {
                     boost = 10;
@@ -51,4 +47,11 @@ public class Rety extends Tourelle {
         else
             setDernierTire(getDernierTire()+1);
     }
+
+    @Override
+    public Missile creerMissile(Attaquant cible) {
+        return new Missile(this, cible, env,new Degat());
+    }
+
+
 }

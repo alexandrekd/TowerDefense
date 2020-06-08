@@ -16,20 +16,6 @@ public class Degat implements Effets {
         this.id = "A" + Acteur.compteur;
         Acteur.compteur++;
     }
-    @Override
-    public void agit() {
-
-    }
-
-    @Override
-    public void Entrer(Attaquant acteur) {
-
-    }
-
-    @Override
-    public void Sortir(Attaquant acteur) {
-
-    }
 
     @Override
     public boolean estVivant() {

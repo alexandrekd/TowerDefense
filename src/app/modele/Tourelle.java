@@ -1,5 +1,7 @@
 package app.modele;
 
+import app.modele.TypeMissile.Degat;
+
 import java.util.ArrayList;
 
 public abstract class Tourelle extends Acteur{
@@ -38,6 +40,24 @@ public abstract class Tourelle extends Acteur{
     public int getPortee(){
         return this.portee;
     }
+
+    @Override
+    public void agit(){
+        tirer();
+    }
+    public void tirer(){
+        if(getRechargement() == getDernierTire()) {
+            Attaquant cible = getCible();
+            if (cible != null)
+                env.addProject(this.creerMissile(cible));
+            setDernierTire(0);;
+        }
+        else
+            setDernierTire(getDernierTire()+1);
+    }
+
+    public abstract Missile creerMissile(Attaquant cible);
+
 
     // Cette méthode récupère une cible a la portée de la tour, à moins d'en avoir deja une
     public Attaquant getCible() {

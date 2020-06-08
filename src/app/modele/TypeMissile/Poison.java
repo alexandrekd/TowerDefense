@@ -7,7 +7,7 @@ import javafx.collections.ListChangeListener;
 
 import java.util.ArrayList;
 
-public class Poison implements Effets {
+public class Poison implements EffetsZone {
     private int degat;
     private Environnement env;
     private Zone zone;
