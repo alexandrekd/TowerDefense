@@ -5,7 +5,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener;
 
-public class Ralentissement implements Effets {
+public class Ralentissement implements EffetsZone {
     private double ralentissement;
     private Environnement env;
     private Zone zone;

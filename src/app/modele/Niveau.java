@@ -38,8 +38,8 @@ public class Niveau {
     public void setVagues(){
 
         switch (idVagues){
-            case 1:
-                vagues.getVagues().add(vagues.creerVague(1));/*
+            /*case 1:
+                vagues.getVagues().add(vagues.creerVague(5));
                 vagues.getVagues().get(0).add(0, Utile.creerEnnemi(this.env, 3));
                 vagues.getVagues().add(vagues.creerVague(4));
                 vagues.getVagues().get(1).add(1, Utile.creerEnnemi(this.env, 2));
@@ -84,6 +84,7 @@ public class Niveau {
     }
 
     public boolean joueurVivant(){  //Cette méthode renvoie true si le joueur est vivant ou renvoie false si le jour à des pv inférieurs ou égal à 0.
+
         if(this.getVie() > 0){
             return true;
         }
@@ -96,6 +97,7 @@ public class Niveau {
                                         //vont apparaitre), ou renvoie false si le joueur est encore en cours de partie
 
         if(this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0){
+            System.out.println("J'ai gagné !!!!!");
             return true;
         }
         else{
