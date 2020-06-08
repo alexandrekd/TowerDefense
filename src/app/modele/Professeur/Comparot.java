@@ -12,18 +12,7 @@ public class Comparot extends Tourelle {
     }
 
     @Override
-    public void agit() {
-        tire();
-    }
-
-    public void tire() {
-        if(getRechargement() == getDernierTire()) {
-            Attaquant cible = getCible();
-            if (cible != null)
-                env.addProject(new Missile(this, cible, env,new Poison(2,env,20)));
-            setDernierTire(0);
-        }
-        else
-            setDernierTire(getDernierTire()+1);
+    public Missile creerMissile(Attaquant cible){
+        return new Missile(this, cible, env,new Poison(2,env,20));
     }
 }
