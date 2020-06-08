@@ -22,6 +22,7 @@ public class Environnement {
     private Niveau niveau;
     private IntegerProperty numVagueProperty;
     private int xFin, yFin;
+    private ArrayList<Attaquant> vaincu;
 
     public Environnement(int width, int height){
         this.vagueEnCours = false;
@@ -40,6 +41,7 @@ public class Environnement {
         for(i = 0; i < this.map.size() && this.map.get(i) != 104; i++){}
         this.xFin = Utile.toX(i);
         this.yFin = Utile.toY(i);
+        this.vaincu = new ArrayList<>();
     }
 
     public static void setMap(ArrayList<Integer> list){
@@ -81,6 +83,10 @@ public class Environnement {
 
     public ObservableList<Acteur> getActeurs(){
         return this.acteurs;
+    }
+
+    public ArrayList<Attaquant> getVaincu(){
+        return this.vaincu;
     }
 
     // Cette fonction permet tout simplement de renvoyer la tuile d'arrivé
@@ -222,6 +228,7 @@ public class Environnement {
 
             if(acteurs.get(i) instanceof Attaquant) {
                 if (!((Attaquant) acteurs.get(i)).estVivant()) {
+                    this.vaincu.add((Attaquant) this.acteurs.get(i));
                     this.acteurs.remove(i);
                     this.niveau.incrementerArgent(5);
                     i--;

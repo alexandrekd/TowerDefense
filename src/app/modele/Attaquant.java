@@ -50,7 +50,8 @@ public abstract class Attaquant extends Acteur {
 
 	public int getPv() { return pv; }
 
-	public void gagneDeLaVie(int pv){this.pv += pv;
+	public void gagneDeLaVie(int pv){
+		this.pv += pv;
 	}
 
 	public void setPv(int pv) { this.pv = pv; }
