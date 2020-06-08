@@ -149,22 +149,6 @@ public class Environnement {
         return result;
     }
 
-    public static int[] getMilieuChemin(Attaquant attaquant){
-        int[] coordoneesMilieu = new int[2];
-
-        node node = null;
-        for (int i = 0; i < attaquant.getEnv().getRang().size(); i++){
-            if (Utile.toTexture(attaquant.getEnv().getRang().get(i).getX()) <= Utile.toTexture(attaquant.getX())+2 && Utile.toTexture(attaquant.getEnv().getRang().get(i).getX()) >= Utile.toTexture(attaquant.getX())-2 &&
-                    Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) <= Utile.toTexture(attaquant.getY())+2 && Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) >= Utile.toTexture(attaquant.getY())-2)
-                node = attaquant.getEnv().getRang().get(i);
-        }
-        System.out.println("node " + node);
-        coordoneesMilieu[0] = Utile.toPixel(node.getX()) + 25;
-        coordoneesMilieu[1] = Utile.toPixel(node.getX()) + 25;
-
-        return coordoneesMilieu;
-    }
-
     public boolean estDejaLa(int x,int y){
         boolean result = false;
         for (int i = 0; i < rang.size() ; i++){

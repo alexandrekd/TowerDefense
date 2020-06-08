@@ -369,8 +369,11 @@ public class Controleur implements Initializable {
                         while (env.getProject().size() != 0){
                             env.getProject().remove(0);
                         }
+                        while (env.getZone().size() != 0){
+                            env.getZone().remove(0);
+                        }
                         gameLoop.stop();
-                        this.finLabel.setOpacity(1);
+                        this.finLabel.setVisible(true);
                     }
                     else if (temps%5==0){
                         this.env.unTour();
@@ -382,7 +385,7 @@ public class Controleur implements Initializable {
 
     @FXML
     void changerScene(MouseEvent event) {
-        if (this.finLabel.getOpacity() == 1) {
+        if (this.finLabel.isVisible()) {
             if (this.env.getNiveau().getVie() <= 0) {
                 try {
                     BorderPane root = FXMLLoader.load(getClass().getResource("../vue/gameOver.fxml"));
