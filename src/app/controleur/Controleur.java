@@ -139,6 +139,7 @@ public class Controleur implements Initializable {
 
         this.argent.textProperty().bind(this.env.getNiveau().getArgentProperty().asString());
         this.round.textProperty().bind(this.env.getNumVagueProperty().asString());
+        this.vie.textProperty().bind(this.env.getNiveau().getVieProperty().asString());
 
         skins = new HashMap<String, String>();
             skins.put("Bonnot" , "resources/skins/1.png");
