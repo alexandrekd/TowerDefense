@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static app.modele.Utile.creerEnnemi;
 import static app.modele.Utile.toTexture;
 
 public class Niveau {
@@ -14,7 +15,7 @@ public class Niveau {
     private String id;
     private static int compteur = 0;
     private Environnement env;
-    private int vie;
+    private IntegerProperty vieProperty;
     private IntegerProperty argentProperty;
     private static Vagues vagues;
     private static int idVagues;
@@ -23,7 +24,7 @@ public class Niveau {
     public Niveau(Environnement env){
         this.id = "Niv" + compteur++;
         this.env = env;
-        this.vie = 500;
+        this.vieProperty = new SimpleIntegerProperty(500);
         this.argentProperty = new SimpleIntegerProperty(20);
 
         vagues = new Vagues(this.env);
@@ -34,17 +35,25 @@ public class Niveau {
         idVagues = id;
     }
 
-    public static void setVagues(){
+    public void setVagues(){
 
         switch (idVagues){
             case 1:
                 vagues.getVagues().add(vagues.creerVague(5));
-                vagues.getVagues().add(vagues.creerVague(5));
+                vagues.getVagues().get(0).add(0, Utile.creerEnnemi(this.env, 3));
+                vagues.getVagues().add(vagues.creerVague(4));
+                vagues.getVagues().get(1).add(1, Utile.creerEnnemi(this.env, 2));
+                vagues.getVagues().get(1).add(4, Utile.creerEnnemi(this.env, 2));
+                vagues.getVagues().get(1).add(Utile.creerEnnemi(this.env, 3));
                 break;
 
             case 2:
                 vagues.getVagues().add(vagues.creerVague(15));
+                vagues.getVagues().get(0).add(0, Utile.creerEnnemi(this.env, 3));
                 vagues.getVagues().add(vagues.creerVague(10));
+                vagues.getVagues().get(1).add(2, Utile.creerEnnemi(this.env, 2));
+                vagues.getVagues().get(1).add(4, Utile.creerEnnemi(this.env, 2));
+                vagues.getVagues().get(1).add(6, Utile.creerEnnemi(this.env, 2));
                 break;
         }
 
@@ -56,7 +65,6 @@ public class Niveau {
 
     public void incrementerArgent(int argent){
         setArgent(this.getArgent() + argent);
-        System.out.println("\nTu a gagné " + argent + "€\nTu as " + this.getArgent() + "€");
     }
 
     // Cette méthode a pour rôle de s'occuper de l'ennemi lorsqu'il arrive à la fin de la map,
@@ -69,15 +77,15 @@ public class Niveau {
         int yArrive = env.getArrivé().getY(); //xArrive et yArrive sont les coordonées de la tuile d'arrivé
 
         if (x == xArrive && y == yArrive ){
-            this.vie = this.vie - ennemi.getPv();
+            this.setVie(this.getVie() - ennemi.getPv());
             env.getActeurs().remove(ennemi);
         }
 
     }
 
     public boolean joueurVivant(){  //Cette méthode renvoie true si le joueur est vivant ou renvoie false si le jour à des pv inférieurs ou égal à 0.
-        if(this.vie > 0){
-            System.out.println("Je suis vivant !");
+
+        if(this.getVie() > 0){
             return true;
         }
         else{
@@ -107,8 +115,14 @@ public class Niveau {
         this.argentProperty.setValue(v);
     }
 
-    public int getVie() {
-        return vie;
+    public IntegerProperty getVieProperty() {
+        return vieProperty;
+    }
+    public int getVie(){
+        return this.vieProperty.getValue();
+    }
+    public void setVie(int v){
+        this.vieProperty.setValue(v);
     }
 
     public String getId() {

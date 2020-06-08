@@ -19,7 +19,7 @@ public class Vagues {
     public ArrayList<Attaquant> creerVague(int nbEnnemis){
         ArrayList<Attaquant> vague = new ArrayList<>();
         for(int i = 0; i < nbEnnemis; i++)
-            vague.add((Attaquant) Utile.creerEnnemi(this.env));
+            vague.add((Attaquant) Utile.creerEnnemi(this.env, 1));
         return vague;
     }
 

@@ -61,6 +61,10 @@ public class Environnement {
         return this.height;
     }
 
+    public ObservableList<Missile> getListeMissiles(){
+        return this.project;
+    }
+
     public Niveau getNiveau(){
         return this.niveau;
     }
@@ -138,6 +142,7 @@ public class Environnement {
     public List<node> getRang() {
         return rang;
     }
+
     public node getUnNode(int x , int y){
 
         node result = null;
@@ -146,6 +151,22 @@ public class Environnement {
                 result = rang.get(i);
         }
         return result;
+    }
+
+    public static int[] getMilieuChemin(Attaquant attaquant){
+        int[] coordoneesMilieu = new int[2];
+
+        node node = null;
+        for (int i = 0; i < attaquant.getEnv().getRang().size(); i++){
+            if (Utile.toTexture(attaquant.getEnv().getRang().get(i).getX()) <= Utile.toTexture(attaquant.getX())+2 && Utile.toTexture(attaquant.getEnv().getRang().get(i).getX()) >= Utile.toTexture(attaquant.getX())-2 &&
+                    Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) <= Utile.toTexture(attaquant.getY())+2 && Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) >= Utile.toTexture(attaquant.getY())-2)
+                node = attaquant.getEnv().getRang().get(i);
+        }
+        System.out.println("node " + node);
+        coordoneesMilieu[0] = Utile.toPixel(node.getX()) + 25;
+        coordoneesMilieu[1] = Utile.toPixel(node.getX()) + 25;
+
+        return coordoneesMilieu;
     }
 
     public boolean estDejaLa(int x,int y){
@@ -178,7 +199,10 @@ public class Environnement {
         return zone;
     }
 
+
     public void unTour(){
+        //faire methodes pour chaque if
+
         for (int a = 0; a < 15; a++) {
             for (int i = 0; i < this.project.size(); i++) {
                 this.project.get(i).bouge();
@@ -218,7 +242,6 @@ public class Environnement {
                     i--;
                 }
             }
-
         }
 
 
@@ -240,16 +263,6 @@ public class Environnement {
     }
     public void stopVague(){
         this.vagueEnCours = false;
-    }
-
-    public boolean checkArgent(int prix){
-        System.out.println("\nArgent : " + this.niveau.getArgent() + "\nprix : " + prix);
-        if (this.niveau.getArgent() >= prix) {
-            this.niveau.incrementerArgent(-prix);
-            return true;
-        }
-        System.out.println("Pas assez d'argent");
-        return false;
     }
 
     public ArrayList<Attaquant> getAttaquantsInActeurs(){

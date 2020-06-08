@@ -1,5 +1,8 @@
 package app.controleur;
 
+import app.modele.Eleve.Mateo;
+import app.modele.Eleve.Normal;
+import app.modele.Eleve.Theo;
 import app.modele.Professeur.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -136,6 +139,7 @@ public class Controleur implements Initializable {
 
         this.argent.textProperty().bind(this.env.getNiveau().getArgentProperty().asString());
         this.round.textProperty().bind(this.env.getNumVagueProperty().asString());
+        this.vie.textProperty().bind(this.env.getNiveau().getVieProperty().asString());
 
         skins = new HashMap<String, String>();
             skins.put("Bonnot" , "resources/skins/1.png");
@@ -200,7 +204,7 @@ public class Controleur implements Initializable {
 
     @FXML
     void poserTourelle(MouseEvent event) {
-        Node source = (Node)event.getSource();
+        //Node source = (Node)event.getSource();
         int colIndex = (int) event.getX()-25;
         int colRow = (int) event.getY()-30;
         if ((env.getMap().get(Utile.toWidth(Utile.toTexture(colRow+30)) + Utile.toTexture(colIndex+25)) )% 2 == 1) {
@@ -263,10 +267,26 @@ public class Controleur implements Initializable {
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
         }
-        else if(acteur instanceof Attaquant){
+        else if(acteur instanceof Normal){
             Circle c = new Circle(5);
             c.setId(acteur.getId());
             c.setFill(Color.BLUE);
+            c.translateXProperty().bind(acteur.getXProperty());
+            c.translateYProperty().bind(acteur.getYProperty());
+            plateau.getChildren().add(c);
+        }
+        else if(acteur instanceof Theo){
+            Circle c = new Circle(5);
+            c.setId(acteur.getId());
+            c.setFill(Color.RED);
+            c.translateXProperty().bind(acteur.getXProperty());
+            c.translateYProperty().bind(acteur.getYProperty());
+            plateau.getChildren().add(c);
+        }
+        else if(acteur instanceof Mateo){
+            Circle c = new Circle(10);
+            c.setId(acteur.getId());
+            c.setFill(Color.GREEN);
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             plateau.getChildren().add(c);
@@ -355,24 +375,25 @@ public class Controleur implements Initializable {
 
     @FXML
     void clickChoix(MouseEvent event) {
-        int nombre = (int) (event.getY()/75);
+        int nombre = (int) (event.getY()/80);
+        System.out.println(nombre);
 
-        this.imageList.get(nombre).setOnMouseClicked(e -> {
-            reset(imageList.get(nombre));
-            if (checkList.get(nombre).visibleProperty().get()) {
-                this.imageList.get(nombre).setScaleX(1);
-                this.imageList.get(nombre).setScaleY(1);
-                this.checkList.get(nombre).visibleProperty().setValue(false);
-            }
-            else{
-                this.imageList.get(nombre).setScaleX(0.8);
-                this.imageList.get(nombre).setScaleY(0.8);
-                this.checkList.get(nombre).visibleProperty().setValue(true);
-            }
-        });
-
-
-
+        try {
+            this.imageList.get(nombre).setOnMouseClicked(e -> {
+                reset(imageList.get(nombre));
+                if (checkList.get(nombre).visibleProperty().get()) {
+                    this.imageList.get(nombre).setScaleX(1);
+                    this.imageList.get(nombre).setScaleY(1);
+                    this.checkList.get(nombre).visibleProperty().setValue(false);
+                } else {
+                    this.imageList.get(nombre).setScaleX(0.8);
+                    this.imageList.get(nombre).setScaleY(0.8);
+                    this.checkList.get(nombre).visibleProperty().setValue(true);
+                }
+            });
+        } catch (Exception e){
+            System.out.println("La selection n'a pas marchee; nombre = " + nombre);
+        }
     }
 
     public void reset(ImageView actuel){
