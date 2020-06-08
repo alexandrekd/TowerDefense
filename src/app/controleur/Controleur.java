@@ -409,6 +409,7 @@ public class Controleur implements Initializable {
     public void gameOver() {
 
         if(this.env.getNiveau().joueurVivant() == false){ //On fait appel ici à la méthode joueurVivant() pour savoir si le joueur est encore vivant, si ça renvoie non, alors le joueur a perdu et on affiche la scène de défaite
+            System.out.println("Je suis MORT !");
             try {
                 BorderPane root = FXMLLoader.load(getClass().getResource("../vue/gameOver.fxml"));
                 Scene scene = new Scene(root,1920,1080);

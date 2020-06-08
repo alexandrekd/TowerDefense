@@ -77,6 +77,7 @@ public class Niveau {
 
     public boolean joueurVivant(){  //Cette méthode renvoie true si le joueur est vivant ou renvoie false si le jour à des pv inférieurs ou égal à 0.
         if(this.vie > 0){
+            System.out.println("Je suis vivant !");
             return true;
         }
         else{
@@ -88,6 +89,7 @@ public class Niveau {
                                         //vont apparaitre), ou renvoie false si le joueur est encore en cours de partie
 
         if(this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0){
+            System.out.println("J'ai gagné !!!!!");
             return true;
         }
         else{
