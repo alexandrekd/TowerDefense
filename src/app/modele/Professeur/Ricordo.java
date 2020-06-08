@@ -12,31 +12,8 @@ public class Ricordo extends Tourelle {
     }
 
     @Override
-    public void agit() {
-        tire();
+    public Missile creerMissile(Attaquant cible) {
+        return new Missile(this, cible, env,new Ralentissement(0.5,env,20));
     }
 
-    public void tire() {
-        if(getRechargement() == getDernierTire()) {
-            Attaquant cible = getCible();
-            if (cible != null)
-                env.addProject(new Missile(this, cible, env,new Ralentissement(0.5,env,20)));
-            setDernierTire(0);;
-        }
-        else
-            setDernierTire(getDernierTire()+1);
-    }
-
-    @Override
-    public Attaquant getCible() {
-        Attaquant cible = null;
-
-        for (int i = 0; i < this.env.getActeurs().size();i++)
-            if (this.env.getActeurs().get(i) instanceof Attaquant) {
-                if (env.getActeurs().get(i).getX() <= this.getX() + getPortee() && env.getActeurs().get(i).getX() >= this.getX() - getPortee() && env.getActeurs().get(i).getY() <= this.getY() + getPortee() && env.getActeurs().get(i).getY() >= this.getY() - getPortee()) {
-                    cible = (Attaquant) env.getActeurs().get(i);
-                }
-            }
-        return cible;
-    }
 }

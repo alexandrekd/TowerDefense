@@ -13,18 +13,8 @@ public class Bonnot extends Tourelle {
     }
 
     @Override
-    public void agit() {
-        tire();
+    public Missile creerMissile(Attaquant cible) {
+        return new Missile(this, cible, env,new Degat());
     }
 
-    public void tire() {
-        if(getRechargement() == getDernierTire()) {
-            Attaquant cible = getCible();
-            if (cible != null)
-                env.addProject(new Missile(this, cible, env,new Degat()));
-            setDernierTire(0);;
-        }
-        else
-            setDernierTire(getDernierTire()+1);
-    }
 }
