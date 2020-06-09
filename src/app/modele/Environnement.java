@@ -233,7 +233,6 @@ public class Environnement {
 
 
             if(acteurs.get(i) instanceof Attaquant) {
-                System.out.println(((Attaquant) acteurs.get(i)).getPv());
                 if (!((Attaquant) acteurs.get(i)).estVivant()) {
                     this.vaincu.add((Attaquant) this.acteurs.get(i));
                     this.acteurs.remove(i);

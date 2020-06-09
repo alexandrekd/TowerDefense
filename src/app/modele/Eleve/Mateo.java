@@ -8,7 +8,7 @@ import app.modele.Utile;
 // Cet ennemi fait apparaitre
 public class Mateo extends Attaquant {
     public Mateo(Environnement env, int x, int y){
-        super(env,750,3,x,y,1);
+        super(env,100,3,x,y,1);
     }
 
     public void agit() {

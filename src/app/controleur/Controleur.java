@@ -135,6 +135,7 @@ public class Controleur implements Initializable {
     private HashMap<String, String> skins;
     private Environnement env;
     private int temps;
+    private int totalEnnemis;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -142,6 +143,7 @@ public class Controleur implements Initializable {
         imageList = new ArrayList<ImageView>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
         checkList = new ArrayList<ImageView>(Arrays.asList(imgCheck1,imgCheck2,imgCheck3,imgCheck4,imgCheck5,imgCheck6,imgCheck7,imgCheck8));
         checkedList = new ArrayList<BooleanProperty>(Arrays.asList(img1checked,img2checked,img3checked,img4checked,img5checked,img6checked,img7checked,img8checked));
+        this.totalEnnemis = 0;
 
         this.argent.textProperty().bind(this.env.getNiveau().getArgentProperty().asString());
         this.round.textProperty().bind(this.env.getNumVagueProperty().asString());
@@ -157,7 +159,7 @@ public class Controleur implements Initializable {
             skins.put("Comparot" , "resources/skins/3.png");
             skins.put("Simonot" , "resources/skins/8.png");
 
-        ListChangeListener<Acteur> listen= c->{
+        ListChangeListener<Acteur> listenActeur= c->{
             while (c.next()) {
                 for(Acteur acteur : c.getAddedSubList()) {
                     creerSprite(acteur);
@@ -168,10 +170,10 @@ public class Controleur implements Initializable {
                 }
             }
         };
-        this.env.getActeurs().addListener(listen);
+        this.env.getActeurs().addListener(listenActeur);
 
 
-        ListChangeListener<Missile> listen2= c ->{
+        ListChangeListener<Missile> listenMissile= c ->{
             while (c.next()) {
                 for(Missile missile : c.getAddedSubList()) {
                     creerSpriteMissile(missile);
@@ -182,9 +184,9 @@ public class Controleur implements Initializable {
                 }
             }
         };
-        this.env.getProject().addListener(listen2);
+        this.env.getProject().addListener(listenMissile);
 
-        ListChangeListener<Zone> listen3= c->{
+        ListChangeListener<Zone> listenZone= c->{
             while (c.next()) {
                 for(Zone zone : c.getAddedSubList()) {
                     creerCercle(zone);
@@ -195,12 +197,13 @@ public class Controleur implements Initializable {
                 }
             }
         };
-        this.env.getZone().addListener(listen3);
+        this.env.getZone().addListener(listenZone);
 
 
         setmap();
         initAnimation();
         env.faireRang();
+
     }
 
     public void afficher(){
@@ -280,6 +283,7 @@ public class Controleur implements Initializable {
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             paneActeur.getChildren().add(c);
+            this.totalEnnemis++;
         }
         else if(acteur instanceof Theo){
             Circle c = new Circle(5);
@@ -288,6 +292,7 @@ public class Controleur implements Initializable {
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             paneActeur.getChildren().add(c);
+            this.totalEnnemis++;
         }
         else if(acteur instanceof Mateo){
             Circle c = new Circle(10);
@@ -296,6 +301,7 @@ public class Controleur implements Initializable {
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             paneActeur.getChildren().add(c);
+            this.totalEnnemis++;
         }
         else if (acteur instanceof Mur){
             ImageView c = new ImageView(skins.get(acteur.getName()));
@@ -303,6 +309,7 @@ public class Controleur implements Initializable {
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             paneActeur.getChildren().add(c);
+            this.totalEnnemis++;
         }
     }
 
@@ -365,7 +372,6 @@ public class Controleur implements Initializable {
                             env.getZone().remove(0);
                         }
                         gameLoop.stop();
-                        ControleurGameOver.setVaincu(this.env.getVaincu());
                         this.finLabel.setVisible(true);
                     }
                     else if (temps%5==0){
@@ -376,14 +382,29 @@ public class Controleur implements Initializable {
         gameLoop.getKeyFrames().add(kf);
     }
 
+    private void setStats(){
+        //liste des ennemis vaincu
+        ControleurGameOver.setVaincu(this.env.getVaincu());
+
+        //a gagne ou non ?
+        if (this.env.getNiveau().getVie() <= 0)
+            ControleurGameOver.setGagne(false);
+        else
+            ControleurGameOver.setGagne(true);
+
+        //liste total des ennemis
+        ControleurGameOver.setTotalEnnemis(totalEnnemis);
+        ControleurGameOver.setTotalEnnemis(this.env.getNiveau().getTotalEnnemis());
+
+        //vie restante du joueur
+        ControleurGameOver.setVie(this.env.getNiveau().getVie());
+    }
+
     @FXML
     void changerScene(MouseEvent event) {
         if (this.finLabel.isVisible()) {
-            if (this.env.getNiveau().getVie() <= 0)
-                ControleurGameOver.setGagne(false);
 
-            if (this.env.getNiveau().getVie() > 0)
-                ControleurGameOver.setGagne(true);
+            setStats();
 
             try {
                 BorderPane root = FXMLLoader.load(getClass().getResource("../vue/gameOver.fxml"));

@@ -1,13 +1,11 @@
 package app.modele;
 
 
+import app.controleur.ControleurGameOver;
+import app.modele.Eleve.Mateo;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import static app.modele.Utile.creerEnnemi;
 import static app.modele.Utile.toTexture;
 
 public class Niveau {
@@ -19,7 +17,7 @@ public class Niveau {
     private IntegerProperty argentProperty;
     private static Vagues vagues;
     private static int idVagues;
-    //private ArrayList<int> tourellesDispo;
+    private int totalEnnemis;
 
     public Niveau(Environnement env){
         this.id = "Niv" + compteur++;
@@ -39,7 +37,11 @@ public class Niveau {
 
         switch (idVagues){
             case 1:
-                vagues.getVagues().add(vagues.creerVague(1));
+                vagues.getVagues().add(vagues.creerVague(2));
+                vagues.getVagues().add(vagues.creerVague(0));
+                vagues.getVagues().get(1).add(Utile.creerEnnemi(this.env, 2));
+                vagues.getVagues().add(vagues.creerVague(0));
+                vagues.getVagues().get(2).add(Utile.creerEnnemi(this.env, 3));
                 /*vagues.getVagues().get(0).add(0, Utile.creerEnnemi(this.env, 3));
                 vagues.getVagues().add(vagues.creerVague(4));
                 vagues.getVagues().get(1).add(1, Utile.creerEnnemi(this.env, 2));
@@ -57,10 +59,22 @@ public class Niveau {
                 break;
         }
 
+        for(int vague = 0; vague < this.getVagues().getVagues().size(); vague++) {
+            for (int ennemi = 0; ennemi < this.getVagues().getVagues().get(vague).size(); ennemi++) {
+                if (this.getVagues().getVagues().get(vague).get(ennemi) instanceof Mateo)
+                    totalEnnemis += 20;
+                totalEnnemis++;
+            }
+        }
+
     }
 
     public Vagues getVagues(){
         return this.vagues;
+    }
+
+    public int getTotalEnnemis(){
+        return totalEnnemis;
     }
 
     public void incrementerArgent(int argent){
