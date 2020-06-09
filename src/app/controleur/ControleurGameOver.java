@@ -76,6 +76,7 @@ public class ControleurGameOver implements Initializable {
     }
 
     private void nbEnnemi(){
+        //if nb is null ne pas afficher
         nbNormal = 0;
         nbTheo = 0;
         nbHaris = 0;
