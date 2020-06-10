@@ -154,9 +154,9 @@ public class Controleur implements Initializable {
             skins.put("Rety" , "resources/skins/2.png");
             skins.put("Comparot" , "resources/skins/3.png");
             skins.put("Ricordo" , "resources/skins/4.png");
-            skins.put("Bossard" , "resources/skins/1.png");
             skins.put("Lamolle" , "resources/skins/1.png");
             skins.put("Homps" , "resources/skins/6.png");
+            skins.put("Bossard" , "resources/skins/7.png");
             skins.put("Simonot" , "resources/skins/8.png");
 
         ListChangeListener<Acteur> listenActeur= c->{
