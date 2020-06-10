@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
@@ -27,7 +28,7 @@
             </HBox>
             <VBox prefHeight="448.0" prefWidth="750.0">
                <children>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" translateX="145.0">
+                  <HBox fx:id="hbNormal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" translateX="145.0">
                      <children>
                         <Circle fill="BLUE" radius="15.0" stroke="BLACK" strokeType="INSIDE" translateY="35.0" />
                         <Label fx:id="lbNormal" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="100.0" text="52" translateX="325.0">
@@ -37,7 +38,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" translateX="145.0">
+                  <HBox fx:id="hbTheo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" translateX="145.0">
                      <children>
                         <Circle fill="RED" radius="15.0" stroke="BLACK" strokeType="INSIDE" translateY="35.0" />
                         <Label fx:id="lbTheo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="167.0" text="7" translateX="325.0">
@@ -47,17 +48,17 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" translateX="145.0">
+                  <HBox fx:id="hbHaris" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" translateX="145.0">
                      <children>
                         <Circle fill="PURPLE" radius="15.0" stroke="BLACK" strokeType="INSIDE" translateY="35.0" />
-                        <Label fx:id="lbTheo1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="167.0" text="0" translateX="325.0">
+                        <Label fx:id="lbHaris" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="167.0" text="0" translateX="325.0">
                            <font>
                               <Font size="50.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" translateX="145.0">
+                  <HBox fx:id="hbMateo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" translateX="145.0">
                      <children>
                         <Circle fill="GREEN" radius="25.0" stroke="BLACK" strokeType="INSIDE" translateX="-10.0" translateY="25.0" />
                         <Label fx:id="lbMateo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="167.0" text="1" translateX="305.0">
@@ -71,7 +72,7 @@
             </VBox>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" translateX="125.0">
                <children>
-                  <Label fx:id="lbVie" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" text="Vie :                   100">
+                  <Label fx:id="lbVie" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="602.0" text="Vie :                   100">
                      <font>
                         <Font size="50.0" />
                      </font>
@@ -81,7 +82,7 @@
             <Line endX="550.2929077148438" endY="-2.4852817058563232" fill="BLACK" strokeWidth="2.0" translateX="100.0" translateY="15.0" />
             <HBox prefHeight="176.0" prefWidth="750.0">
                <children>
-                  <Label prefHeight="176.0" prefWidth="430.0" text="Score :     160" translateX="160.0">
+                  <Label fx:id="lbScore" prefHeight="176.0" prefWidth="430.0" text="Score :     160" translateX="160.0">
                      <font>
                         <Font size="65.0" />
                      </font>
@@ -91,4 +92,46 @@
          </children>
       </VBox>
    </center>
+   <left>
+      <VBox prefHeight="939.0" prefWidth="0.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView id="img1" fx:id="img1" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" rotate="-20.6" scaleX="2.0" scaleY="2.0" translateX="200.0">
+               <image>
+                  <Image url="@../../resources/skins/1.png" />
+               </image>
+            </ImageView>
+            <ImageView id="img2" fx:id="img2" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" rotate="12.8" scaleX="2.0" scaleY="2.0" scaleZ="0.0" translateX="400.0" translateY="300.0">
+               <image>
+                  <Image url="@../../resources/skins/2.png" />
+               </image>
+            </ImageView>
+            <ImageView id="img3" fx:id="img3" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" translateX="100.0" translateY="500.0">
+               <image>
+                  <Image url="@../../resources/skins/3.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView id="img6" fx:id="img6" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" translateX="-200.0">
+               <image>
+                  <Image url="@../../resources/skins/6.png" />
+               </image>
+            </ImageView>
+            <ImageView id="img8" fx:id="img8" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" rotate="12.8" scaleX="2.0" scaleY="2.0" scaleZ="0.0" translateX="-400.0" translateY="100.0">
+               <image>
+                  <Image url="@../../resources/skins/8.png" />
+               </image>
+            </ImageView>
+            <ImageView id="img4" fx:id="img4" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" rotate="-29.7" scaleX="4.0" scaleY="4.0" translateX="-150.0" translateY="500.0">
+               <image>
+                  <Image url="@../../resources/skins/4.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

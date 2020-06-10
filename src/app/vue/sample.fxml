@@ -60,9 +60,9 @@
             </StackPane>
             <StackPane maxHeight="75.0" maxWidth="75.0" prefHeight="69.0" prefWidth="105.0">
                <children>
-                  <ImageView id="img4" fx:id="img4" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="img4" fx:id="img4" fitHeight="80.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" translateX="5.0" translateY="42.0">
                      <image>
-                        <Image url="@../../resources/skins/10.png" />
+                        <Image url="@../../resources/skins/4.png" />
                      </image>
                   </ImageView>
                   <ImageView id="imgCheck4" fx:id="imgCheck4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_RIGHT">

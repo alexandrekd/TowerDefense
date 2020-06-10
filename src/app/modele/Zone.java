@@ -14,6 +14,7 @@ public class Zone{
     private int x;
     private int y;
     private Environnement env;
+
     public Zone(int taille,String Couleur,int x,int y,Environnement env,String id){
         this.taille = taille;
         this.couleur = Couleur;

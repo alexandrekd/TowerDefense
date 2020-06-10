@@ -1,7 +1,7 @@
 package app.controleur;
 
 import app.modele.Eleve.Mateo;
-import app.modele.Eleve.Normal;
+import app.modele.Eleve.Telio;
 import app.modele.Eleve.Theo;
 import app.modele.Professeur.*;
 import javafx.animation.KeyFrame;
@@ -151,12 +151,12 @@ public class Controleur implements Initializable {
 
         skins = new HashMap<String, String>();
             skins.put("Bonnot" , "resources/skins/1.png");
-            skins.put("Ricordo" , "resources/skins/1.png");
-            skins.put("Bossard" , "resources/skins/1.png");
-            skins.put("Homps" , "resources/skins/6.png");
-            skins.put("Lamolle" , "resources/skins/1.png");
             skins.put("Rety" , "resources/skins/2.png");
             skins.put("Comparot" , "resources/skins/3.png");
+            skins.put("Ricordo" , "resources/skins/4.png");
+            skins.put("Bossard" , "resources/skins/1.png");
+            skins.put("Lamolle" , "resources/skins/1.png");
+            skins.put("Homps" , "resources/skins/6.png");
             skins.put("Simonot" , "resources/skins/8.png");
 
         ListChangeListener<Acteur> listenActeur= c->{
@@ -276,7 +276,7 @@ public class Controleur implements Initializable {
             c.translateYProperty().bind(acteur.getYProperty());
             paneActeur.getChildren().add(c);
         }
-        else if(acteur instanceof Normal){
+        else if(acteur instanceof Telio){
             Circle c = new Circle(5);
             c.setId(acteur.getId());
             c.setFill(Color.BLUE);
@@ -319,7 +319,7 @@ public class Controleur implements Initializable {
         c.setFill(Color.valueOf(zone.getCouleur()));
         c.setTranslateX(zone.getX());
         c.setTranslateY(zone.getY());
-        System.out.println(zone.trouveTonAmeSoeur());
+        //System.out.println(zone.trouveTonAmeSoeur());
         c.opacityProperty().bind(zone.trouveTonAmeSoeur().vieProperty());
         paneActeur.getChildren().add(c);
     }
@@ -434,7 +434,6 @@ public class Controleur implements Initializable {
     @FXML
     void clickChoix(MouseEvent event) {
         int nombre = (int) (event.getY()/80);
-        System.out.println(nombre);
 
         try {
             this.imageList.get(nombre).setOnMouseClicked(e -> {
@@ -448,6 +447,12 @@ public class Controleur implements Initializable {
                     this.imageList.get(nombre).setScaleY(0.8);
                     this.checkList.get(nombre).visibleProperty().setValue(true);
                 }
+                if (nombre == 3){
+                    this.imageList.get(nombre).setScaleX(1.8);
+                    this.imageList.get(nombre).setScaleY(1.8);
+                    this.checkList.get(nombre).visibleProperty().setValue(true);
+                }
+
             });
         } catch (Exception e){
             System.out.println("La selection n'a pas marchee; nombre = " + nombre);
@@ -462,6 +467,8 @@ public class Controleur implements Initializable {
                 this.checkList.get(i).visibleProperty().setValue(false);
             }
         }
+        this.imageList.get(3).setScaleX(2);
+        this.imageList.get(3).setScaleY(2);
     }
 
     public String select(){
@@ -472,7 +479,7 @@ public class Controleur implements Initializable {
             choix = "Rety";
         else if (this.img3.getScaleX() == 0.8)
             choix = "Comparot";
-        else if (this.img4.getScaleX() == 0.8)
+        else if (this.img4.getScaleX() == 1.8)
             choix = "Ricordo";
         else if (this.img5.getScaleX() == 0.8)
             choix = "Lamolle";

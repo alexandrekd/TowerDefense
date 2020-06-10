@@ -4,7 +4,7 @@ package app.controleur;
 import app.modele.Attaquant;
 import app.modele.Eleve.Haris;
 import app.modele.Eleve.Mateo;
-import app.modele.Eleve.Normal;
+import app.modele.Eleve.Telio;
 import app.modele.Eleve.Theo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -32,30 +33,42 @@ public class ControleurGameOver implements Initializable {
 
     @FXML
     private Label lbNormal;
+    @FXML
+    private HBox hbNormal;
 
     @FXML
     private Label lbTheo;
+    @FXML
+    private HBox hbTheo;
 
     @FXML
     private Label lbHaris;
+    @FXML
+    private HBox hbHaris;
 
     @FXML
     private Label lbMateo;
+    @FXML
+    private HBox hbMateo;
 
     @FXML
     private Label lbVie;
 
+    @FXML
+    private Label lbScore;
+
     private static int totalEnnemis;
     private static boolean gagne;
+    private static int vieRestante;
     private static ArrayList<Attaquant> vaincu = new ArrayList<>();
     private int nbNormal;
     private int nbTheo;
     private int nbHaris;
     private int nbMateo;
-    private static int vieRestante;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         if (gagne){
             this.resultat.setTextFill(Color.valueOf("#31ae00"));
             this.resultat.setText("Gagnée");
@@ -67,12 +80,31 @@ public class ControleurGameOver implements Initializable {
 
         this.ennemisTues.setText("Ennemis tués :\t\t" + vaincu.size() + "/" + totalEnnemis);
         nbEnnemi();
+
+        if (nbNormal == 0) {
+            this.hbNormal.setVisible(false);
+            this.hbNormal.managedProperty();
+        }
         this.lbNormal.setText(String.valueOf(nbNormal));
+        if (nbTheo == 0) {
+            this.hbTheo.setVisible(false);
+            this.hbTheo.managedProperty();
+        }
         this.lbTheo.setText(String.valueOf(nbTheo));
-//        this.lbHaris.setText(String.valueOf(nbHaris));
+        if (nbHaris == 0) {
+            this.hbHaris.setVisible(false);
+            this.hbHaris.managedProperty();
+        }
+        this.lbHaris.setText(String.valueOf(nbHaris));
+        if (nbMateo == 0) {
+            this.hbMateo.setVisible(false);
+            this.hbMateo.managedProperty();
+        }
         this.lbMateo.setText(String.valueOf(nbMateo));
 
-        this.lbVie.setText("Vie :\t\t" + vieRestante);
+        this.lbVie.setText("Vie : \t \t \t " + vieRestante);
+
+        this.lbScore.setText("Score :\t" + calculerScore());
     }
 
     private void nbEnnemi(){
@@ -82,7 +114,7 @@ public class ControleurGameOver implements Initializable {
         nbHaris = 0;
         nbMateo = 0;
         for (int i = 0; i < vaincu.size(); i++) {
-            if (vaincu.get(i) instanceof Normal)
+            if (vaincu.get(i) instanceof Telio)
                 nbNormal++;
 
             if (vaincu.get(i) instanceof Theo)
@@ -112,6 +144,13 @@ public class ControleurGameOver implements Initializable {
             v = 0;
         vieRestante = v;
 
+    }
+
+    private int calculerScore(){
+        int score = vieRestante + vaincu.size();
+        if(!gagne)
+            return score/2;
+        return score;
     }
 
     @FXML

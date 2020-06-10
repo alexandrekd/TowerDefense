@@ -15,6 +15,6 @@ public class Mateo extends Attaquant {
         BFS.BFS(this,env);
         if(!this.estVivant())
             for (int i = 0; i < 20; i++)
-                this.env.getActeurs().add(new Normal(this.env, Utile.toPixel(Utile.toTexture(this.getX())) + 25 + (int) (Math.random() * 15), Utile.toPixel(Utile.toTexture(this.getY())) + 25 + (int) (Math.random() * 15)));
+                this.env.getActeurs().add(new Telio(this.env, Utile.toPixel(Utile.toTexture(this.getX())) + 25 + (int) (Math.random() * 15), Utile.toPixel(Utile.toTexture(this.getY())) + 25 + (int) (Math.random() * 15)));
     }
 }

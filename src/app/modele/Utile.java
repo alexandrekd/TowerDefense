@@ -1,7 +1,7 @@
 package app.modele;
 
 import app.modele.Eleve.Mateo;
-import app.modele.Eleve.Normal;
+import app.modele.Eleve.Telio;
 import app.modele.Eleve.Theo;
 
 import java.util.stream.Collectors;
@@ -51,7 +51,7 @@ public class Utile {
             if(env.getMap().get(i)/900 ==1){
                 if (count == random){
                     if(type == 1)
-                        attaquant = new Normal(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
+                        attaquant = new Telio(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
                     if(type == 2)
                         attaquant = new Theo(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
                     if(type == 3)
