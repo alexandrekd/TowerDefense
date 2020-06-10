@@ -60,6 +60,7 @@ public class ControleurGameOver implements Initializable {
     private static int totalEnnemis;
     private static boolean gagne;
     private static int vieRestante;
+    private static int vieMax;
     private static ArrayList<Attaquant> vaincu = new ArrayList<>();
     private int nbNormal;
     private int nbTheo;
@@ -139,17 +140,18 @@ public class ControleurGameOver implements Initializable {
     public static void setTotalEnnemis(int total){
         totalEnnemis = total;
     }
-    public static void setVie(int v){
+    public static void setVieRestante(int v){
         if (v < 0)
             v = 0;
         vieRestante = v;
+    }
 
+    public static void setVieMax(int v){
+        vieMax = v;
     }
 
     private int calculerScore(){
-        int score = vieRestante + vaincu.size();
-        if(!gagne)
-            return score/2;
+        int score = vieRestante*100/vieMax;
         return score;
     }
 

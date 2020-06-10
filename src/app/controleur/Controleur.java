@@ -203,6 +203,7 @@ public class Controleur implements Initializable {
         setmap();
         initAnimation();
         env.faireRang();
+        ControleurGameOver.setVieMax(this.env.getNiveau().getVie());
 
     }
 
@@ -397,7 +398,7 @@ public class Controleur implements Initializable {
         ControleurGameOver.setTotalEnnemis(this.env.getNiveau().getTotalEnnemis());
 
         //vie restante du joueur
-        ControleurGameOver.setVie(this.env.getNiveau().getVie());
+        ControleurGameOver.setVieRestante(this.env.getNiveau().getVie());
     }
 
     @FXML
