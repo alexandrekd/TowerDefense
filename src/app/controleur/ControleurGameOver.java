@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 public class ControleurGameOver implements Initializable {
 
     @FXML
-    private Label resultat;
+    private Label resultat; // Gagnee / Perdue
 
     @FXML
     private Label ennemisTues;
@@ -82,24 +82,25 @@ public class ControleurGameOver implements Initializable {
         this.ennemisTues.setText("Ennemis tués :\t\t" + vaincu.size() + "/" + totalEnnemis);
         nbEnnemi();
 
+        // Ne s'affiche pas si aucun n'a ete tue
         if (nbNormal == 0) {
             this.hbNormal.setVisible(false);
-            this.hbNormal.managedProperty();
+            this.hbNormal.managedProperty().setValue(false);
         }
         this.lbNormal.setText(String.valueOf(nbNormal));
         if (nbTheo == 0) {
             this.hbTheo.setVisible(false);
-            this.hbTheo.managedProperty();
+            this.hbTheo.managedProperty().setValue(false);
         }
         this.lbTheo.setText(String.valueOf(nbTheo));
         if (nbHaris == 0) {
             this.hbHaris.setVisible(false);
-            this.hbHaris.managedProperty();
+            this.hbHaris.managedProperty().setValue(false);
         }
         this.lbHaris.setText(String.valueOf(nbHaris));
         if (nbMateo == 0) {
             this.hbMateo.setVisible(false);
-            this.hbMateo.managedProperty();
+            this.hbMateo.managedProperty().setValue(false);
         }
         this.lbMateo.setText(String.valueOf(nbMateo));
 
@@ -108,8 +109,8 @@ public class ControleurGameOver implements Initializable {
         this.lbScore.setText("Score :\t" + calculerScore());
     }
 
+    // Calcul le nombre d'ennemis tues
     private void nbEnnemi(){
-        //if nb is null ne pas afficher
         nbNormal = 0;
         nbTheo = 0;
         nbHaris = 0;

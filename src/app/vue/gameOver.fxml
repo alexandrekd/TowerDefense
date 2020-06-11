@@ -126,7 +126,7 @@
                   <Image url="@../../resources/skins/8.png" />
                </image>
             </ImageView>
-            <ImageView id="img4" fx:id="img4" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" rotate="-29.7" scaleX="4.0" scaleY="4.0" translateX="-150.0" translateY="500.0">
+            <ImageView id="img4" fx:id="img4" fitHeight="80.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" rotate="-29.7" scaleX="2.0" scaleY="2.0" translateX="-150.0" translateY="500.0">
                <image>
                   <Image url="@../../resources/skins/4.png" />
                </image>
