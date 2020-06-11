@@ -40,17 +40,18 @@ public class Zone{
 
     public void quiEstDansLaZone(){
         for (int i = 0;i < env.getActeurs().size() ; i++){
-            if (dansLaListe(env.getActeurs().get(i))) {
-                if (!(env.getActeurs().get(i).getX() <= this.taille + x && env.getActeurs().get(i).getX() >= x - this.taille && env.getActeurs().get(i).getY() <= this.taille + y && env.getActeurs().get(i).getY() >= y - this.taille)) {
-                    acteursDansLaZone.remove(env.getActeurs().get(i));
-                    i--;
-                }
-            }
-            else{
-                if(env.getActeurs().get(i).getX() <= this.taille+x && env.getActeurs().get(i).getX() >= x-this.taille && env.getActeurs().get(i).getY() <= this.taille+y && env.getActeurs().get(i).getY() >= y-this.taille)
+            if (!dansLaListe(env.getActeurs().get(i))) {
+                if (env.getActeurs().get(i).getX() <= this.taille + x && env.getActeurs().get(i).getX() >= x - this.taille && env.getActeurs().get(i).getY() <= this.taille + y && env.getActeurs().get(i).getY() >= y - this.taille)
                     if (env.getActeurs().get(i) instanceof Attaquant) {
                         acteursDansLaZone.add(env.getActeurs().get(i));
                     }
+            }
+        }
+
+        for (int i = 0 ; i < acteursDansLaZone.size() ; i++){
+            if ((!(acteursDansLaZone.get(i).getX() <= this.taille + x && acteursDansLaZone.get(i).getX() >= x - this.taille && acteursDansLaZone.get(i).getY() <= this.taille + y && acteursDansLaZone.get(i).getY() >= y - this.taille))||(!acteurEstDansLaZone(acteursDansLaZone.get(i)))) {
+                acteursDansLaZone.remove(acteursDansLaZone.get(i));
+                i--;
             }
         }
     }
@@ -78,6 +79,16 @@ public class Zone{
             if (this.id.equals(env.getEffects().get(i).getId()))
                 effets = env.getEffects().get(i);
             return effets;
+    }
+
+    public boolean acteurEstDansLaZone(Acteur acteur){
+        boolean result = false;
+        for (int i = 0; i < env.getActeurs().size(); i++){
+            if (env.getActeurs().get(i) == acteur) {
+                result = true;
+            }
+        }
+        return result;
     }
 
 
