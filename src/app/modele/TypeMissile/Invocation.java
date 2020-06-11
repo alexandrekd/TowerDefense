@@ -40,19 +40,6 @@ public class Invocation implements Effets {
 
 
 
-    @Override
-    public boolean estVivant() {
-        if (this.getVie() <= 0) {
-            env.getEffects().remove(this);
-            return false;
-        }
-        return true;
-    }
-
-    public final DoubleProperty vieProperty() {
-        return vie;
-    }
-
     public final double getVie(){ return this.vie.get(); }
 
     public final void setVie(double newVie){  this.vie.set(newVie); }

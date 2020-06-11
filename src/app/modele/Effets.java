@@ -6,6 +6,4 @@ public interface Effets {
 
     public void Explosion(Missile missile);
     public String getId();
-    public DoubleProperty vieProperty();
-    public boolean estVivant();
 }

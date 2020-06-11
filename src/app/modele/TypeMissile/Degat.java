@@ -17,19 +17,6 @@ public class Degat implements Effets {
         Acteur.compteur++;
     }
 
-    @Override
-    public boolean estVivant() {
-        if (this.getVie() <= 0) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final DoubleProperty vieProperty() {
-        return vie;
-    }
-
     public final double getVie(){ return this.vie.get(); }
 
     public final void setVie(double newVie){  this.vie.set(newVie); }
