@@ -29,21 +29,8 @@ public class Debut implements Effets {
     }
 
     @Override
-    public boolean estVivant() {
-        if (this.getVie() <= 0) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public String getId() {
         return this.id;
-    }
-
-    @Override
-    public final DoubleProperty vieProperty() {
-        return vie;
     }
 
     public final double getVie(){ return this.vie.get(); }

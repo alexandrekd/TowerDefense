@@ -1,5 +1,6 @@
 package app.modele;
 
+import app.modele.TypeMissile.EffetsZone;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -73,11 +74,11 @@ public class Zone{
         return false;
     }
 
-    public Effets trouveTonAmeSoeur(){
-        Effets effets = null;
+    public EffetsZone trouveTonAmeSoeur(){
+        EffetsZone effets = null;
         for (int i = 0 ;i < env.getEffects().size(); i++)
             if (this.id.equals(env.getEffects().get(i).getId()))
-                effets = env.getEffects().get(i);
+                effets =(EffetsZone) env.getEffects().get(i);
             return effets;
     }
 
