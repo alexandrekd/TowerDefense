@@ -42,77 +42,63 @@ public class Controleur implements Initializable {
     @FXML
     private Pane plateau;
 
+
+    // Pane contenant les acteurs afin d'éviter la supperposition avec le bouton "FIN"
     @FXML
     private Pane paneActeur;
 
-
+    // Bonnot
     @FXML
-    private RadioButton btTourelleSimple;
-
+    private ImageView img1; // Skin
     @FXML
-    private Button btStart;
+    private ImageView imgCheck1; // Petit v indiquant la selection
+    private BooleanProperty img1checked = new SimpleBooleanProperty(); // Est selectionne ?
 
+    // Rety
     @FXML
-    private Button btLancer;
-
-    @FXML
-    private TextField tfNbTour;
-
-    @FXML
-    private ImageView img1;
-
-
-
-    @FXML
-    private ImageView imgCheck1;
-    private BooleanProperty img1checked = new SimpleBooleanProperty();
-
+    private ImageView imgCheck2;
     @FXML
     private ImageView img2;
     private BooleanProperty img2checked = new SimpleBooleanProperty();
 
-    @FXML
-    private ImageView imgCheck2;
-
-
+    //Comparot
     @FXML
     private ImageView img3;
-
     @FXML
     private ImageView imgCheck3;
     private BooleanProperty img3checked = new SimpleBooleanProperty();
 
+    // Ricordo
     @FXML
     private ImageView img4;
-
     @FXML
     private ImageView imgCheck4;
     private BooleanProperty img4checked = new SimpleBooleanProperty();
 
+    // Lamolle
     @FXML
     private ImageView img5;
-
     @FXML
     private ImageView imgCheck5;
     private BooleanProperty img5checked = new SimpleBooleanProperty();
 
+    // Homps
     @FXML
     private ImageView img6;
-
     @FXML
     private ImageView imgCheck6;
     private BooleanProperty img6checked = new SimpleBooleanProperty();
 
+    // Bossard
     @FXML
     private ImageView img7;
-
     @FXML
     private ImageView imgCheck7;
     private BooleanProperty img7checked = new SimpleBooleanProperty();
 
+    // Simonot
     @FXML
     private ImageView img8;
-
     @FXML
     private ImageView imgCheck8;
     private BooleanProperty img8checked = new SimpleBooleanProperty();
@@ -131,18 +117,16 @@ public class Controleur implements Initializable {
 
     private ArrayList<ImageView> imageList;
     private ArrayList<ImageView> checkList;
-    private ArrayList<BooleanProperty> checkedList;
     private HashMap<String, String> skins;
     private Environnement env;
     private int temps;
-    private int totalEnnemis;
+    private int totalEnnemis; // Nombre total d'ennemi a envoyer a l'ecran des stats
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env = new Environnement(1600, 800);
         imageList = new ArrayList<ImageView>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
         checkList = new ArrayList<ImageView>(Arrays.asList(imgCheck1,imgCheck2,imgCheck3,imgCheck4,imgCheck5,imgCheck6,imgCheck7,imgCheck8));
-        checkedList = new ArrayList<BooleanProperty>(Arrays.asList(img1checked,img2checked,img3checked,img4checked,img5checked,img6checked,img7checked,img8checked));
         this.totalEnnemis = 0;
 
         this.argent.textProperty().bind(this.env.getNiveau().getArgentProperty().asString());
@@ -349,11 +333,11 @@ public class Controleur implements Initializable {
         }
     }
 
+    // Affiche la map
     public void setmap() {
         for (int i = 0; i < env.getMap().size(); i++) {
             ImageView texture = new ImageView("resources/textures/" + env.getMap().get(i) + ".png");
             map.getChildren().add(texture);
-
         }
     }
 
@@ -365,7 +349,8 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.07),
                 (event -> {
-                    if((this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0) || this.env.getNiveau().getVie() <= 0){       // on stop la boucle s'il n'y a plus de vagues dans le niveau et s'il n'y a plus d'ennemi sur le terrain
+                    // on stop la boucle s'il n'y a plus de vagues dans le niveau et s'il n'y a plus d'ennemi sur le terrain       ou    si le joueur n'a plus de vie
+                    if((this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0) || this.env.getNiveau().getVie() <= 0){
                         while (env.getProject().size() != 0){
                             env.getProject().remove(0);
                         }
@@ -438,6 +423,7 @@ public class Controleur implements Initializable {
 
         try {
             this.imageList.get(nombre).setOnMouseClicked(e -> {
+                System.out.println(nombre + " " + imageList.get(nombre));
                 reset(imageList.get(nombre));
                 if (checkList.get(nombre).visibleProperty().get()) {
                     this.imageList.get(nombre).setScaleX(1);
@@ -448,12 +434,6 @@ public class Controleur implements Initializable {
                     this.imageList.get(nombre).setScaleY(0.8);
                     this.checkList.get(nombre).visibleProperty().setValue(true);
                 }
-                if (nombre == 3){
-                    this.imageList.get(nombre).setScaleX(1.8);
-                    this.imageList.get(nombre).setScaleY(1.8);
-                    this.checkList.get(nombre).visibleProperty().setValue(true);
-                }
-
             });
         } catch (Exception e){
             System.out.println("La selection n'a pas marchee; nombre = " + nombre);
@@ -468,8 +448,6 @@ public class Controleur implements Initializable {
                 this.checkList.get(i).visibleProperty().setValue(false);
             }
         }
-        this.imageList.get(3).setScaleX(2);
-        this.imageList.get(3).setScaleY(2);
     }
 
     public String select(){
@@ -480,7 +458,7 @@ public class Controleur implements Initializable {
             choix = "Rety";
         else if (this.img3.getScaleX() == 0.8)
             choix = "Comparot";
-        else if (this.img4.getScaleX() == 1.8)
+        else if (this.img4.getScaleX() == 0.8)
             choix = "Ricordo";
         else if (this.img5.getScaleX() == 0.8)
             choix = "Lamolle";
