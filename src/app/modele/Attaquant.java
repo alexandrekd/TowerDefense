@@ -1,10 +1,8 @@
 package app.modele;
 
-import org.omg.CosNaming.BindingIterator;
-
 public abstract class Attaquant extends Acteur {
 	private int pv;
-	private int constante;
+	private int PVMAX;
 	private int dx; // dx et dy representent la direction de l'attaquant
 	private int dy;
 	private int vitesse;
@@ -16,7 +14,7 @@ public abstract class Attaquant extends Acteur {
 		this.pv = pv;
 		this.vitesse = vitesse;
 		this.img = img;
-		this.constante = pv;
+		this.PVMAX = pv;
 		this.consVitesse = vitesse;
 	}
 
@@ -72,8 +70,8 @@ public abstract class Attaquant extends Acteur {
 		return dy;
 	}
 
-	public int getPV() {
-		return constante;
+	public int getPVMAX() {
+		return PVMAX;
 	}
 
 	public Environnement getEnv(){

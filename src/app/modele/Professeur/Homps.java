@@ -1,3 +1,6 @@
+
+// Homps est une tourelle qui a la capacite de renvoyer aleatoirement sa cible a la case depart
+
 package app.modele.Professeur;
 
 import app.modele.Attaquant;

@@ -1,3 +1,6 @@
+
+// Ricordo est une tourelle qui envoie des murs sur les ennemis
+
 package app.modele.Professeur;
 
 import app.modele.Attaquant;

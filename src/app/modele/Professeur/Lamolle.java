@@ -1,3 +1,6 @@
+
+// Lamolle est une tourelle avec une longue portee
+
 package app.modele.Professeur;
 
 import app.modele.Attaquant;

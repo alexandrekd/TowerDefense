@@ -1,3 +1,6 @@
+
+// Les murs sont des acteurs qui attrapent le premier ennemi a leur portee
+
 package app.modele.Professeur;
 
 import app.modele.Acteur;
@@ -25,46 +28,41 @@ public class Mur extends Acteur {
 
     @Override
     public void agit() {
-        System.out.println();
-        if (attraper == false){
+        if (!attraper){
             this.vie -= 5;
 
             for (int i = 0; i < this.env.getActeurs().size();i++)
                 if (this.env.getActeurs().get(i) instanceof Attaquant)
-                    if(env.getActeurs().get(i).getX() <= this.getX()+portee && env.getActeurs().get(i).getX() >= this.getX()-portee && env.getActeurs().get(i).getY() <= this.getY()+portee && env.getActeurs().get(i).getY() >= this.getY()-portee) {
+                    if(env.getActeurs().get(i).getX() <= this.getX()+portee && env.getActeurs().get(i).getX() >= this.getX()-portee && env.getActeurs().get(i).getY() <= this.getY()+portee && env.getActeurs().get(i).getY() >= this.getY()-portee)
                         if (!dejaChezQuelquun((Attaquant) this.env.getActeurs().get(i))){
-                            cible = (Attaquant) env.getActeurs().get(i);
-                             attraper = true;
+                            this.cible = (Attaquant) env.getActeurs().get(i);
+                            attraper = true;
                           }
-                    }
 
             if(this.cible != null){
-                cible.setX(this.x);
-                attraper = true;
-                cible.setY(this.y);
+                this.cible.setX(this.x);
+                this.cible.setY(this.y);
             }
 
         }
         else{
             if(this.cible != null){
-                cible.setX(this.x);
-                cible.setY(this.y);
+                this.cible.setX(this.x);
+                this.cible.setY(this.y);
             }
 
             if (env.getNbTours()%5 == 0)
-            this.vie -= cible.getPv();
+            this.vie -= this.cible.getPv();
         }
     }
 
     public boolean dejaChezQuelquun(Attaquant ci){
         List<Mur> mur =  env.getActeurs().parallelStream().filter(n -> n instanceof Mur).map(n ->(Mur) n).collect(Collectors.toList());
-        boolean result = false;
-        for (int i = 0;i < mur.size();i++){
-            if(mur.get(i).getCible() == ci){
-                result = true;
-            }
-        }
-        return result;
+        for (int i = 0;i < mur.size();i++)
+            if(mur.get(i).getCible() == ci)
+                return true;
+
+        return false;
     }
 
     public boolean estVivant(){
@@ -75,6 +73,6 @@ public class Mur extends Acteur {
     }
 
     public Attaquant getCible() {
-        return cible;
+        return this.cible;
     }
 }

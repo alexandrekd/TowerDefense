@@ -1,3 +1,6 @@
+
+// Bossard est une tourelle qui choisit sa cible aleatoirement a chaque tire
+
 package app.modele.Professeur;
 
 import app.modele.Attaquant;
@@ -18,10 +21,9 @@ public class Bossard extends Tourelle {
         if (getRechargement() == getDernierTire()) {
             ArrayList<Attaquant> cibles = getListeCible();
             int aleatoire = (int) (Math.random() * cibles.size());
-            if (aleatoire != 0)
+            if (cibles.size() != 0)
                 env.addProject(creerMissile(cibles.get(aleatoire)));
             setDernierTire(0);
-            ;
         } else
             setDernierTire(getDernierTire() + 1);
     }

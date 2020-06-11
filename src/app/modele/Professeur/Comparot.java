@@ -1,3 +1,6 @@
+
+// Comparot est une tourelle de zone, ses projectiles creent des zones infligeant des degats aux ennemis se trouvant dedans
+
 package app.modele.Professeur;
 
 import app.modele.Attaquant;
