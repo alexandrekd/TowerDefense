@@ -1,3 +1,6 @@
+
+// Mateo est un boss, a sa mort, il libere une arme de Telios
+
 package app.modele.Eleve;
 
 import app.modele.Attaquant;

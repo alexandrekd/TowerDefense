@@ -1,11 +1,11 @@
+
+// Theo est un ennemi qui a la capacite de regenerer la vie de ses allies a portee
+
 package app.modele.Eleve;
 
 import app.modele.Attaquant;
 import app.modele.BFS;
 import app.modele.Environnement;
-import app.modele.Utile;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +27,5 @@ public class Theo extends Attaquant {
                 if (liste.get(i).getPv() < liste.get(i).getPV())
                     if (liste.get(i).getX() <= this.getX() + this.portee && liste.get(i).getX() >= this.getX() - this.portee && liste.get(i).getY() <= this.getY() + this.portee && liste.get(i).getY() >= this.getY() - this.portee)
                         liste.get(i).gagneDeLaVie(1);
-
     }
 }

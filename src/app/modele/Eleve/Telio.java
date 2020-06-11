@@ -1,9 +1,11 @@
+
+// Telio et un ennemi normal qui ne fait rien de special
+
 package app.modele.Eleve;
 
 import app.modele.Attaquant;
 import app.modele.BFS;
 import app.modele.Environnement;
-import app.modele.Utile;
 
 public class Telio extends Attaquant {
     public Telio(Environnement env, int x, int y){
