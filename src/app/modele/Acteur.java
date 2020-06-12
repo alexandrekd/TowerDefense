@@ -10,7 +10,7 @@ public abstract class Acteur {
     private String id;
     private IntegerProperty xProperty, yProperty;
     public static int compteur = 0;
-    private int distanceMilieu;
+    private int distanceMilieu; // Les attaquants restent toujours a la meme distance du milieu du chemin pour ne pas longer les murs ou en sortir
     public Environnement env;
     private String name;
 
@@ -48,7 +48,7 @@ public abstract class Acteur {
         xProperty.setValue(n);
     }
     public final IntegerProperty getXProperty(){ return xProperty; }
-    public abstract void agit();
+
     public int getY() {
         return yProperty.getValue();
     }
@@ -56,6 +56,8 @@ public abstract class Acteur {
         yProperty.setValue(n);
     }
     public final IntegerProperty getYProperty(){ return yProperty; }
+
+    public abstract void agit();
 
     public String getId(){
         return this.id;

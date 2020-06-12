@@ -1,7 +1,5 @@
 package app.modele;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class AttaquantTest {
 
     @org.junit.jupiter.api.Test

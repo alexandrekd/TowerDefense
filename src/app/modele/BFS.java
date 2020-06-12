@@ -1,12 +1,11 @@
-package app.modele;
 
-import javax.rmi.CORBA.Util;
+// Permet aux attaquants de ce deplasser
+
+package app.modele;
 
 public class BFS {
 
     public static void BFS(Attaquant attaquant,Environnement env) {
-
-
 
         int xB = Utile.toTexture(attaquant.getX());
         int yB = Utile.toTexture(attaquant.getY());
@@ -35,16 +34,13 @@ public class BFS {
             if (attaquant.RegardeUnVoisin(env.getUnNode(xB, yB + 1)) < bestPos) {
                 directionX = sensX(attaquant, xB, yB, env);
                 directionY = 1;
-                bestPos = attaquant.RegardeUnVoisin(env.getUnNode(xB, yB + 1));
             }
 
 
             attaquant.donneDirection(directionX,directionY);
 
             attaquant.setX(attaquant.getX() + attaquant.getVitesse() * attaquant.getDx());
-            //Pas besoin de else, vu que si le prochain deplacement en x depasse l'environnement, il ne bouge pas
             attaquant.setY(attaquant.getY() + attaquant.getVitesse() * attaquant.getDy());
-            //Pas besoin de else, vu que si le prochain deplacement en y depasse l'environnement, il ne bouge pas
 
         } catch (Exception e){
             System.out.println("Un ennemi a essaye de sortir du chemin");

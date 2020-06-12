@@ -14,7 +14,7 @@ public class Environnement {
     private int width, height;
     private ObservableList<Acteur> acteurs;
     private static List<Integer> map;
-    private ObservableList<Missile> project;
+    private ObservableList<Missile> project; //Projectiles
     private int nbTours;
     private List<node> rang;
     private ObservableList<Zone> zone;
@@ -32,8 +32,8 @@ public class Environnement {
         this.height = height;
         this.zone = FXCollections.observableArrayList();
         this.project = FXCollections.observableArrayList();
-        this.effects = new ArrayList<EffetsZone>();
-        this.rang = new ArrayList<node>();
+        this.effects = new ArrayList<>();
+        this.rang = new ArrayList<>();
 
         this.niveau = new Niveau(this);
         this.numVagueProperty = new SimpleIntegerProperty(0);
@@ -94,13 +94,11 @@ public class Environnement {
         return this.vaincu;
     }
 
-    // Cette fonction permet tout simplement de renvoyer la tuile d'arrivé
+    // Cette fonction permet de renvoyer la tuile d'arrivé
     public node getArrivé() {
-        for (node tuile : rang) {
-            if (tuile.getDistance() == 0) {
+        for (node tuile : rang)
+            if (tuile.getDistance() == 0)
                 return tuile;
-            }
-        }
         return rang.get(0); //Cette partie la ne sert à rien, mais on est obligé d'avoir un autre return en dehors de la boucle
     }
 
@@ -114,36 +112,32 @@ public class Environnement {
     }
 
     public ArrayList<node> getVoisin(node maison){
-        ArrayList<node> voisin = new ArrayList<node>();
-        if (Utile.toPixel(maison.getX() - 1) >= 0) {
-            if (map.get(maison.getX() - 1 + Utile.toWidth(maison.getY())) % 2 == 0) {
+        ArrayList<node> voisin = new ArrayList<>();
+        if (Utile.toPixel(maison.getX() - 1) >= 0)
+            if (map.get(maison.getX() - 1 + Utile.toWidth(maison.getY())) % 2 == 0)
                 if (!estDejaLa(maison.getX() - 1,maison.getY()))
                     voisin.add(new node(maison.getDistance() + 1, maison.getX() - 1,maison.getY()));
-            }
-        }
-        if (Utile.toPixel(maison.getX() + 1) < this.width) {
-            if (map.get(maison.getX() + 1 + Utile.toWidth(maison.getY())) % 2 == 0) {
+
+
+        if (Utile.toPixel(maison.getX() + 1) < this.width)
+            if (map.get(maison.getX() + 1 + Utile.toWidth(maison.getY())) % 2 == 0)
                 if (!estDejaLa(maison.getX() + 1,maison.getY()))
                     voisin.add(new node(maison.getDistance() + 1, maison.getX() + 1,maison.getY()));
 
-            }
-        }
-        if (Utile.toPixel(maison.getY() - 1) >= 0) {
-            if (map.get(Utile.toWidth(maison.getY() - 1) + maison.getX()) % 2 == 0) {
+
+        if (Utile.toPixel(maison.getY() - 1) >= 0)
+            if (map.get(Utile.toWidth(maison.getY() - 1) + maison.getX()) % 2 == 0)
                 if (!estDejaLa(maison.getX(),maison.getY() - 1))
                     voisin.add(new node(maison.getDistance() + 1,maison.getX(), maison.getY() - 1));
 
-            }
-        }
-        if (Utile.toPixel(maison.getY() + 1) < this.height) {
-            if (map.get(Utile.toWidth(maison.getY() + 1) + maison.getX()) % 2 == 0) {
+
+        if (Utile.toPixel(maison.getY() + 1) < this.height)
+            if (map.get(Utile.toWidth(maison.getY() + 1) + maison.getX()) % 2 == 0)
                 if (!estDejaLa(maison.getX(),maison.getY() + 1))
                     voisin.add(new node(maison.getDistance() + 1,maison.getX(), maison.getY() + 1));
 
-            }
-        }
-        return voisin;
 
+        return voisin;
     }
 
     public List<node> getRang() {
@@ -151,12 +145,11 @@ public class Environnement {
     }
 
     public node getUnNode(int x , int y){
-
         node result = null;
-        for (int i = 0; i < rang.size(); i++){
+        for (int i = 0; i < rang.size(); i++)
             if (rang.get(i).getX() == x && rang.get(i).getY() == y)
                 result = rang.get(i);
-        }
+
         return result;
     }
 
@@ -202,7 +195,7 @@ public class Environnement {
     }
 
     private void gererProj(){
-        for (int a = 0; a < 15; a++) {
+        for (int a = 0; a < 15; a++)
             for (int i = 0; i < this.project.size(); i++) {
                 this.project.get(i).bouge();
                 if (this.project.get(i).isExplosion()) {
@@ -210,15 +203,13 @@ public class Environnement {
                     i--;
                 }
             }
-        }
     }
 
     private void gererEffet(){
         for (int i = 0; i < effects.size();i++){
             effects.get(i).agit();
-            if (!(effects.get(i).estVivant())){
+            if (!(effects.get(i).estVivant()))
                 this.effects.remove(effects.get(i));
-            }
         }
     }
 
@@ -231,7 +222,6 @@ public class Environnement {
         for(int i = 0; i < this.acteurs.size(); i++){
             this.acteurs.get(i).agit();
 
-
             if(acteurs.get(i) instanceof Attaquant) {
                 if (!((Attaquant) acteurs.get(i)).estVivant()) {
                     this.vaincu.add((Attaquant) this.acteurs.get(i));
@@ -242,21 +232,13 @@ public class Environnement {
                 else
                     niveau.ennemiAttaqueJoueur(((Attaquant) acteurs.get(i)));
             }
-            else if(this.acteurs.get(i) instanceof Mur) {
+
+            else if(this.acteurs.get(i) instanceof Mur)
                 if (!((Mur) acteurs.get(i)).estVivant()) {
                     this.acteurs.remove(i);
                     i--;
                 }
-            }
         }
-    }
-
-
-    public void zoneMorte(Zone zone){
-        while (zone.getActeursDansLaZone().size() != 0){
-            zone.getActeursDansLaZone().remove(0);
-        }
-        this.zone.remove(zone);
     }
 
     public void startVague(){
