@@ -136,7 +136,7 @@ public class Controleur implements Initializable {
         final Media mediaMainTheme = new Media(mainTheme.toURI().toString());
         mpMusic = new MediaPlayer(mediaMainTheme);
         musiqueActive = mpMusic;
-        mpMusic.play();
+        //mpMusic.play();
 
         this.env = new Environnement(1600, 800);
         imageList = new ArrayList<>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
