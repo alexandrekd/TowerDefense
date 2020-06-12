@@ -33,37 +33,31 @@ public class Zone{
     }
 
     public void quiEstDansLaZone(){
-        for (int i = 0;i < env.getActeurs().size() ; i++){
-            if (!dansLaListe(env.getActeurs().get(i))) {
+        for (int i = 0;i < env.getActeurs().size() ; i++)
+            if (!dansLaListe(env.getActeurs().get(i)))
                 if (env.getActeurs().get(i).getX() <= this.taille + getX() && env.getActeurs().get(i).getX() >= getX() - this.taille && env.getActeurs().get(i).getY() <= this.taille + getY() && env.getActeurs().get(i).getY() >= getY() - this.taille)
-                    if (env.getActeurs().get(i) instanceof Attaquant) {
+                    if (env.getActeurs().get(i) instanceof Attaquant)
                         acteursDansLaZone.add(env.getActeurs().get(i));
-                    }
-            }
-        }
 
-        for (int i = 0 ; i < acteursDansLaZone.size() ; i++){
+        for (int i = 0 ; i < acteursDansLaZone.size() ; i++)
             if ((!(acteursDansLaZone.get(i).getX() <= this.taille + getX() && acteursDansLaZone.get(i).getX() >= getX() - this.taille && acteursDansLaZone.get(i).getY() <= this.taille + getY() && acteursDansLaZone.get(i).getY() >= getY() - this.taille))||(!acteurEstDansLaZone(acteursDansLaZone.get(i)))) {
                 acteursDansLaZone.remove(acteursDansLaZone.get(i));
                 i--;
             }
-        }
+
     }
 
     public ArrayList<Attaquant> getListeAttanquants(){
         ArrayList<Attaquant> list = new ArrayList<Attaquant>();
-        for (int i = 0; i < acteursDansLaZone.size();i++){
+        for (int i = 0; i < acteursDansLaZone.size();i++)
                 list.add((Attaquant) acteursDansLaZone.get(i));
-        }
         return list;
     }
 
     public boolean dansLaListe(Acteur acteur){
-        for (int i = 0; i < acteursDansLaZone.size();i++){
-            if (acteursDansLaZone.get(i) == acteur){
+        for (int i = 0; i < acteursDansLaZone.size();i++)
+            if (acteursDansLaZone.get(i) == acteur)
                 return true;
-            }
-        }
         return false;
     }
 
@@ -71,21 +65,17 @@ public class Zone{
         EffetsZone effets = null;
         for (int i = 0 ;i < env.getEffects().size(); i++)
             if (this.id.equals(env.getEffects().get(i).getId()))
-                effets =(EffetsZone) env.getEffects().get(i);
+                effets = env.getEffects().get(i);
             return effets;
     }
 
     public boolean acteurEstDansLaZone(Acteur acteur){
         boolean result = false;
-        for (int i = 0; i < env.getActeurs().size(); i++){
-            if (env.getActeurs().get(i) == acteur) {
+        for (int i = 0; i < env.getActeurs().size(); i++)
+            if (env.getActeurs().get(i) == acteur)
                 result = true;
-            }
-        }
         return result;
     }
-
-
 
     public String getId() {
         return id;
