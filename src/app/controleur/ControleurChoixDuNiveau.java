@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class ControleurChoixDuNiveau implements Initializable {
 
-    public MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -31,11 +31,13 @@ public class ControleurChoixDuNiveau implements Initializable {
         mediaPlayer.setAutoPlay(true);
     }
 
+    public static MediaPlayer getMediaPlayer(){
+        return mediaPlayer;
+    }
+
     @FXML
     void click1(MouseEvent event) {
         try {
-            mediaPlayer.stop();
-
             Environnement.setMap(new ArrayList<>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                     101, 103, 101, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 101, 101, 101,
                     101, 101, 101, 102, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 102, 101, 101, 101,
@@ -68,8 +70,6 @@ public class ControleurChoixDuNiveau implements Initializable {
     @FXML
     void click2(MouseEvent event) {
         try {
-            mediaPlayer.stop();
-
             Environnement.setMap(new ArrayList<>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                     101, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 104,
                     101, 102, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 103, 101, 101, 101, 101,

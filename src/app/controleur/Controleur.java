@@ -131,12 +131,11 @@ public class Controleur implements Initializable {
         final File mainTheme = new File("src/resources/musique/8-bit-music.mp3");
         final Media mediaSonnerie = new Media(sonnerie.toURI().toString());
         mpSonnerie = new MediaPlayer(mediaSonnerie);
-        mpSonnerie.play();
+
 
         final Media mediaMainTheme = new Media(mainTheme.toURI().toString());
         mpMusic = new MediaPlayer(mediaMainTheme);
         musiqueActive = mpMusic;
-        mpMusic.play();
 
         this.env = new Environnement(1600, 800);
         imageList = new ArrayList<>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
@@ -322,6 +321,12 @@ public class Controleur implements Initializable {
 
     @FXML
     void clickStart(MouseEvent event) {
+        if (ControleurChoixDuNiveau.getMediaPlayer().isAutoPlay()) {
+            ControleurChoixDuNiveau.getMediaPlayer().stop();
+            mpSonnerie.play();
+            mpMusic.play();
+        }
+
         if (this.env.getNiveau().getVagues().getVagues().size() > 0) {
             this.env.startVague();
             gameLoop.play();
