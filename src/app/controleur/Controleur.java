@@ -18,12 +18,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -121,11 +124,23 @@ public class Controleur implements Initializable {
     private int temps;
     private int totalEnnemis; // Nombre total d'ennemi a envoyer a l'ecran des stats
 
+    public MediaPlayer mediaPlayer;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        final File file = new File("src/resources/musique/sonnerie-ecole.mp3");
+        final File mainTheme = new File("src/resources/musique/8-bit-music.mp3");
+        final Media media = new Media(file.toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+
+        final Media mediaMainTheme = new Media(mainTheme.toURI().toString());
+        mediaPlayer = new MediaPlayer(mediaMainTheme);
+        mediaPlayer.play();
+
         this.env = new Environnement(1600, 800);
-        imageList = new ArrayList<ImageView>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
-        checkList = new ArrayList<ImageView>(Arrays.asList(imgCheck1,imgCheck2,imgCheck3,imgCheck4,imgCheck5,imgCheck6,imgCheck7,imgCheck8));
+        imageList = new ArrayList<>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
+        checkList = new ArrayList<>(Arrays.asList(imgCheck1,imgCheck2,imgCheck3,imgCheck4,imgCheck5,imgCheck6,imgCheck7,imgCheck8));
         this.totalEnnemis = 0;
 
         this.argent.textProperty().bind(this.env.getNiveau().getArgentProperty().asString());
@@ -155,15 +170,15 @@ public class Controleur implements Initializable {
             // Mur
             skins.put("barriere" , "resources/skins/b1.png");
 
-        skinsMissiles = new HashMap<String, String>();
-        skinsMissiles.put("Bonnot" , "resources/missiles/1.png");
-        skinsMissiles.put("Rety" , "resources/missiles/3.png");
-        skinsMissiles.put("Comparot" , "resources/missiles/4.png");
-        skinsMissiles.put("Ricordo" , "resources/missiles/7.png");
-        skinsMissiles.put("Lamolle" , "resources/missiles/6.png");
-        skinsMissiles.put("Homps" , "resources/missiles/5.png");
-        skinsMissiles.put("Bossard" , "resources/missiles/2.png");
-        skinsMissiles.put("Simonot" , "resources/missiles/8.png");
+        skinsMissiles = new HashMap<>();
+            skinsMissiles.put("Bonnot" , "resources/missiles/1.png");
+            skinsMissiles.put("Rety" , "resources/missiles/3.png");
+            skinsMissiles.put("Comparot" , "resources/missiles/4.png");
+            skinsMissiles.put("Ricordo" , "resources/missiles/7.png");
+            skinsMissiles.put("Lamolle" , "resources/missiles/6.png");
+            skinsMissiles.put("Homps" , "resources/missiles/5.png");
+            skinsMissiles.put("Bossard" , "resources/missiles/2.png");
+            skinsMissiles.put("Simonot" , "resources/missiles/8.png");
 
 
         ListChangeListener<Acteur> listenActeur= c->{
@@ -379,6 +394,8 @@ public class Controleur implements Initializable {
             }
 
             setStats();
+
+            this.mediaPlayer.stop();
 
             try {
                 BorderPane root = FXMLLoader.load(getClass().getResource("../vue/sampleGameOver.fxml"));

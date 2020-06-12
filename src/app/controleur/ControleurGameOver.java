@@ -12,9 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -76,14 +79,24 @@ public class ControleurGameOver implements Initializable {
     private int nbThomas;
     private int nbAlexandre;
 
+    public MediaPlayer mediaPlayer;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        final File defaite = new File("src/resources/musique/sonnerie-ecole.mp3");
+        final File victoire = new File("src/resources/musique/8-bit-music.mp3");
 
         if (gagne){
+            final Media media = new Media(victoire.toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
             this.resultat.setTextFill(Color.valueOf("#31ae00"));
             this.resultat.setText("Gagné");
         }
         else {
+            final Media media = new Media(defaite.toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
             this.resultat.setTextFill(Color.valueOf("#cc2121"));
             this.resultat.setText("Perdu");
         }

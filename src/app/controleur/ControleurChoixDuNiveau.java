@@ -4,16 +4,33 @@ import app.modele.Environnement;
 import app.modele.Niveau;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
-public class ControleurChoixDuNiveau {
+public class ControleurChoixDuNiveau implements Initializable {
+
+    public MediaPlayer mediaPlayer;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        final File file = new File("src/resources/musique/salle-de-classe-bruitage-gratuit.mp3");
+        final Media media = new Media(file.toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+    }
+
     @FXML
     void click1(MouseEvent event) {
         try {
