@@ -133,7 +133,8 @@ public class Controleur implements Initializable {
         this.round.textProperty().bind(this.env.getNumVagueProperty().asString());
         this.vie.textProperty().bind(this.env.getNiveau().getVieProperty().asString());
 
-        skins = new HashMap<String, String>();
+        skins = new HashMap<>();
+            // Tourelles
             skins.put("Bonnot" , "resources/skins/1.png");
             skins.put("Rety" , "resources/skins/2.png");
             skins.put("Comparot" , "resources/skins/3.png");
@@ -142,6 +143,8 @@ public class Controleur implements Initializable {
             skins.put("Homps" , "resources/skins/6.png");
             skins.put("Bossard" , "resources/skins/7.png");
             skins.put("Simonot" , "resources/skins/8.png");
+
+            // Attaquants
             skins.put("Haris" , "resources/skins/e2.png");
             skins.put("Mateo" , "resources/skins/e1.png");
             skins.put("Telio" , "resources/skins/e3.png");
@@ -323,7 +326,7 @@ public class Controleur implements Initializable {
                 Duration.seconds(0.07),
                 (event -> {
                     // On stop la boucle s'il n'y a plus de vagues dans le niveau et s'il n'y a plus d'ennemi sur le terrain       ou    si le joueur n'a plus de vie
-                    if((this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0) || this.env.getNiveau().getVie() <= 0){
+                    if((this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0) || !this.env.getNiveau().joueurVivant()){
                         while (env.getProject().size() != 0){
                             env.getProject().remove(0);
                         }

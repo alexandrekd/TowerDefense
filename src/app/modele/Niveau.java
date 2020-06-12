@@ -1,7 +1,5 @@
 package app.modele;
 
-
-import app.controleur.ControleurGameOver;
 import app.modele.Eleve.Mateo;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -42,11 +40,6 @@ public class Niveau {
                 vagues.getVagues().get(1).add(Utile.creerEnnemi(this.env, 2));
                 vagues.getVagues().add(vagues.creerVague(0));
                 vagues.getVagues().get(2).add(Utile.creerEnnemi(this.env, 3));
-                /*vagues.getVagues().get(0).add(0, Utile.creerEnnemi(this.env, 3));
-                vagues.getVagues().add(vagues.creerVague(4));
-                vagues.getVagues().get(1).add(1, Utile.creerEnnemi(this.env, 2));
-                vagues.getVagues().get(1).add(4, Utile.creerEnnemi(this.env, 2));
-                vagues.getVagues().get(1).add(Utile.creerEnnemi(this.env, 3));*/
                 break;
 
             case 2:
@@ -59,14 +52,13 @@ public class Niveau {
                 break;
         }
 
-        for(int vague = 0; vague < this.getVagues().getVagues().size(); vague++) {
+        // L'ennemi Mateo invoque des ennemis, on ajoute donc ce nombre au total
+        for(int vague = 0; vague < this.getVagues().getVagues().size(); vague++)
             for (int ennemi = 0; ennemi < this.getVagues().getVagues().get(vague).size(); ennemi++) {
                 if (this.getVagues().getVagues().get(vague).get(ennemi) instanceof Mateo)
-                    totalEnnemis += 20;
+                    totalEnnemis += 23;
                 totalEnnemis++;
             }
-        }
-
     }
 
     public Vagues getVagues(){
@@ -85,10 +77,9 @@ public class Niveau {
     // c'est à dire, infliger des dégats au joueur et disparaitre.
     public void ennemiAttaqueJoueur(Attaquant ennemi){
         int x = toTexture(ennemi.getX());
-        int y = toTexture(ennemi.getY()); //x et y sont les coordonées de la tuile sur laquelle l'ennemi se situe
-
+        int y = toTexture(ennemi.getY());
         int xArrive = env.getArrivé().getX();
-        int yArrive = env.getArrivé().getY(); //xArrive et yArrive sont les coordonées de la tuile d'arrivé
+        int yArrive = env.getArrivé().getY();
 
         if (x == xArrive && y == yArrive ){
             this.setVie(this.getVie() - ennemi.getPv());
@@ -97,26 +88,10 @@ public class Niveau {
 
     }
 
-    public boolean joueurVivant(){  //Cette méthode renvoie true si le joueur est vivant ou renvoie false si le jour à des pv inférieurs ou égal à 0.
-
-        if(this.getVie() > 0){
+    public boolean joueurVivant(){
+        if(this.getVie() > 0)
             return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public boolean joueurAvoirGagne(){  //Cette méthode renvoie true si le joueur a gagné (plus d'ennemis sur le plateau et plus d'ennemis qui
-                                        //vont apparaitre), ou renvoie false si le joueur est encore en cours de partie
-
-        if(this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0){
-            System.out.println("J'ai gagné !!!!!");
-            return true;
-        }
-        else{
-            return false;
-        }
+        return false;
     }
 
     public IntegerProperty getArgentProperty() {
