@@ -30,7 +30,6 @@ public class Invocation implements Effets {
         env.getActeurs().add(new Mur(this.x,this.y,env,"Bonnot",this.portee));
         donneCoAléatoireSurChemmin(xarr,yarr);
         env.getActeurs().add(new Mur(this.x,this.y,env,"Bonnot",this.portee));
-
     }
 
     private void donneCoAléatoireSurChemmin(int xarr,int yarr){

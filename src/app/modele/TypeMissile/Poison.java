@@ -1,3 +1,6 @@
+
+// Projectile dont la zone inflige des degats continus
+
 package app.modele.TypeMissile;
 
 import app.modele.*;
@@ -32,10 +35,8 @@ public class Poison implements EffetsZone {
             zone.agit();
             if (env.getNbTours() % 5 == 0) {
                 ArrayList<Attaquant> liste = zone.getListeAttanquants();
-                for (int i = 0; i < liste.size(); i++) {
-                    Attaquant z = liste.get(i);
-                    z.recevoirTir(degat);
-                }
+                for (int i = 0; i < liste.size(); i++)
+                    liste.get(i).recevoirTir(degat);
             }
         }
         gererVie();
@@ -48,9 +49,9 @@ public class Poison implements EffetsZone {
     @Override
     public boolean estVivant() {
         if (this.getVie() <= 0) {
-            while (this.zone.getActeursDansLaZone().size() != 0){
+            while (this.zone.getActeursDansLaZone().size() != 0)
                 this.zone.getActeursDansLaZone().remove(0);
-            }
+
             env.getZone().remove(this.zone);
             return false;
         }

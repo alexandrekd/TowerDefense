@@ -1,3 +1,6 @@
+
+// Projectile dont la zone ralentit les ennemis
+
 package app.modele.TypeMissile;
 
 import app.modele.*;
@@ -33,8 +36,7 @@ public class Ralentissement implements EffetsZone {
 
     @Override
     public void Entrer(Attaquant acteur) {
-        double speed = acteur.getConsVitesse() * ralentissement;
-        acteur.setVitesse((int) speed);
+        acteur.setVitesse((int) (acteur.getConsVitesse() * ralentissement));
     }
 
     @Override
