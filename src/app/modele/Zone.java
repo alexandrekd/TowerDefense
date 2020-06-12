@@ -39,9 +39,6 @@ public class Zone{
                     if (env.getActeurs().get(i) instanceof Attaquant)
                         acteursDansLaZone.add(env.getActeurs().get(i));
 
-
-
-
         for (int i = 0 ; i < acteursDansLaZone.size() ; i++)
             if ((!(acteursDansLaZone.get(i).getX() <= this.taille + getX() && acteursDansLaZone.get(i).getX() >= getX() - this.taille && acteursDansLaZone.get(i).getY() <= this.taille + getY() && acteursDansLaZone.get(i).getY() >= getY() - this.taille))||(!acteurEstDansLaZone(acteursDansLaZone.get(i)))) {
                 acteursDansLaZone.remove(acteursDansLaZone.get(i));
