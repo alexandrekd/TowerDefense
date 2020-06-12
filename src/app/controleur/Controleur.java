@@ -362,8 +362,13 @@ public class Controleur implements Initializable {
     }
 
     private void disco(){
-        for (int i = 0; i < env.getActeurs().size(); i++){
-            if (env.getActeurs().get(i) instanceof Alexandre){
+        for (int i = 0; i < this.env.getActeurs().size();i++) {
+            if (this.env.getActeurs().get(i) instanceof Alexandre) {
+                Alexandre alex = (Alexandre) (env.getActeurs().get(i));
+                alex.stopMusique();
+                mediaPlayer.stop();
+            }
+            if (this.env.getActeurs().get(i).getName() == "Nyan"){
 
             }
         }
@@ -458,7 +463,6 @@ public class Controleur implements Initializable {
                 this.checkList.get(i).visibleProperty().setValue(false);
             }
         }
-    }
 
     // Retourne la tourelle selectionnee
     public String select(){
