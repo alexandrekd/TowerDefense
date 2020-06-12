@@ -144,19 +144,23 @@ public class Controleur implements Initializable {
 
             // Attaquants
             skins.put("Haris" , "resources/skins/e2.png");
+            skins.put("Thomas" , "resources/skins/e5.png");
             skins.put("Mateo" , "resources/skins/e1.png");
             skins.put("Telio" , "resources/skins/e3.png");
             skins.put("Theo" , "resources/skins/e4.png");
+
+            // Mur
+            skins.put("barriere" , "resources/skins/b1.png");
 
         skinsMissiles = new HashMap<String, String>();
         skinsMissiles.put("Bonnot" , "resources/missiles/1.png");
         skinsMissiles.put("Rety" , "resources/missiles/3.png");
         skinsMissiles.put("Comparot" , "resources/missiles/4.png");
-        skinsMissiles.put("Ricordo" , "resources/missiles/1.png");
+        skinsMissiles.put("Ricordo" , "resources/missiles/7.png");
         skinsMissiles.put("Lamolle" , "resources/missiles/6.png");
         skinsMissiles.put("Homps" , "resources/missiles/5.png");
         skinsMissiles.put("Bossard" , "resources/missiles/2.png");
-        skinsMissiles.put("Simonot" , "resources/missiles/1.png");
+        skinsMissiles.put("Simonot" , "resources/missiles/8.png");
 
 
         ListChangeListener<Acteur> listenActeur= c->{
@@ -266,19 +270,11 @@ public class Controleur implements Initializable {
             c.translateYProperty().bind(acteur.getYProperty());
             paneActeur.getChildren().add(c);
         }
-        else if(acteur instanceof Attaquant){
+        else if(acteur instanceof Attaquant || acteur instanceof Mur){
             ImageView c = new ImageView(skins.get(acteur.getName()));
             c.setId(acteur.getId());
-            c.translateXProperty().bind(acteur.getXProperty());
-            c.translateYProperty().bind(acteur.getYProperty());
-            paneActeur.getChildren().add(c);
-            this.totalEnnemis++;
-        }
-        else if (acteur instanceof Mur){
-            ImageView c = new ImageView(skins.get(acteur.getName()));
-            c.setId(acteur.getId());
-            c.translateXProperty().bind(acteur.getXProperty());
-            c.translateYProperty().bind(acteur.getYProperty());
+            c.translateXProperty().bind(acteur.getXProperty().subtract(25));
+            c.translateYProperty().bind(acteur.getYProperty().subtract(30));
             paneActeur.getChildren().add(c);
             this.totalEnnemis++;
         }
@@ -288,8 +284,8 @@ public class Controleur implements Initializable {
         Circle c = new Circle(zone.getTaille());
         c.setId(zone.getId());
         c.setFill(Color.valueOf(zone.getCouleur()));
-        c.setTranslateX(zone.getX());
-        c.setTranslateY(zone.getY());
+        c.translateXProperty().bind(zone.getXProperty());
+        c.translateYProperty().bind(zone.getYProperty());
         c.opacityProperty().bind(zone.trouveTonAmeSoeur().vieProperty());
         paneActeur.getChildren().add(c);
     }
@@ -298,8 +294,6 @@ public class Controleur implements Initializable {
     public void creerSpriteMissile(Missile missile){
         ImageView project = new ImageView(skinsMissiles.get(missile.getName()));
         project.setId(missile.getId());
-        project.setTranslateX(missile.getX());
-        project.setTranslateY(missile.getY());
         project.translateXProperty().bind(missile.getXProperty());
         project.translateYProperty().bind(missile.getYProperty());
         paneActeur.getChildren().add(project);

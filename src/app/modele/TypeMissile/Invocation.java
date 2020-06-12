@@ -24,12 +24,10 @@ public class Invocation implements Effets {
     }
 
     public void spawnMur(int xarr,int yarr){
-        donneCoAléatoireSurChemmin(xarr,yarr);
-        env.getActeurs().add(new Mur(this.x,this.y,env,"Bonnot",this.portee));
-        donneCoAléatoireSurChemmin(xarr,yarr);
-        env.getActeurs().add(new Mur(this.x,this.y,env,"Bonnot",this.portee));
-        donneCoAléatoireSurChemmin(xarr,yarr);
-        env.getActeurs().add(new Mur(this.x,this.y,env,"Bonnot",this.portee));
+        for (int i = 0;i < 3;i++) {
+            donneCoAléatoireSurChemmin(xarr, yarr);
+            env.getActeurs().add(new Mur(this.x, this.y, env, this.portee));
+        }
     }
 
     private void donneCoAléatoireSurChemmin(int xarr,int yarr){

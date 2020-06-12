@@ -1,6 +1,8 @@
 package app.modele;
 
 import app.modele.TypeMissile.EffetsZone;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -12,27 +14,19 @@ public class Zone{
     private int taille;
     private String couleur;
     private String id;
-    private int x;
-    private int y;
+    private IntegerProperty xProperty,yProperty;
     private Environnement env;
 
     public Zone(int taille,String Couleur,int x,int y,Environnement env,String id){
         this.taille = taille;
         this.couleur = Couleur;
-        this.x = x;
-        this.y = y;
+        this.xProperty = new SimpleIntegerProperty(x);
+        this.yProperty = new SimpleIntegerProperty(y);
         this.id = id;
         this.env = env;
         acteursDansLaZone = FXCollections.observableArrayList();
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
 
     public void agit(){
         quiEstDansLaZone();
@@ -41,15 +35,19 @@ public class Zone{
     public void quiEstDansLaZone(){
         for (int i = 0;i < env.getActeurs().size() ; i++)
             if (!dansLaListe(env.getActeurs().get(i)))
-                if (env.getActeurs().get(i).getX() <= this.taille + x && env.getActeurs().get(i).getX() >= x - this.taille && env.getActeurs().get(i).getY() <= this.taille + y && env.getActeurs().get(i).getY() >= y - this.taille)
+                if (env.getActeurs().get(i).getX() <= this.taille + getX() && env.getActeurs().get(i).getX() >= getX() - this.taille && env.getActeurs().get(i).getY() <= this.taille + getY() && env.getActeurs().get(i).getY() >= getY() - this.taille)
                     if (env.getActeurs().get(i) instanceof Attaquant)
                         acteursDansLaZone.add(env.getActeurs().get(i));
 
-        for (int i = 0 ; i < acteursDansLaZone.size() ; i++){
-            if ((!(acteursDansLaZone.get(i).getX() <= this.taille + x && acteursDansLaZone.get(i).getX() >= x - this.taille && acteursDansLaZone.get(i).getY() <= this.taille + y && acteursDansLaZone.get(i).getY() >= y - this.taille))||(!acteurEstDansLaZone(acteursDansLaZone.get(i))))
+
+
+
+        for (int i = 0 ; i < acteursDansLaZone.size() ; i++)
+            if ((!(acteursDansLaZone.get(i).getX() <= this.taille + getX() && acteursDansLaZone.get(i).getX() >= getX() - this.taille && acteursDansLaZone.get(i).getY() <= this.taille + getY() && acteursDansLaZone.get(i).getY() >= getY() - this.taille))||(!acteurEstDansLaZone(acteursDansLaZone.get(i)))) {
                 acteursDansLaZone.remove(acteursDansLaZone.get(i));
                 i--;
-        }
+            }
+
     }
 
     public ArrayList<Attaquant> getListeAttanquants(){
@@ -98,4 +96,20 @@ public class Zone{
         return acteursDansLaZone;
     }
 
+
+    public  int getX() {
+        return xProperty.getValue();
+    }
+    public  void setX(int n){
+        xProperty.setValue(n);
+    }
+    public final IntegerProperty getXProperty(){ return xProperty; }
+
+    public  int getY() {
+        return yProperty.getValue();
+    }
+    public  void setY(int n){
+        yProperty.setValue(n);
+    }
+    public final IntegerProperty getYProperty(){ return yProperty; }
 }

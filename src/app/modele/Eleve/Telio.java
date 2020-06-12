@@ -9,7 +9,7 @@ import app.modele.Environnement;
 
 public class Telio extends Attaquant {
     public Telio(Environnement env, int x, int y){
-        super(env,20,7,x,y,1,"Telio");
+        super(env,20,7,x,y,"Telio");
     }
 
     public void agit() {// Cette methode permet a l'attaquant de se deplacer, meme s'il peut changer de direction
