@@ -1,7 +1,9 @@
+
+// A une chance de envoiyer les ennemis à la case départ
+
 package app.modele.TypeMissile;
 
 import app.modele.Acteur;
-import app.modele.Attaquant;
 import app.modele.Effets;
 import app.modele.Missile;
 import javafx.beans.property.DoubleProperty;

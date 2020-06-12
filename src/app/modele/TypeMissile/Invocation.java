@@ -1,3 +1,6 @@
+
+// Projectile faisant apparaître des murs
+
 package app.modele.TypeMissile;
 
 import app.modele.*;
@@ -10,16 +13,15 @@ public class Invocation implements Effets {
     private int portee;
     private int x,y;
     private String id;
+    private DoubleProperty vie;
 
-    private DoubleProperty vie = new SimpleDoubleProperty(1);
     public Invocation(Environnement env, int portee){
+        vie = new SimpleDoubleProperty(1);
         this.env = env;
         this.portee = portee;
         this.id = "A" + Acteur.compteur;
         Acteur.compteur++;
     }
-
-
 
     public void spawnMur(int xarr,int yarr){
         donneCoAléatoireSurChemmin(xarr,yarr);
@@ -28,7 +30,6 @@ public class Invocation implements Effets {
         env.getActeurs().add(new Mur(this.x,this.y,env,"Bonnot",this.portee));
         donneCoAléatoireSurChemmin(xarr,yarr);
         env.getActeurs().add(new Mur(this.x,this.y,env,"Bonnot",this.portee));
-
     }
 
     private void donneCoAléatoireSurChemmin(int xarr,int yarr){
