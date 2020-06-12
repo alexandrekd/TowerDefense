@@ -147,10 +147,12 @@ public class Controleur implements Initializable {
 
             // Attaquants
             skins.put("Haris" , "resources/skins/e2.png");
+            skins.put("Alexandre", "resources/skins/e7.png");
             skins.put("Thomas" , "resources/skins/e5.png");
             skins.put("Mateo" , "resources/skins/e1.png");
             skins.put("Telio" , "resources/skins/e3.png");
             skins.put("Theo" , "resources/skins/e4.png");
+            skins.put("Nyan", "resources/skins/e6.png");
 
             // Mur
             skins.put("barriere" , "resources/skins/b1.png");

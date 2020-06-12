@@ -50,7 +50,7 @@ public class Utile {
             if(env.getMap().get(i)/900 ==1){
                 if (count == random){
                     if(type == 1)
-                        attaquant = new Telio(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
+                        attaquant = new Telio(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30),"Telio");
                     if(type == 2)
                         attaquant = new Theo(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
                     if(type == 3)
@@ -59,6 +59,8 @@ public class Utile {
                         attaquant = new Thomas(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
                     if (type == 5)
                         attaquant = new Haris(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
+                    if (type == 6)
+                        attaquant = new Alexandre(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
                     count = 0;
                 }
                 else

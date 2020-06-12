@@ -43,14 +43,14 @@ public class ZoneTest {
 
     @Test
     public void siAttaquantArrive(){
-        envDeTest.getActeurs().add(new Telio(envDeTest,0,0));
+        envDeTest.getActeurs().add(new Telio(envDeTest,0,0,"Telio"));
         zoneDeTest.quiEstDansLaZone();
         assertTrue(zoneDeTest.getActeursDansLaZone().size() == 1);
     }
 
     @Test
     public void siAttaquantArriveEtQuitte(){
-        envDeTest.getActeurs().add(new Telio(envDeTest,0,0));
+        envDeTest.getActeurs().add(new Telio(envDeTest,0,0,"Telio"));
         zoneDeTest.quiEstDansLaZone();
         envDeTest.getActeurs().get(0).setX(61);
         envDeTest.getActeurs().get(0).setY(61);
@@ -60,7 +60,7 @@ public class ZoneTest {
 
     @Test
     public void siAttaquantArriveEtMeurt(){
-        envDeTest.getActeurs().add(new Telio(envDeTest,0,0));
+        envDeTest.getActeurs().add(new Telio(envDeTest,0,0,"Telio"));
         zoneDeTest.quiEstDansLaZone();
         envDeTest.getActeurs().remove(0);
         zoneDeTest.quiEstDansLaZone();
