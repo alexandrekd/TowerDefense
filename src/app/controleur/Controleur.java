@@ -1,5 +1,6 @@
 package app.controleur;
 
+import app.modele.Eleve.Alexandre;
 import app.modele.Professeur.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -370,6 +371,13 @@ public class Controleur implements Initializable {
     @FXML
     void changerScene(MouseEvent event) {
         if (this.finLabel.isVisible()) {
+            for (int i = 0; i < this.env.getActeurs().size();i++){
+                if (this.env.getActeurs().get(i) instanceof Alexandre){
+                    Alexandre alex = (Alexandre) (env.getActeurs().get(i));
+                    alex.stopMusique();
+                }
+            }
+
             setStats();
 
             try {

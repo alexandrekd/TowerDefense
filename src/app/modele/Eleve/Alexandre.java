@@ -11,6 +11,7 @@ import java.io.File;
 
 public class Alexandre extends Attaquant {
     int musique = 0;
+    MediaPlayer mediaPlayer;
     public Alexandre(Environnement env, int x, int y){
         super(env, 85,6,x,y,"Alexandre");
     }
@@ -23,10 +24,14 @@ public class Alexandre extends Attaquant {
             if (musique == 0) {
                 final File file = new File("src/resources/musique/NyanCat.mp3");
                 final Media media = new Media(file.toURI().toString());
-                final MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer = new MediaPlayer(media);
                 mediaPlayer.play();
                 musique++;
             }
         }
+    }
+
+    public void stopMusique(){
+        mediaPlayer.stop();
     }
 }
