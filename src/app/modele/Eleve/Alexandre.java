@@ -21,13 +21,17 @@ public class Alexandre extends Attaquant {
         BFS.BFS(this,env);
         if (env.getNbTours()%30 == 0) {
             env.getActeurs().add(new Telio(this.env, Utile.toPixel(Utile.toTexture(this.getX())) + 25 + (int) (Math.random() * 15), Utile.toPixel(Utile.toTexture(this.getY())) + 25 + (int) (Math.random() * 15),"Nyan"));
-            if (musique == 0) {
-                final File file = new File("src/resources/musique/NyanCat.mp3");
-                final Media media = new Media(file.toURI().toString());
-                mediaPlayer = new MediaPlayer(media);
-                mediaPlayer.play();
-                musique++;
-            }
+        }
+    }
+
+    public void startMusique(){
+        if (musique == 0) {
+            final File file = new File("src/resources/musique/NyanCat.mp3");
+            final Media media = new Media(file.toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            env.getMusique().add(mediaPlayer);
+            mediaPlayer.play();
+            musique++;
         }
     }
 

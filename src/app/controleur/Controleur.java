@@ -10,14 +10,13 @@ import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
@@ -36,6 +35,9 @@ public class Controleur implements Initializable {
 
     @FXML
     private TilePane map;
+
+    @FXML
+    private BorderPane borderPane;
 
     @FXML
     private Pane plateau;
@@ -343,10 +345,22 @@ public class Controleur implements Initializable {
                     }
                     else if (temps%5==0){
                         this.env.unTour();
+                        disco();
                     }
                 })
         );
         gameLoop.getKeyFrames().add(kf);
+    }
+
+    private void disco(){
+        for (int i = 0; i < env.getActeurs().size(); i++){
+            if (env.getActeurs().get(i) instanceof Alexandre){
+
+            }
+        }
+        if(env.getMusique().size() != 0){
+            this.borderPane.setBackground(new Background(new BackgroundFill(Color.color((Math.random()),(Math.random()),(Math.random())), CornerRadii.EMPTY, Insets.EMPTY)));
+        }
     }
 
     // Envoie les stats a l'ecran des scores
@@ -371,11 +385,9 @@ public class Controleur implements Initializable {
     @FXML
     void changerScene(MouseEvent event) {
         if (this.finLabel.isVisible()) {
-            for (int i = 0; i < this.env.getActeurs().size();i++){
-                if (this.env.getActeurs().get(i) instanceof Alexandre){
-                    Alexandre alex = (Alexandre) (env.getActeurs().get(i));
-                    alex.stopMusique();
-                }
+            while (this.env.getMusique().size() != 0){
+                this.env.getMusique().get(0).stop();
+                this.env.getMusique().remove(this.env.getMusique().get(0));
             }
 
             setStats();

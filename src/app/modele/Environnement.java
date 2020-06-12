@@ -6,11 +6,14 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Environnement {
+    private ArrayList<MediaPlayer> musique;
     private int width, height;
     private ObservableList<Acteur> acteurs;
     private static List<Integer> map;
@@ -26,6 +29,7 @@ public class Environnement {
     private ArrayList<Attaquant> vaincu;
 
     public Environnement(int width, int height){
+        this.musique = new ArrayList<MediaPlayer>();
         this.vagueEnCours = false;
         this.acteurs = FXCollections.observableArrayList();
         this.width = width;
@@ -257,4 +261,7 @@ public class Environnement {
         return attaquants;
     }
 
+    public ArrayList<MediaPlayer> getMusique() {
+        return musique;
+    }
 }
