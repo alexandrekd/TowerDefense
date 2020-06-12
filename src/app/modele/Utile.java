@@ -26,13 +26,14 @@ public class Utile {
 
     public static int toY(int val){return val/32;}
 
+    // Renvoie la cible du missile à la case depart
     public static void goToCaseDepart(Missile missile){
         int random = (int) (Math.random() * missile.getEnv().getMap().parallelStream().filter(n-> n/900 == 1).collect(Collectors.toList()).size());
-        int x,y,count = 0;
+        int count = 0;
         for (int i = 0 ; i < missile.getEnv().getMap().size(); i++){
             if(missile.getEnv().getMap().get(i)/900 ==1){
                 if (count == random){
-                    missile.getFinActeur().setX(Utile.toX(i));  // new Normal(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + (int) (Math.random()*50));
+                    missile.getFinActeur().setX(Utile.toX(i));
                     missile.getFinActeur().setY(Utile.toPixel(Utile.toY(i)) +10+ (int) (Math.random()*30));
                     count = 0;
                 }

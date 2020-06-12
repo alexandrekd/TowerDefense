@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Vagues {
     private Environnement env;
-    private ArrayList<ArrayList<Attaquant>> vagues; // liste de listes de vagues
+    private ArrayList<ArrayList<Attaquant>> vagues; // liste de vagues d'ennemis
 
     public Vagues(Environnement env){
         this.env = env;

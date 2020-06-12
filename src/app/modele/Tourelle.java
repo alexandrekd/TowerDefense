@@ -69,22 +69,19 @@ public abstract class Tourelle extends Acteur{
     }
 
     public Attaquant trouverCible(){
-        Attaquant cible = null;
         for (int i = 0; i < this.env.getActeurs().size(); i++)
             if (this.env.getActeurs().get(i) instanceof Attaquant)
                 if (env.getActeurs().get(i).getX() <= this.getX() + portee && env.getActeurs().get(i).getX() >= this.getX() - portee && env.getActeurs().get(i).getY() <= this.getY() + portee && env.getActeurs().get(i).getY() >= this.getY() - portee)
-                    return cible = (Attaquant) env.getActeurs().get(i);
-        return cible;
+                    return (Attaquant) env.getActeurs().get(i);
+        return null;
     }
 
     public ArrayList<Attaquant> getListeCible(){
         ArrayList<Attaquant> cibles = new ArrayList<>();
-
         for (int i = 0; i < this.env.getActeurs().size();i++)
             if (this.env.getActeurs().get(i) instanceof Attaquant)
-                if(env.getActeurs().get(i).getX() <= this.getX()+portee && env.getActeurs().get(i).getX() >= this.getX()-portee && env.getActeurs().get(i).getY() <= this.getY()+portee && env.getActeurs().get(i).getY() >= this.getY()-portee){
+                if(env.getActeurs().get(i).getX() <= this.getX()+portee && env.getActeurs().get(i).getX() >= this.getX()-portee && env.getActeurs().get(i).getY() <= this.getY()+portee && env.getActeurs().get(i).getY() >= this.getY()-portee)
                     cibles.add((Attaquant) env.getActeurs().get(i));
-                }
         return cibles;
     }
 
