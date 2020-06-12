@@ -1,8 +1,5 @@
 package app.controleur;
 
-import app.modele.Eleve.Mateo;
-import app.modele.Eleve.Telio;
-import app.modele.Eleve.Theo;
 import app.modele.Professeur.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -380,7 +377,7 @@ public class Controleur implements Initializable {
             setStats();
 
             try {
-                BorderPane root = FXMLLoader.load(getClass().getResource("../vue/gameOver.fxml"));
+                BorderPane root = FXMLLoader.load(getClass().getResource("../vue/sampleGameOver.fxml"));
                 Scene scene = new Scene(root, 1920, 1080);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(scene);
