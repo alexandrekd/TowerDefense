@@ -40,10 +40,6 @@ public class Controleur implements Initializable {
     @FXML
     private TilePane map;
 
-    @FXML
-    private Pane plateau;
-
-
     // Pane contenant les acteurs afin d'éviter la supperposition avec le bouton "FIN"
     @FXML
     private Pane paneActeur;
@@ -53,56 +49,48 @@ public class Controleur implements Initializable {
     private ImageView img1; // Skin
     @FXML
     private ImageView imgCheck1; // Petit v indiquant la selection
-    private BooleanProperty img1checked = new SimpleBooleanProperty(); // Est selectionne ?
 
     // Rety
     @FXML
     private ImageView imgCheck2;
     @FXML
     private ImageView img2;
-    private BooleanProperty img2checked = new SimpleBooleanProperty();
 
     //Comparot
     @FXML
     private ImageView img3;
     @FXML
     private ImageView imgCheck3;
-    private BooleanProperty img3checked = new SimpleBooleanProperty();
 
     // Ricordo
     @FXML
     private ImageView img4;
     @FXML
     private ImageView imgCheck4;
-    private BooleanProperty img4checked = new SimpleBooleanProperty();
 
     // Lamolle
     @FXML
     private ImageView img5;
     @FXML
     private ImageView imgCheck5;
-    private BooleanProperty img5checked = new SimpleBooleanProperty();
 
     // Homps
     @FXML
     private ImageView img6;
     @FXML
     private ImageView imgCheck6;
-    private BooleanProperty img6checked = new SimpleBooleanProperty();
 
     // Bossard
     @FXML
     private ImageView img7;
     @FXML
     private ImageView imgCheck7;
-    private BooleanProperty img7checked = new SimpleBooleanProperty();
 
     // Simonot
     @FXML
     private ImageView img8;
     @FXML
     private ImageView imgCheck8;
-    private BooleanProperty img8checked = new SimpleBooleanProperty();
 
     @FXML
     private Label argent;
