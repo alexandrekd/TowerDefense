@@ -2,6 +2,7 @@ package app.controleur;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -9,7 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class ControleurDebut {
-   @FXML
+    @FXML
     void Jouer(MouseEvent event) {
         try {
             BorderPane root = FXMLLoader.load(getClass().getResource("../vue/sampleChoixDuNiveau.fxml"));

@@ -16,6 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -23,6 +28,7 @@ import app.modele.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,56 +58,48 @@ public class Controleur implements Initializable {
     private ImageView img1; // Skin
     @FXML
     private ImageView imgCheck1; // Petit v indiquant la selection
-    private BooleanProperty img1checked = new SimpleBooleanProperty(); // Est selectionne ?
 
     // Rety
     @FXML
     private ImageView imgCheck2;
     @FXML
     private ImageView img2;
-    private BooleanProperty img2checked = new SimpleBooleanProperty();
 
     //Comparot
     @FXML
     private ImageView img3;
     @FXML
     private ImageView imgCheck3;
-    private BooleanProperty img3checked = new SimpleBooleanProperty();
 
     // Ricordo
     @FXML
     private ImageView img4;
     @FXML
     private ImageView imgCheck4;
-    private BooleanProperty img4checked = new SimpleBooleanProperty();
 
     // Lamolle
     @FXML
     private ImageView img5;
     @FXML
     private ImageView imgCheck5;
-    private BooleanProperty img5checked = new SimpleBooleanProperty();
 
     // Homps
     @FXML
     private ImageView img6;
     @FXML
     private ImageView imgCheck6;
-    private BooleanProperty img6checked = new SimpleBooleanProperty();
 
     // Bossard
     @FXML
     private ImageView img7;
     @FXML
     private ImageView imgCheck7;
-    private BooleanProperty img7checked = new SimpleBooleanProperty();
 
     // Simonot
     @FXML
     private ImageView img8;
     @FXML
     private ImageView imgCheck8;
-    private BooleanProperty img8checked = new SimpleBooleanProperty();
 
     @FXML
     private Label argent;
@@ -123,11 +121,23 @@ public class Controleur implements Initializable {
     private int temps;
     private int totalEnnemis; // Nombre total d'ennemi a envoyer a l'ecran des stats
 
+    public MediaPlayer mediaPlayer;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        final File sonnerie = new File("src/resources/musique/sonnerie-ecole.mp3");
+        final File mainTheme = new File("src/resources/musique/8-bit-music.mp3");
+        final Media media = new Media(sonnerie.toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+
+        final Media mediaMainTheme = new Media(mainTheme.toURI().toString());
+        mediaPlayer = new MediaPlayer(mediaMainTheme);
+        mediaPlayer.play();
+
         this.env = new Environnement(1600, 800);
-        imageList = new ArrayList<ImageView>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
-        checkList = new ArrayList<ImageView>(Arrays.asList(imgCheck1,imgCheck2,imgCheck3,imgCheck4,imgCheck5,imgCheck6,imgCheck7,imgCheck8));
+        imageList = new ArrayList<>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
+        checkList = new ArrayList<>(Arrays.asList(imgCheck1,imgCheck2,imgCheck3,imgCheck4,imgCheck5,imgCheck6,imgCheck7,imgCheck8));
         this.totalEnnemis = 0;
 
         this.argent.textProperty().bind(this.env.getNiveau().getArgentProperty().asString());
@@ -334,12 +344,11 @@ public class Controleur implements Initializable {
                 (event -> {
                     // On stop la boucle s'il n'y a plus de vagues dans le niveau et s'il n'y a plus d'ennemi sur le terrain       ou    si le joueur n'a plus de vie
                     if((this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0) || !this.env.getNiveau().joueurVivant()){
-                        while (env.getProject().size() != 0){
+                        while (env.getProject().size() != 0)
                             env.getProject().remove(0);
-                        }
-                        while (env.getZone().size() != 0){
+
+                        while (env.getZone().size() != 0)
                             env.getZone().remove(0);
-                        }
                         gameLoop.stop();
                         this.finLabel.setVisible(true);
                     }
@@ -385,10 +394,12 @@ public class Controleur implements Initializable {
     @FXML
     void changerScene(MouseEvent event) {
         if (this.finLabel.isVisible()) {
-            while (this.env.getMusique().size() != 0){
-                this.env.getMusique().get(0).stop();
-                this.env.getMusique().remove(this.env.getMusique().get(0));
-            }
+            for (int i = 0; i < this.env.getActeurs().size();i++)
+                if (this.env.getActeurs().get(i) instanceof Alexandre){
+                    Alexandre alex = (Alexandre) (env.getActeurs().get(i));
+                    alex.stopMusique();
+                }
+
 
             setStats();
 
@@ -440,7 +451,7 @@ public class Controleur implements Initializable {
 
     // Deselectionne la tourelle
     public void reset(ImageView actuel){
-        for (int i = 0; i < this.imageList.size() ; i++) {
+        for (int i = 0; i < this.imageList.size() ; i++)
             if (this.imageList.get(i)!= actuel) {
                 this.imageList.get(i).setScaleX(1);
                 this.imageList.get(i).setScaleY(1);
