@@ -1,7 +1,5 @@
 package app.modele;
 
-import app.modele.TypeMissile.Degat;
-
 import java.util.ArrayList;
 
 public abstract class Tourelle extends Acteur{
