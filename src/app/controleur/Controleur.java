@@ -142,6 +142,11 @@ public class Controleur implements Initializable {
             skins.put("Homps" , "resources/skins/6.png");
             skins.put("Bossard" , "resources/skins/7.png");
             skins.put("Simonot" , "resources/skins/8.png");
+            skins.put("Haris" , "resources/skins/e2.png");
+            skins.put("Mateo" , "resources/skins/e1.png");
+            skins.put("Telio" , "resources/skins/e3.png");
+            skins.put("Theo" , "resources/skins/e4.png");
+
 
         ListChangeListener<Acteur> listenActeur= c->{
             while (c.next()) {
@@ -250,28 +255,9 @@ public class Controleur implements Initializable {
             c.translateYProperty().bind(acteur.getYProperty());
             paneActeur.getChildren().add(c);
         }
-        else if(acteur instanceof Telio){
-            Circle c = new Circle(5);
+        else if(acteur instanceof Attaquant){
+            ImageView c = new ImageView(skins.get(acteur.getName()));
             c.setId(acteur.getId());
-            c.setFill(Color.BLUE);
-            c.translateXProperty().bind(acteur.getXProperty());
-            c.translateYProperty().bind(acteur.getYProperty());
-            paneActeur.getChildren().add(c);
-            this.totalEnnemis++;
-        }
-        else if(acteur instanceof Theo){
-            Circle c = new Circle(5);
-            c.setId(acteur.getId());
-            c.setFill(Color.RED);
-            c.translateXProperty().bind(acteur.getXProperty());
-            c.translateYProperty().bind(acteur.getYProperty());
-            paneActeur.getChildren().add(c);
-            this.totalEnnemis++;
-        }
-        else if(acteur instanceof Mateo){
-            Circle c = new Circle(10);
-            c.setId(acteur.getId());
-            c.setFill(Color.GREEN);
             c.translateXProperty().bind(acteur.getXProperty());
             c.translateYProperty().bind(acteur.getYProperty());
             paneActeur.getChildren().add(c);

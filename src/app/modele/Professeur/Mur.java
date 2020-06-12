@@ -1,6 +1,3 @@
-
-// Les murs sont des acteurs qui attrapent le premier ennemi a leur portee
-
 package app.modele.Professeur;
 
 import app.modele.Acteur;
@@ -54,6 +51,7 @@ public class Mur extends Acteur {
             if (env.getNbTours()%5 == 0)
             this.vie -= this.cible.getPv();
         }
+        this.vie-= 2;
     }
 
     public boolean dejaChezQuelquun(Attaquant ci){

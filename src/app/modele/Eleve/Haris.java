@@ -9,7 +9,7 @@ import app.modele.Environnement;
 
 public class Haris extends Attaquant {
     public Haris(Environnement env, int x, int y){
-        super(env,10,20,x,y,99999); //valeurs à modifier
+        super(env,10,20,x,y,99999,"Haris"); //valeurs à modifier
     }
 
     // Cette méthode permet à Haris d'avoir un certain pourcentage de chance d'éviter les dégats de l'attaque d'une tourelle.

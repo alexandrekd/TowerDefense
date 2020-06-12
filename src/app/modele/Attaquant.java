@@ -9,8 +9,8 @@ public abstract class Attaquant extends Acteur {
 	private int consVitesse;
 	private int img;
 
-	public Attaquant(Environnement env, int pv, int vitesse, int x, int y, int img) {
-		super(x, y, env, "Attaquant");
+	public Attaquant(Environnement env, int pv, int vitesse, int x, int y, int img,String nom) {
+		super(x, y, env, nom);
 		this.pv = pv;
 		this.vitesse = vitesse;
 		this.img = img;
