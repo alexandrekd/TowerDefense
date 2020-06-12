@@ -11,7 +11,7 @@ import app.modele.TypeMissile.Debut;
 
 public class Homps extends Tourelle {
     public Homps(int x, int y, Environnement env) {
-        super(3, x, y, 10, 150, env,1,"Homps", 5);
+        super(3, x, y, 10, 150, env,"Homps", 5);
     }
 
     @Override

@@ -118,6 +118,7 @@ public class Controleur implements Initializable {
     private ArrayList<ImageView> imageList;
     private ArrayList<ImageView> checkList;
     private HashMap<String, String> skins;
+    private HashMap<String, String> skinsMissiles;
     private Environnement env;
     private int temps;
     private int totalEnnemis; // Nombre total d'ennemi a envoyer a l'ecran des stats
@@ -138,7 +139,7 @@ public class Controleur implements Initializable {
             skins.put("Rety" , "resources/skins/2.png");
             skins.put("Comparot" , "resources/skins/3.png");
             skins.put("Ricordo" , "resources/skins/4.png");
-            skins.put("Lamolle" , "resources/skins/1.png");
+            skins.put("Lamolle" , "resources/skins/5.png");
             skins.put("Homps" , "resources/skins/6.png");
             skins.put("Bossard" , "resources/skins/7.png");
             skins.put("Simonot" , "resources/skins/8.png");
@@ -146,6 +147,16 @@ public class Controleur implements Initializable {
             skins.put("Mateo" , "resources/skins/e1.png");
             skins.put("Telio" , "resources/skins/e3.png");
             skins.put("Theo" , "resources/skins/e4.png");
+
+        skinsMissiles = new HashMap<String, String>();
+        skinsMissiles.put("Bonnot" , "resources/missiles/1.png");
+        skinsMissiles.put("Rety" , "resources/missiles/3.png");
+        skinsMissiles.put("Comparot" , "resources/missiles/4.png");
+        skinsMissiles.put("Ricordo" , "resources/missiles/1.png");
+        skinsMissiles.put("Lamolle" , "resources/missiles/6.png");
+        skinsMissiles.put("Homps" , "resources/missiles/5.png");
+        skinsMissiles.put("Bossard" , "resources/missiles/2.png");
+        skinsMissiles.put("Simonot" , "resources/missiles/1.png");
 
 
         ListChangeListener<Acteur> listenActeur= c->{
@@ -285,7 +296,7 @@ public class Controleur implements Initializable {
 
 
     public void creerSpriteMissile(Missile missile){
-        ImageView project = new ImageView("resources/missiles/" +missile.getDebActeur().getTypeMissile()+".png");
+        ImageView project = new ImageView(skinsMissiles.get(missile.getName()));
         project.setId(missile.getId());
         project.setTranslateX(missile.getX());
         project.setTranslateY(missile.getY());

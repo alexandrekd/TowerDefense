@@ -11,7 +11,7 @@ import app.modele.TypeMissile.Degat;
 
 public class Lamolle extends Tourelle {
     public Lamolle(int x, int y, Environnement env) {
-        super(50, x, y, 30, 1000000, env,1,"Lamolle", 5);
+        super(50, x, y, 30, 1000000, env,"Lamolle", 5);
     }
 
 

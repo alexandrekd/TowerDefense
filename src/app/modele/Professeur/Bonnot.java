@@ -11,7 +11,7 @@ import app.modele.TypeMissile.Degat;
 
 public class Bonnot extends Tourelle {
     public Bonnot(int x, int y, Environnement env) {
-        super(5, x, y, 20, 150, env,1,"Bonnot", 5);
+        super(5, x, y, 20, 150, env,"Bonnot", 5);
     }
 
     @Override
