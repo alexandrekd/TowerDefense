@@ -83,8 +83,8 @@ public class ControleurGameOver implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        final File defaite = new File("src/resources/musique/sonnerie-ecole.mp3");
-        final File victoire = new File("src/resources/musique/8-bit-music.mp3");
+        final File defaite = new File("src/resources/musique/game-over.mp3");
+        final File victoire = new File("src/resources/musique/victory.mp3");
 
         if (gagne){
             final Media media = new Media(victoire.toURI().toString());
