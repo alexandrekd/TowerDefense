@@ -324,7 +324,7 @@ public class Controleur implements Initializable {
         if (ControleurChoixDuNiveau.getMediaPlayer().isAutoPlay()) {
             ControleurChoixDuNiveau.getMediaPlayer().stop();
             mpSonnerie.play();
-            mpMusic.play();
+            mpMusic.setAutoPlay(true);
         }
 
         if (this.env.getNiveau().getVagues().getVagues().size() > 0) {
