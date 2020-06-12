@@ -1,18 +1,21 @@
+
 package app.modele;
 
 import app.modele.Eleve.Telio;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertTrue;
 
-class ZoneTest {
+public class ZoneTest {
+    private Environnement envDeTest;
+    private Zone zoneDeTest;
 
-    @Test
-    void quiEstDansLaZone() {
-
+    @Before
+    public void setup() throws Exception{
         Environnement.setMap(new ArrayList<Integer>(Arrays.asList(101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101,
                 101, 103, 101, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 102, 102, 102, 101, 101, 101, 101, 101, 102, 102, 102, 102, 102, 101, 101, 101,
                 101, 101, 101, 102, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 101, 102, 101, 101, 101, 101, 101, 102, 101, 101, 101, 102, 101, 101, 101,
@@ -31,26 +34,37 @@ class ZoneTest {
                 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101
         )));
         Niveau.setIdVagues(1);
+        envDeTest = new Environnement(300,300);
+        zoneDeTest = new Zone(30,"RED",30,30,envDeTest,"TEST");
 
-        Environnement envDeTest = new Environnement(300,300);
-        Zone zoneDeTest = new Zone(30,"RED",30,30,envDeTest,"TEST");
-        assertTrue(zoneDeTest.getActeursDansLaZone().size() == 0);
 
+
+    }
+
+    @Test
+    public void siAttaquantArrive(){
         envDeTest.getActeurs().add(new Telio(envDeTest,0,0));
         zoneDeTest.quiEstDansLaZone();
         assertTrue(zoneDeTest.getActeursDansLaZone().size() == 1);
+    }
+
+    @Test
+    public void siAttaquantArriveEtQuitte(){
+        envDeTest.getActeurs().add(new Telio(envDeTest,0,0));
+        zoneDeTest.quiEstDansLaZone();
         envDeTest.getActeurs().get(0).setX(61);
         envDeTest.getActeurs().get(0).setY(61);
         zoneDeTest.quiEstDansLaZone();
         assertTrue(zoneDeTest.getActeursDansLaZone().size() == 0);
-        envDeTest.getActeurs().get(0).setX(1);
-        envDeTest.getActeurs().get(0).setY(1);
+    }
+
+    @Test
+    public void siAttaquantArriveEtMeurt(){
+        envDeTest.getActeurs().add(new Telio(envDeTest,0,0));
         zoneDeTest.quiEstDansLaZone();
-        assertTrue(zoneDeTest.getActeursDansLaZone().size() == 1);
         envDeTest.getActeurs().remove(0);
         zoneDeTest.quiEstDansLaZone();
         assertTrue(zoneDeTest.getActeursDansLaZone().size() == 0);
-
-
     }
+
 }

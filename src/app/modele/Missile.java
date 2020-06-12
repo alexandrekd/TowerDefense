@@ -55,6 +55,9 @@ public class Missile {
         }
 
     }
+    public String getName(){
+        return this.debActeur.getName();
+    }
 
     public  int getX() {
         return xProperty.getValue();

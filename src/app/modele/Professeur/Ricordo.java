@@ -11,7 +11,7 @@ import app.modele.TypeMissile.Ralentissement;
 
 public class Ricordo extends Tourelle {
     public Ricordo(int x, int y, Environnement env) {
-        super(0, x, y, 20, 150, env,1,"Ricordo", 5);
+        super(0, x, y, 20, 150, env,"Ricordo", 5);
     }
 
     @Override
