@@ -84,10 +84,18 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" translateX="145.0">
+                  <HBox fx:id="hbThomas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="460.0" translateX="145.0">
                      <children>
-                        <ImageView pickOnBounds="true" preserveRatio="true" scaleX="1.5" scaleY="1.5" translateY="30.0" />
-                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="167.0" text="Label" translateX="305.0" />
+                        <ImageView pickOnBounds="true" preserveRatio="true" scaleX="1.5" scaleY="1.5" translateY="30.0">
+                           <image>
+                              <Image url="@../../resources/skins/e5.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lbThomas" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="167.0" text="0" translateX="325.0">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                        </Label>
                      </children>
                   </HBox>
                </children>

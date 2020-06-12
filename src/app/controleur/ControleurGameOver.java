@@ -2,10 +2,7 @@ package app.controleur;
 
 
 import app.modele.Attaquant;
-import app.modele.Eleve.Haris;
-import app.modele.Eleve.Mateo;
-import app.modele.Eleve.Telio;
-import app.modele.Eleve.Theo;
+import app.modele.Eleve.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -52,6 +49,11 @@ public class ControleurGameOver implements Initializable {
     private HBox hbMateo;
 
     @FXML
+    private Label lbThomas;
+    @FXML
+    private HBox hbThomas;
+
+    @FXML
     private Label lbVie;
 
     @FXML
@@ -66,6 +68,7 @@ public class ControleurGameOver implements Initializable {
     private int nbTheo;
     private int nbHaris;
     private int nbMateo;
+    private int nbThomas;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -103,6 +106,11 @@ public class ControleurGameOver implements Initializable {
             this.hbMateo.managedProperty().setValue(false);
         }
         this.lbMateo.setText(String.valueOf(nbMateo));
+        if (nbThomas == 0) {
+            this.hbThomas.setVisible(false);
+            this.hbThomas.managedProperty().setValue(false);
+        }
+        this.lbThomas.setText(String.valueOf(nbThomas));
 
         this.lbVie.setText("Vie : \t \t \t " + vieRestante);
 
@@ -127,6 +135,9 @@ public class ControleurGameOver implements Initializable {
 
             if (vaincu.get(i) instanceof Mateo)
                 nbMateo++;
+
+            if (vaincu.get(i) instanceof Thomas)
+                nbThomas++;
         }
     }
 
