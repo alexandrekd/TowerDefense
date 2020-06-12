@@ -123,6 +123,7 @@ public class Controleur implements Initializable {
 
     public MediaPlayer mpMusic;
     public MediaPlayer mpSonnerie;
+    public MediaPlayer musiqueActive;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -134,6 +135,7 @@ public class Controleur implements Initializable {
 
         final Media mediaMainTheme = new Media(mainTheme.toURI().toString());
         mpMusic = new MediaPlayer(mediaMainTheme);
+        musiqueActive = mpMusic;
         mpMusic.play();
 
         this.env = new Environnement(1600, 800);
@@ -218,7 +220,6 @@ public class Controleur implements Initializable {
             }
         };
         this.env.getZone().addListener(listenZone);
-
 
         setmap();
         initAnimation();
@@ -364,18 +365,24 @@ public class Controleur implements Initializable {
     }
 
     private void disco(){
+        boolean enVie = false;
         for (int i = 0; i < this.env.getActeurs().size();i++) {
-            if (this.env.getActeurs().get(i) instanceof Alexandre) {
+            if (this.env.getActeurs().get(i) instanceof Alexandre && this.musiqueActive.getMedia().getSource().lastIndexOf("src/resources/musique/NyanCat.mp3") == -1 ) {
                 Alexandre alex = (Alexandre) (env.getActeurs().get(i));
-                alex.stopMusique();
-                mediaPlayer.stop();
+                musiqueActive.stop();
+                musiqueActive = alex.startMusique();
             }
-            if (this.env.getActeurs().get(i).getName() == "Nyan"){
-
+            if (this.env.getActeurs().get(i).getName().equals("Nyan")  || this.env.getActeurs().get(i).getName().equals("Alexandre") ){
+                enVie = true;
+                this.borderPane.setBackground(new Background(new BackgroundFill(Color.color((Math.random()),(Math.random()),(Math.random())), CornerRadii.EMPTY, Insets.EMPTY)));
             }
         }
-        if(env.getMusique().size() != 0){
-            this.borderPane.setBackground(new Background(new BackgroundFill(Color.color((Math.random()),(Math.random()),(Math.random())), CornerRadii.EMPTY, Insets.EMPTY)));
+        if (!enVie && this.musiqueActive.getMedia().getSource().lastIndexOf("src/resources/musique/NyanCat.mp3") != -1){
+            musiqueActive.stop();
+            musiqueActive = mpMusic;
+            musiqueActive.play();
+
+            this.borderPane.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
@@ -401,11 +408,7 @@ public class Controleur implements Initializable {
     @FXML
     void changerScene(MouseEvent event) {
         if (this.finLabel.isVisible()) {
-            for (int i = 0; i < this.env.getActeurs().size();i++)
-                if (this.env.getActeurs().get(i) instanceof Alexandre){
-                    Alexandre alex = (Alexandre) (env.getActeurs().get(i));
-                    alex.stopMusique();
-                }
+            this.musiqueActive.stop();
 
 
             setStats();

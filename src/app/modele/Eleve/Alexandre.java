@@ -24,7 +24,7 @@ public class Alexandre extends Attaquant {
         }
     }
 
-    public void startMusique(){
+    public MediaPlayer startMusique(){
         if (musique == 0) {
             final File file = new File("src/resources/musique/NyanCat.mp3");
             final Media media = new Media(file.toURI().toString());
@@ -32,7 +32,10 @@ public class Alexandre extends Attaquant {
             env.getMusique().add(mediaPlayer);
             mediaPlayer.play();
             musique++;
+
+
         }
+        return mediaPlayer;
     }
 
     public void stopMusique(){
