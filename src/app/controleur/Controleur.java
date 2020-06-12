@@ -269,8 +269,8 @@ public class Controleur implements Initializable {
         else if(acteur instanceof Attaquant){
             ImageView c = new ImageView(skins.get(acteur.getName()));
             c.setId(acteur.getId());
-            c.translateXProperty().bind(acteur.getXProperty());
-            c.translateYProperty().bind(acteur.getYProperty());
+            c.translateXProperty().bind(acteur.getXProperty().subtract(25));
+            c.translateYProperty().bind(acteur.getYProperty().subtract(30));
             paneActeur.getChildren().add(c);
             this.totalEnnemis++;
         }
