@@ -58,7 +58,6 @@ public class BFS {
                 Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) <= Utile.toTexture(attaquant.getY())+1 && Utile.toTexture(attaquant.getEnv().getRang().get(i).getY()) >= Utile.toTexture(attaquant.getY())-1)
                 node = attaquant.getEnv().getRang().get(i);
         }
-        System.out.println("node " + node);
         coordoneesMilieu[0] = Utile.toPixel(node.getX()) + 25;
         coordoneesMilieu[1] = Utile.toPixel(node.getX()) + 25;
 

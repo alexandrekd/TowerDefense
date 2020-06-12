@@ -54,6 +54,11 @@ public class ControleurGameOver implements Initializable {
     private HBox hbThomas;
 
     @FXML
+    private Label lbAlexandre;
+    @FXML
+    private HBox hbAlexandre;
+
+    @FXML
     private Label lbVie;
 
     @FXML
@@ -69,6 +74,7 @@ public class ControleurGameOver implements Initializable {
     private int nbHaris;
     private int nbMateo;
     private int nbThomas;
+    private int nbAlexandre;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -111,6 +117,11 @@ public class ControleurGameOver implements Initializable {
             this.hbThomas.managedProperty().setValue(false);
         }
         this.lbThomas.setText(String.valueOf(nbThomas));
+        if (nbAlexandre == 0) {
+            this.hbAlexandre.setVisible(false);
+            this.hbAlexandre.managedProperty().setValue(false);
+        }
+        this.lbAlexandre.setText(String.valueOf(nbAlexandre));
 
         this.lbVie.setText("Vie : \t \t \t " + vieRestante);
 
@@ -138,6 +149,9 @@ public class ControleurGameOver implements Initializable {
 
             if (vaincu.get(i) instanceof Thomas)
                 nbThomas++;
+
+            if (vaincu.get(i) instanceof Alexandre)
+                nbAlexandre++;
         }
     }
 
