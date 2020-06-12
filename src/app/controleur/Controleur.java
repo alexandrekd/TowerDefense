@@ -4,10 +4,13 @@ import app.modele.Eleve.Alexandre;
 import app.modele.Professeur.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -18,6 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import app.modele.*;
@@ -37,6 +41,13 @@ public class Controleur implements Initializable {
 
     @FXML
     private TilePane map;
+
+    @FXML
+    private BorderPane borderPane;
+
+    @FXML
+    private Pane plateau;
+
 
     // Pane contenant les acteurs afin d'éviter la supperposition avec le bouton "FIN"
     @FXML
@@ -112,6 +123,7 @@ public class Controleur implements Initializable {
 
     public MediaPlayer mpMusic;
     public MediaPlayer mpSonnerie;
+    public MediaPlayer musiqueActive;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -123,6 +135,7 @@ public class Controleur implements Initializable {
 
         final Media mediaMainTheme = new Media(mainTheme.toURI().toString());
         mpMusic = new MediaPlayer(mediaMainTheme);
+        musiqueActive = mpMusic;
         mpMusic.play();
 
         this.env = new Environnement(1600, 800);
@@ -207,7 +220,6 @@ public class Controleur implements Initializable {
             }
         };
         this.env.getZone().addListener(listenZone);
-
 
         setmap();
         initAnimation();
@@ -343,11 +355,35 @@ public class Controleur implements Initializable {
                         gameLoop.stop();
                         this.finLabel.setVisible(true);
                     }
-                    else if (temps%5==0)
+                    else if (temps%5==0){
                         this.env.unTour();
+                        disco();
+                    }
                 })
         );
         gameLoop.getKeyFrames().add(kf);
+    }
+
+    private void disco(){
+        boolean enVie = false;
+        for (int i = 0; i < this.env.getActeurs().size();i++) {
+            if (this.env.getActeurs().get(i) instanceof Alexandre && this.musiqueActive.getMedia().getSource().lastIndexOf("src/resources/musique/NyanCat.mp3") == -1 ) {
+                Alexandre alex = (Alexandre) (env.getActeurs().get(i));
+                musiqueActive.stop();
+                musiqueActive = alex.startMusique();
+            }
+            if (this.env.getActeurs().get(i).getName().equals("Nyan")  || this.env.getActeurs().get(i).getName().equals("Alexandre") ){
+                enVie = true;
+                this.borderPane.setBackground(new Background(new BackgroundFill(Color.color((Math.random()),(Math.random()),(Math.random())), CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+        }
+        if (!enVie && this.musiqueActive.getMedia().getSource().lastIndexOf("src/resources/musique/NyanCat.mp3") != -1){
+            musiqueActive.stop();
+            musiqueActive = mpMusic;
+            musiqueActive.play();
+
+            this.borderPane.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
     }
 
     // Envoie les stats a l'ecran des scores
@@ -372,11 +408,7 @@ public class Controleur implements Initializable {
     @FXML
     void changerScene(MouseEvent event) {
         if (this.finLabel.isVisible()) {
-            for (int i = 0; i < this.env.getActeurs().size();i++)
-                if (this.env.getActeurs().get(i) instanceof Alexandre){
-                    Alexandre alex = (Alexandre) (env.getActeurs().get(i));
-                    alex.stopMusique();
-                }
+            this.musiqueActive.stop();
 
 
             setStats();
@@ -437,7 +469,7 @@ public class Controleur implements Initializable {
                 this.imageList.get(i).setScaleY(1);
                 this.checkList.get(i).visibleProperty().setValue(false);
             }
-    }
+        }
 
     // Retourne la tourelle selectionnee
     public String select(){

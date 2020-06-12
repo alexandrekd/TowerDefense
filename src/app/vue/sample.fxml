@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="1000.0" maxWidth="1920.0" minHeight="1000.0" minWidth="1920.0" prefHeight="1000.0" prefWidth="1920.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.Controleur">
+<BorderPane fx:id="borderPane" maxHeight="1000.0" maxWidth="1920.0" minHeight="1000.0" minWidth="1920.0" prefHeight="1000.0" prefWidth="1920.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleur.Controleur">
    <top>
       <Label prefHeight="70.0" prefWidth="449.0" text="Tower Defense TAM" BorderPane.alignment="CENTER">
          <font>
