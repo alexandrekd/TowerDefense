@@ -14,8 +14,8 @@ public class Mur extends Acteur {
     private int vie = 100;
     private int x,y;
 
-    public Mur(int x, int y, Environnement env, String name,int portee) {
-        super(x, y, env, name);
+    public Mur(int x, int y, Environnement env,int portee) {
+        super(x, y, env, "barriere");
         this.x = x;
         this.y = y;
         attraper = false;
@@ -26,8 +26,6 @@ public class Mur extends Acteur {
     @Override
     public void agit() {
         if (!attraper){
-            this.vie -= 5;
-
             for (int i = 0; i < this.env.getActeurs().size();i++)
                 if (this.env.getActeurs().get(i) instanceof Attaquant)
                     if(env.getActeurs().get(i).getX() <= this.getX()+portee && env.getActeurs().get(i).getX() >= this.getX()-portee && env.getActeurs().get(i).getY() <= this.getY()+portee && env.getActeurs().get(i).getY() >= this.getY()-portee)
@@ -36,22 +34,15 @@ public class Mur extends Acteur {
                             attraper = true;
                           }
 
-            if(this.cible != null){
-                this.cible.setX(this.x);
-                this.cible.setY(this.y);
-            }
 
         }
-        else{
-            if(this.cible != null){
-                this.cible.setX(this.x);
-                this.cible.setY(this.y);
-            }
-
+        if(this.cible != null){
+            this.cible.setX(this.x);
+            this.cible.setY(this.y);
             if (env.getNbTours()%5 == 0)
-            this.vie -= this.cible.getPv();
+                this.vie -= this.cible.getPVMAX();
         }
-        this.vie-= 2;
+        this.vie-= 5;
     }
 
     public boolean dejaChezQuelquun(Attaquant ci){

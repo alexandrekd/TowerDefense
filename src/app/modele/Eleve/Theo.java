@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class Theo extends Attaquant {
     private int portee;
     public Theo(Environnement env, int x, int y){
-        super(env,20,7,x,y,1,"Theo");
+        super(env,20,7,x,y,"Theo");
         this.portee = 1000;
     }
 

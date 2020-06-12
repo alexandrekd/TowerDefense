@@ -7,13 +7,11 @@ public abstract class Attaquant extends Acteur {
 	private int dy; // direction sur y
 	private int vitesse;
 	private int consVitesse;
-	private int img;
 
-	public Attaquant(Environnement env, int pv, int vitesse, int x, int y, int img,String nom) {
+	public Attaquant(Environnement env, int pv, int vitesse, int x, int y,String nom) {
 		super(x, y, env, nom);
 		this.pv = pv;
 		this.vitesse = vitesse;
-		this.img = img;
 		this.PVMAX = pv;
 		this.consVitesse = vitesse;
 	}

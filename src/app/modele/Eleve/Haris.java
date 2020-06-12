@@ -9,14 +9,13 @@ import app.modele.Environnement;
 
 public class Haris extends Attaquant {
     public Haris(Environnement env, int x, int y){
-        super(env,10,20,x,y,99999,"Haris"); //valeurs à modifier
+        super(env,10,7,x,y,"Haris"); //valeurs à modifier
     }
 
     // Cette méthode permet à Haris d'avoir un certain pourcentage de chance d'éviter les dégats de l'attaque d'une tourelle.
     @Override
     public void recevoirTir(int dégatsReçus) {
-        double tentativePourEviter = Math.random() * 1;
-
+        double tentativePourEviter = Math.random();
         if (tentativePourEviter > 0.5){
             this.setPv(this.getPv() - dégatsReçus);
         }

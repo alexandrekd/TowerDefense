@@ -46,8 +46,12 @@ public class Ralentissement implements EffetsZone {
 
     @Override
     public void Explosion(Missile missile) {
+        ExplosionCo(missile.getX(),missile.getY());
+    }
+
+    public void ExplosionCo(int x,int y) {
         this.env.getEffects().add(this);
-        this.zone = new Zone(50,"GREEN",missile.getX(),missile.getY(),env,id);
+        this.zone = new Zone(50,"GREEN",x,y,env,id);
         env.getZone().add(this.zone);
         ListChangeListener<Acteur> liste= c->{
             while (c.next()) {
@@ -92,4 +96,7 @@ public class Ralentissement implements EffetsZone {
 
     public final void setVie(double newVie){  this.vie.set(newVie); }
 
+    public Zone getZone() {
+        return zone;
+    }
 }

@@ -1,8 +1,6 @@
 package app.modele;
 
-import app.modele.Eleve.Mateo;
-import app.modele.Eleve.Telio;
-import app.modele.Eleve.Theo;
+import app.modele.Eleve.*;
 
 import java.util.stream.Collectors;
 
@@ -57,6 +55,10 @@ public class Utile {
                         attaquant = new Theo(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
                     if(type == 3)
                         attaquant = new Mateo(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
+                    if (type == 4)
+                        attaquant = new Thomas(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
+                    if (type == 5)
+                        attaquant = new Haris(env,Utile.toX(i),Utile.toPixel(Utile.toY(i)) + 10 +(int) (Math.random()*30));
                     count = 0;
                 }
                 else
