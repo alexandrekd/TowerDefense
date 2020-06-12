@@ -4,8 +4,6 @@ import app.modele.Eleve.Alexandre;
 import app.modele.Professeur.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -112,19 +110,20 @@ public class Controleur implements Initializable {
     private int temps;
     private int totalEnnemis; // Nombre total d'ennemi a envoyer a l'ecran des stats
 
-    public MediaPlayer mediaPlayer;
+    public MediaPlayer mpMusic;
+    public MediaPlayer mpSonnerie;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         final File sonnerie = new File("src/resources/musique/sonnerie-ecole.mp3");
         final File mainTheme = new File("src/resources/musique/8-bit-music.mp3");
-        final Media media = new Media(sonnerie.toURI().toString());
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
+        final Media mediaSonnerie = new Media(sonnerie.toURI().toString());
+        mpSonnerie = new MediaPlayer(mediaSonnerie);
+        mpSonnerie.play();
 
         final Media mediaMainTheme = new Media(mainTheme.toURI().toString());
-        mediaPlayer = new MediaPlayer(mediaMainTheme);
-        mediaPlayer.play();
+        mpMusic = new MediaPlayer(mediaMainTheme);
+        mpMusic.play();
 
         this.env = new Environnement(1600, 800);
         imageList = new ArrayList<>(Arrays.asList(img1,img2,img3,img4,img5,img6,img7,img8));
@@ -382,7 +381,7 @@ public class Controleur implements Initializable {
 
             setStats();
 
-            this.mediaPlayer.stop();
+            this.mpSonnerie.stop();
 
             try {
                 BorderPane root = FXMLLoader.load(getClass().getResource("../vue/sampleGameOver.fxml"));
