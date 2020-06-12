@@ -72,11 +72,11 @@ public class ControleurGameOver implements Initializable {
 
         if (gagne){
             this.resultat.setTextFill(Color.valueOf("#31ae00"));
-            this.resultat.setText("Gagnée");
+            this.resultat.setText("Gagné");
         }
         else {
             this.resultat.setTextFill(Color.valueOf("#cc2121"));
-            this.resultat.setText("Perdue");
+            this.resultat.setText("Perdu");
         }
 
         this.ennemisTues.setText("Ennemis tués :\t\t" + vaincu.size() + "/" + totalEnnemis);
