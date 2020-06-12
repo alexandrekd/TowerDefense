@@ -128,9 +128,9 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        final File file = new File("src/resources/musique/sonnerie-ecole.mp3");
+        final File sonnerie = new File("src/resources/musique/sonnerie-ecole.mp3");
         final File mainTheme = new File("src/resources/musique/8-bit-music.mp3");
-        final Media media = new Media(file.toURI().toString());
+        final Media media = new Media(sonnerie.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
 
@@ -347,18 +347,17 @@ public class Controleur implements Initializable {
                 (event -> {
                     // On stop la boucle s'il n'y a plus de vagues dans le niveau et s'il n'y a plus d'ennemi sur le terrain       ou    si le joueur n'a plus de vie
                     if((this.env.getNiveau().getVagues().getVagues().size() == 0 && this.env.getAttaquantsInActeurs().size() == 0) || !this.env.getNiveau().joueurVivant()){
-                        while (env.getProject().size() != 0){
+                        while (env.getProject().size() != 0)
                             env.getProject().remove(0);
-                        }
-                        while (env.getZone().size() != 0){
+
+                        while (env.getZone().size() != 0)
                             env.getZone().remove(0);
-                        }
+
                         gameLoop.stop();
                         this.finLabel.setVisible(true);
                     }
-                    else if (temps%5==0){
+                    else if (temps%5==0)
                         this.env.unTour();
-                    }
                 })
         );
         gameLoop.getKeyFrames().add(kf);
@@ -386,12 +385,12 @@ public class Controleur implements Initializable {
     @FXML
     void changerScene(MouseEvent event) {
         if (this.finLabel.isVisible()) {
-            for (int i = 0; i < this.env.getActeurs().size();i++){
+            for (int i = 0; i < this.env.getActeurs().size();i++)
                 if (this.env.getActeurs().get(i) instanceof Alexandre){
                     Alexandre alex = (Alexandre) (env.getActeurs().get(i));
                     alex.stopMusique();
                 }
-            }
+
 
             setStats();
 
@@ -445,13 +444,12 @@ public class Controleur implements Initializable {
 
     // Deselectionne la tourelle
     public void reset(ImageView actuel){
-        for (int i = 0; i < this.imageList.size() ; i++) {
+        for (int i = 0; i < this.imageList.size() ; i++)
             if (this.imageList.get(i)!= actuel) {
                 this.imageList.get(i).setScaleX(1);
                 this.imageList.get(i).setScaleY(1);
                 this.checkList.get(i).visibleProperty().setValue(false);
             }
-        }
     }
 
     // Retourne la tourelle selectionnee
